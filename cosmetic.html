@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flakes Dental | Cosmetic Dentistry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a6bdf;
+            --primary-dark: #0850a8;
+            --primary-light: #e8f0fe;
+            --dark: #0a1e2f;
+            --gray: #4a5a6e;
+            --light-gray: #f0f4f8;
+            --white: #ffffff;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 72px;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        body.page-exit {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        body.page-enter {
+            animation: pageEnter 0.5s ease forwards;
+        }
+
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .header .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .header .logo span {
+            color: var(--primary);
+        }
+
+        .header .nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+        }
+        .header .nav>li {
+            list-style: none;
+            position: relative;
+        }
+        .header .nav>li>a {
+            display: inline-block;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+        }
+        .header .nav>li>a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2.5px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+        .header .nav>li>a:hover::after,
+        .header .nav>li>a.active::after {
+            width: 60%;
+        }
+        .header .nav>li>a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .header .nav>li>a.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .header .nav>li>a .arrow {
+            font-size: 0.6rem;
+            margin-left: 4px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .header .nav>li:hover>a .arrow {
+            transform: rotate(180deg);
+        }
+        .header .nav .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 210px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header .nav>li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .header .nav .dropdown li {
+            list-style: none;
+        }
+        .header .nav .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .header .nav .dropdown li a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+        .header .nav .btn-schedule {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+            padding: 8px 22px !important;
+            border-radius: 40px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(10, 107, 223, 0.30);
+        }
+        .header .nav .btn-schedule:hover {
+            background: var(--primary-dark) !important;
+            transform: translateY(-2px);
+        }
+        .header .nav .btn-schedule::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--dark);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== PAGE CONTENT ===== */
+        .page-wrapper {
+            padding: 40px 0 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-bottom: 24px;
+        }
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+        .page-title .highlight {
+            color: var(--primary);
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        /* ===== CONDITION CARDS ===== */
+        .condition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .condition-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease;
+        }
+
+        .condition-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .condition-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .condition-card .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .condition-card .card-header .icon {
+            font-size: 2rem;
+        }
+
+        .condition-card .card-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .condition-card .card-body {
+            padding: 24px;
+        }
+
+        .condition-card .card-body .subtopic {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 14px;
+        }
+
+        .condition-card .card-body .subtopic:last-child {
+            margin-bottom: 0;
+        }
+
+        .condition-card.visible .card-body .subtopic {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .condition-card.visible .card-body .subtopic:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(2) {
+            transition-delay: 0.25s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(4) {
+            transition-delay: 0.55s;
+        }
+
+        .condition-card .card-body .subtopic .label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .condition-card .card-body .subtopic p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .condition-card .card-body .subtopic ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0 0;
+        }
+
+        .condition-card .card-body .subtopic ul li {
+            font-size: 0.92rem;
+            color: var(--gray);
+            padding: 3px 0 3px 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .condition-card .card-body .subtopic ul li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .badge-treatment {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 14px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: #c8d4e0;
+            padding: 40px 0 24px;
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+            text-align: center;
+            justify-items: center;
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .footer p {
+            margin: 6px 0;
+            font-size: 0.92rem;
+        }
+        .footer .phone {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .footer .bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.82rem;
+            color: #6a7a8e;
+            grid-column: 1 / -1;
+        }
+        .footer a {
+            color: #c8d4e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: flex;
+            }
+            .header .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 0;
+                box-shadow: var(--shadow-hover);
+                border-radius: 0 0 var(--radius) var(--radius);
+                display: none;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .header .nav.open {
+                display: flex;
+                animation: fadeIn 0.25s ease;
+            }
+            .header .nav>li {
+                width: 100%;
+            }
+            .header .nav>li>a {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 16px;
+                width: 100%;
+                border-bottom: 1px solid #f0f2f5;
+            }
+            .header .nav>li>a::after {
+                display: none;
+            }
+            .header .nav>li:last-child>a {
+                border-bottom: none;
+            }
+            .header .nav .dropdown {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: var(--light-gray);
+                border: none;
+                width: 100%;
+            }
+            .header .nav .dropdown.open {
+                display: block;
+            }
+            .header .nav .dropdown li a {
+                padding: 10px 16px 10px 32px;
+                border-left: none;
+            }
+            .header .nav .btn-schedule {
+                margin-top: 8px;
+                text-align: center !important;
+            }
+            .condition-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding-top: 64px;
+            }
+            .header {
+                height: 64px;
+                padding: 0 16px;
+            }
+            .header .logo {
+                font-size: 1rem;
+            }
+            .header .logo img {
+                height: 32px;
+            }
+            .page-title {
+                font-size: 1.6rem;
+            }
+            .condition-card .card-header {
+                padding: 14px 18px;
+            }
+            .condition-card .card-header .icon {
+                font-size: 1.6rem;
+            }
+            .condition-card .card-header h3 {
+                font-size: 1rem;
+            }
+            .condition-card .card-body {
+                padding: 18px;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .header .nav {
+                display: flex !important;
+            }
+            .header .nav .dropdown {
+                display: block !important;
+                opacity: 0;
+                visibility: hidden;
+            }
+            .header .nav>li:hover .dropdown {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <a class="logo" href="index.html">
+            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
+            <span>Flakes<span>Dental</span></span>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">
+                    About Us <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="doctor.html">Meet the Doctor</a></li>
+                    <li><a href="team.html">Meet the Team</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Services <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="general.html">General Dentistry</a></li>
+                    <li><a href="cosmetic.html" class="active">Cosmetic Dentistry</a></li>
+                    <li><a href="restorative.html">Restoration</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Resources <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="financial.html">Financial Info</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+        </ul>
+    </header>
+
+    <!-- ===== PAGE CONTENT ===== -->
+    <div class="container page-wrapper">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+
+        <h2 class="page-title">✨ <span class="highlight">Cosmetic</span> Dentistry</h2>
+        <p class="page-subtitle">Transform your smile with confidence — beautiful, natural-looking results.</p>
+
+        <div class="condition-grid">
+
+            <!-- ===== CONDITION 1: Tooth Discoloration ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">🦷</span>
+                    <h3>Tooth Discoloration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Tooth discoloration is the darkening or yellowing of teeth caused by stains on the surface or changes in the tooth's internal structure. It can affect your confidence and smile.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Frequent consumption of coffee, tea, wine, or dark sodas</li>
+                            <li>Smoking or tobacco use</li>
+                            <li>Aging and natural wear of enamel</li>
+                            <li>Certain medications (tetracycline, antihistamines)</li>
+                            <li>Trauma or injury to the tooth</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Professional Teeth Whitening:</strong> Philips Zoom® in-office whitening — 1 hour</li>
+                            <li><strong>Take-Home Whitening Kits:</strong> Custom trays for gradual brightening</li>
+                            <li><strong>Porcelain Veneers:</strong> Ultra-thin shells for severe discoloration</li>
+                            <li><strong>Dental Bonding:</strong> Composite resin for localized stains</li>
+                        </ul>
+                        <span class="badge-treatment">⚡ 1-Hour Whitening</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Rinse your mouth after drinking staining beverages, avoid tobacco, and maintain regular dental cleanings to keep your smile bright.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 2: Chipped/Broken Teeth ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">💔</span>
+                    <h3>Chipped or Broken Teeth</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>A chipped or broken tooth is a fracture in the tooth structure caused by trauma, decay, or biting on hard objects. It can affect both function and appearance.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Sports injuries or accidents</li>
+                            <li>Biting on hard foods (ice, nuts, hard candy)</li>
+                            <li>Teeth grinding (bruxism)</li>
+                            <li>Large existing fillings that weaken the tooth</li>
+                            <li>Untreated decay</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Dental Bonding:</strong> Composite resin for small chips — completed in one visit</li>
+                            <li><strong>Porcelain Veneers:</strong> For larger chips affecting the front teeth</li>
+                            <li><strong>Crowns:</strong> For severely broken teeth requiring full coverage</li>
+                            <li><strong>Onlays/Inlays:</strong> For moderate damage</li>
+                        </ul>
+                        <span class="badge-treatment">⏱️ Same-Day Results</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Wear a mouthguard during sports, avoid chewing hard objects, and use a night guard if you grind your teeth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 3: Gaps Between Teeth ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">↔️</span>
+                    <h3>Gaps Between Teeth</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Gaps or spaces between teeth (diastema) can occur anywhere in the mouth. They can affect your bite, speech, and the appearance of your smile.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Genetics — naturally smaller teeth or larger jawbone</li>
+                            <li>Missing or impacted teeth</li>
+                            <li>Thumb sucking or tongue thrusting habits</li>
+                            <li>Gum disease that causes teeth to shift</li>
+                            <li>Incorrect swallowing reflex</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Porcelain Veneers:</strong> Custom shells to close gaps</li>
+                            <li><strong>Dental Bonding:</strong> Composite resin to build up teeth</li>
+                            <li><strong>Invisalign®:</strong> Clear aligners to shift teeth together</li>
+                            <li><strong>Orthodontic Treatment:</strong> Traditional braces for significant gaps</li>
+                        </ul>
+                        <span class="badge-treatment">🦷 Invisalign® Gold Provider</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Early orthodontic evaluation in children can prevent gaps from worsening. Good oral hygiene prevents gum disease that can cause shifting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 4: Crooked or Misaligned Teeth ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">↗️</span>
+                    <h3>Crooked or Misaligned Teeth</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Crooked or misaligned teeth can affect your bite, speech, and smile appearance. They can also make cleaning difficult, increasing the risk of decay and gum disease.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Genetics and inherited jaw size</li>
+                            <li>Childhood habits (thumb sucking, pacifier use)</li>
+                            <li>Premature loss of baby teeth</li>
+                            <li>Overcrowding of teeth</li>
+                            <li>Trauma that shifts teeth</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Invisalign®:</strong> Virtually invisible clear aligners</li>
+                            <li><strong>Porcelain Veneers:</strong> For mild misalignment</li>
+                            <li><strong>Dental Bonding:</strong> For minor adjustments</li>
+                            <li><strong>Orthodontics:</strong> Traditional braces for complex cases</li>
+                        </ul>
+                        <span class="badge-treatment">🥇 Gold Invisalign® Provider</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Regular dental checkups from an early age can catch misalignment early. We'll help you choose the best option for your smile goals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 5: Worn Enamel ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">🔄</span>
+                    <h3>Worn Enamel</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Enamel is the protective outer layer of your teeth. When it wears away, teeth become sensitive, discolored, and more prone to decay.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Acidic foods and drinks (citrus, soda, vinegar)</li>
+                            <li>Aggressive brushing with hard bristles</li>
+                            <li>Teeth grinding (bruxism)</li>
+                            <li>Acid reflux or GERD</li>
+                            <li>Dry mouth (reduced saliva protection)</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Dental Bonding:</strong> To rebuild worn areas</li>
+                            <li><strong>Porcelain Veneers:</strong> For severely worn front teeth</li>
+                            <li><strong>Fluoride Treatments:</strong> To strengthen remaining enamel</li>
+                            <li><strong>Night Guards:</strong> If grinding is the cause</li>
+                        </ul>
+                        <span class="badge-treatment">💪 Enamel Strengthening</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Use a soft-bristled brush, avoid acidic foods, drink water after meals, and use a straw for acidic beverages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 6: Gummy Smile ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">😁</span>
+                    <h3>Gummy Smile</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>A gummy smile is when excessive gum tissue is visible when you smile. It can make teeth appear shorter and affect the overall balance of your smile.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Genetics — naturally thick or overgrown gum tissue</li>
+                            <li>Teeth eruption issues (teeth appear short)</li>
+                            <li>Hyperactive upper lip muscles</li>
+                            <li>Jaw positioning</li>
+                            <li>Aging that causes gums to recede (opposite effect)</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Gum Contouring:</strong> Laser reshaping of gum line for a balanced smile</li>
+                            <li><strong>Porcelain Veneers:</strong> To lengthen teeth and reduce gum visibility</li>
+                            <li><strong>Orthodontic Treatment:</strong> To correct bite and jaw alignment</li>
+                            <li><strong>Botox®:</strong> For hyperactive lip muscles (temporary option)</li>
+                        </ul>
+                        <span class="badge-treatment">🔬 Laser Precision</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Good oral hygiene keeps gums healthy. We can discuss treatment options to give you the smile you've always wanted.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h4>🦷 Flakes Dental</h4>
+                    <p>Personalized, gentle care for your whole family.</p>
+                    <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
+                </div>
+                <div>
+                    <h4>📞 Contact</h4>
+                    <p class="phone">(425) 353-5854</p>
+                    <p>2121 Madison St Suite A<br />Everett, WA 98203</p>
+                    <p>✉️ info@flakesdental.com</p>
+                </div>
+                <div>
+                    <h4>🕒 Hours</h4>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00 – 4:00</p>
+                    <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
+                </div>
+                <div>
+                    <h4>📍 Location</h4>
+                    <p>2121 Madison St Suite A</p>
+                    <p>Everett, WA 98203</p>
+                    <p style="margin-top:4px;">🚗 Free parking available</p>
+                </div>
+                <div class="bottom">
+                    &copy; 2026 Flakes Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // PAGE TRANSITIONS
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('page-enter');
+
+            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) return;
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('page-exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 400);
+                });
+            });
+        });
+
+        // ===== HAMBURGER =====
+        document.getElementById('hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+        });
+
+        // ===== DROPDOWN TOGGLE (mobile) =====
+        document.querySelectorAll('.nav > li > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const nav = document.getElementById('navMenu');
+                if (!nav.classList.contains('open')) return;
+                const parentLi = this.closest('li');
+                const dropdown = parentLi.querySelector('.dropdown');
+                if (!dropdown) return;
+                e.preventDefault();
+                const wasOpen = dropdown.classList.contains('open');
+                document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+                if (!wasOpen) dropdown.classList.add('open');
+            });
+        });
+
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
+        document.addEventListener('click', function(e) {
+            const header = document.querySelector('.header');
+            if (header && !header.contains(e.target)) {
+                document.getElementById('navMenu').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.condition-card, .footer');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            elements.forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        window.addEventListener('load', function() { setTimeout(animateOnScroll, 100); });
+    </script>
+
+</body>
+</html>

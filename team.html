@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flakes Dental Clinic | Meet the Doctor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a6bdf;
+            --primary-dark: #0850a8;
+            --primary-light: #e8f0fe;
+            --dark: #0a1e2f;
+            --gray: #4a5a6e;
+            --light-gray: #f0f4f8;
+            --white: #ffffff;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 72px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .header .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header .logo span {
+            color: var(--primary);
+        }
+
+        .header .nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+        }
+
+        .header .nav>li {
+            list-style: none;
+            position: relative;
+        }
+
+        .header .nav>li>a {
+            display: inline-block;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .header .nav>li>a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .header .nav>li>a .arrow {
+            font-size: 0.6rem;
+            margin-left: 4px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .header .nav>li:hover>a .arrow {
+            transform: rotate(180deg);
+        }
+
+        .header .nav .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 210px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .header .nav>li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .header .nav .dropdown li {
+            list-style: none;
+        }
+
+        .header .nav .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .header .nav .dropdown li a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+
+        .header .nav .btn-schedule {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+            padding: 8px 22px !important;
+            border-radius: 40px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(10, 107, 223, 0.30);
+        }
+
+        .header .nav .btn-schedule:hover {
+            background: var(--primary-dark) !important;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--dark);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ============================================================
+           PAGE CONTENT
+           ============================================================ */
+        .page-wrapper {
+            padding: 40px 0 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-bottom: 24px;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .page-title .highlight {
+            color: var(--primary);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        /* ============================================================
+           TEAM PHOTO SECTION
+           ============================================================ */
+        .team-photo-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .team-photo-section .team-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: var(--radius);
+            margin: 0 auto 20px;
+            display: block;
+            background: var(--light-gray);
+            padding: 40px 20px;
+            border: 2px dashed var(--primary-light);
+        }
+
+        .team-photo-section .team-image .placeholder-icon {
+            font-size: 5rem;
+            display: block;
+            color: var(--primary);
+        }
+
+        .team-photo-section .team-image .placeholder-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        .team-photo-section h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .team-photo-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           TEAM MEMBERS GRID (3 columns)
+           ============================================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 20px 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-member:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Photo dissolves in */
+        .team-member .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            overflow: hidden;
+            border: 3px solid var(--primary-light);
+            opacity: 0;
+            transition: opacity 1s ease 0.2s;
+        }
+
+        .team-member.visible .member-photo {
+            opacity: 1;
+        }
+
+        .team-member .member-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Text floats in from left */
+        .team-member .member-info {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+        }
+
+        .team-member.visible .member-info {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .team-member .member-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .team-member .member-info .role {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+        }
+
+        .team-member .member-info .detail-block {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .team-member .member-info .detail-block .label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary);
+            display: block;
+            margin-top: 8px;
+        }
+
+        .team-member .member-info .detail-block .label:first-child {
+            margin-top: 0;
+        }
+
+        .team-member .member-info .detail-block p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-top: 2px;
+        }
+
+        .team-member .member-info .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* Stagger delays */
+        .team-member:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        .team-member:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+        .team-member:nth-child(3) {
+            transition-delay: 0.25s;
+        }
+        .team-member:nth-child(4) {
+            transition-delay: 0.35s;
+        }
+        .team-member:nth-child(5) {
+            transition-delay: 0.45s;
+        }
+
+        .team-member:nth-child(1) .member-photo {
+            transition-delay: 0.1s;
+        }
+        .team-member:nth-child(2) .member-photo {
+            transition-delay: 0.2s;
+        }
+        .team-member:nth-child(3) .member-photo {
+            transition-delay: 0.3s;
+        }
+        .team-member:nth-child(4) .member-photo {
+            transition-delay: 0.4s;
+        }
+        .team-member:nth-child(5) .member-photo {
+            transition-delay: 0.5s;
+        }
+
+        .team-member:nth-child(1) .member-info {
+            transition-delay: 0.2s;
+        }
+        .team-member:nth-child(2) .member-info {
+            transition-delay: 0.3s;
+        }
+        .team-member:nth-child(3) .member-info {
+            transition-delay: 0.4s;
+        }
+        .team-member:nth-child(4) .member-info {
+            transition-delay: 0.5s;
+        }
+        .team-member:nth-child(5) .member-info {
+            transition-delay: 0.6s;
+        }
+
+        /* ============================================================
+           FOOTER (Centered)
+           ============================================================ */
+        .footer {
+            background: var(--dark);
+            color: #c8d4e0;
+            padding: 40px 0 24px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+            text-align: center;
+            justify-items: center;
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .footer p {
+            margin: 6px 0;
+            font-size: 0.92rem;
+        }
+
+        .footer .phone {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer .bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.82rem;
+            color: #6a7a8e;
+            grid-column: 1 / -1;
+        }
+
+        .footer a {
+            color: #c8d4e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .header .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 0;
+                box-shadow: var(--shadow-hover);
+                border-radius: 0 0 var(--radius) var(--radius);
+                display: none;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .header .nav.open {
+                display: flex;
+                animation: fadeIn 0.25s ease;
+            }
+
+            .header .nav>li {
+                width: 100%;
+            }
+
+            .header .nav>li>a {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 16px;
+                width: 100%;
+                border-bottom: 1px solid #f0f2f5;
+            }
+
+            .header .nav>li:last-child>a {
+                border-bottom: none;
+            }
+
+            .header .nav .dropdown {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: var(--light-gray);
+                border: none;
+                width: 100%;
+            }
+
+            .header .nav .dropdown.open {
+                display: block;
+            }
+
+            .header .nav .dropdown li a {
+                padding: 10px 16px 10px 32px;
+                border-left: none;
+            }
+
+            .header .nav .btn-schedule {
+                margin-top: 8px;
+                text-align: center !important;
+            }
+
+            .footer .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .team-member .member-photo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .team-member .member-info h3 {
+                font-size: 0.95rem;
+            }
+            .team-member .member-info .role {
+                font-size: 0.75rem;
+            }
+            .team-member .member-info .detail-block p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 64px;
+            }
+            .header {
+                height: 64px;
+                padding: 0 16px;
+            }
+            .header .logo {
+                font-size: 1rem;
+            }
+            .header .logo img {
+                height: 32px;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+                max-width: 360px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .team-photo-section {
+                padding: 24px 16px;
+            }
+            .team-photo-section .team-image {
+                padding: 20px 10px;
+            }
+            .team-photo-section .team-image .placeholder-icon {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .header .nav {
+                display: flex !important;
+            }
+            .header .nav .dropdown {
+                display: block !important;
+                opacity: 0;
+                visibility: hidden;
+            }
+            .header .nav>li:hover .dropdown {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <a class="logo" href="index.html">
+            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
+            <span>Flakes<span>Dental</span></span>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">
+                    About Us <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="doctor.html">Meet the Doctor</a></li>
+                    <li><a href="team.html">Meet the Team</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Services <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="general.html">General Dentistry</a></li>
+                    <li><a href="cosmetic.html">Cosmetic Dentistry</a></li>
+                    <li><a href="restorative.html">Restorative Dentistry</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Resources <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="financial.html">Financial Info</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+        </ul>
+    </header>
+
+    <!-- ============================================================
+    PAGE CONTENT
+    ============================================================ -->
+    <div class="container page-wrapper">
+
+        <!-- Back Button -->
+        <a href="index.html" class="back-btn">← Back to Home</a>
+
+        <!-- ===== PAGE TITLE ===== -->
+        <h2 class="page-title">👨‍⚕️ Meet the <span class="highlight">Doctor</span></h2>
+        <p class="page-subtitle">Get to know the expert behind your smile.</p>
+
+        <!-- ===== TEAM PHOTO SECTION ===== -->
+        <div class="team-photo-section">
+            <div class="team-image">
+                <span class="placeholder-icon">👨‍⚕️</span>
+                <span class="placeholder-text">Our Dental Team — [Team Photo Here]</span>
+            </div>
+            <h2>Our Dedicated Team</h2>
+            <p>We are a family of dental professionals committed to your comfort and oral health. Get to know the faces behind your smile.</p>
+        </div>
+
+        <!-- ============================================================
+        TEAM MEMBERS (5 members with images)
+        ============================================================ -->
+        <div class="team-grid">
+
+            <!-- ===== MEMBER 1: Dr. Max Etemadi ===== -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="dental/closet1.jpg" alt="Dr. Max Etemadi" />
+                </div>
+                <div class="member-info">
+                    <h3>Dr. Max Etemadi</h3>
+                    <div class="role">Founder &amp; Lead Dentist</div>
+
+                    <div class="detail-block">
+                        <span class="label">What do I do?</span>
+                        <p>I lead our clinical team with 18+ years of experience. I perform everything from routine cleanings to complex implant surgeries. My goal is to make every patient feel heard and cared for.</p>
+
+                        <span class="label">Why do I love dentistry?</span>
+                        <p>I love seeing the transformation in my patients — not just their smiles, but their confidence. When someone can smile without hesitation, it changes their life. That's why I do what I do.</p>
+
+                        <span class="label">Fun fact about me</span>
+                        <p>I'm a self-taught guitar player and I love hiking the Cascades with my family!</p>
+                    </div>
+
+                    <span class="badge">⭐ Top Rated</span>
+                </div>
+            </div>
+
+            <!-- ===== MEMBER 2: Dr. Emily Park ===== -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="dental/closet2.jpg" alt="Dr. Emily Park" />
+                </div>
+                <div class="member-info">
+                    <h3>Dr. Emily Park</h3>
+                    <div class="role">Associate Dentist</div>
+
+                    <div class="detail-block">
+                        <span class="label">What do I do?</span>
+                        <p>I specialize in cosmetic and restorative procedures — from veneers and whitening to crowns and bridges. I work closely with patients to design their dream smiles.</p>
+
+                        <span class="label">Why do I love dentistry?</span>
+                        <p>I love the artistry of dentistry. Every smile is unique, and I get to be both an artist and a healer. Seeing a patient's face light up after their smile makeover is the best feeling.</p>
+
+                        <span class="label">Fun fact about me</span>
+                        <p>I used to be a professional ballroom dancer! I competed for 10 years before going to dental school.</p>
+                    </div>
+
+                    <span class="badge">✨ Cosmetic Expert</span>
+                </div>
+            </div>
+
+            <!-- ===== MEMBER 3: Sarah Johnson ===== -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="dental/closet3.jpg" alt="Sarah Johnson" />
+                </div>
+                <div class="member-info">
+                    <h3>Sarah Johnson</h3>
+                    <div class="role">Lead Dental Hygienist</div>
+
+                    <div class="detail-block">
+                        <span class="label">What do I do?</span>
+                        <p>I provide preventive care — cleanings, oral cancer screenings, and gum disease treatments. I educate patients on home care and make sure they feel comfortable during every visit.</p>
+
+                        <span class="label">Why do I love dentistry?</span>
+                        <p>I love helping patients build healthy habits that last a lifetime. When a patient tells me their gums feel better or they're no longer anxious about cleanings, I know I've made a difference.</p>
+
+                        <span class="label">Fun fact about me</span>
+                        <p>I'm an avid gardener and I grow over 30 varieties of tomatoes in my backyard!</p>
+                    </div>
+
+                    <span class="badge">💙 Patient Favorite</span>
+                </div>
+            </div>
+
+            <!-- ===== MEMBER 4: Dr. James Wu ===== -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="dental/closet4.jpg" alt="Dr. James Wu" />
+                </div>
+                <div class="member-info">
+                    <h3>Dr. James Wu</h3>
+                    <div class="role">Oral Surgeon</div>
+
+                    <div class="detail-block">
+                        <span class="label">What do I do?</span>
+                        <p>I handle complex surgical cases — dental implants, wisdom teeth extractions, and bone grafting. I work with our team to ensure seamless, pain-free surgical care.</p>
+
+                        <span class="label">Why do I love dentistry?</span>
+                        <p>I love the precision of surgery and the immediate impact it has on patients' lives. When I remove pain or place a permanent implant, I'm giving someone their quality of life back.</p>
+
+                        <span class="label">Fun fact about me</span>
+                        <p>I'm a certified scuba diver and have explored dive sites in 7 countries!</p>
+                    </div>
+
+                    <span class="badge">🔬 Surgical Expert</span>
+                </div>
+            </div>
+
+            <!-- ===== MEMBER 5: Erin ===== -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="dental/closet5.jpg" alt="Erin" />
+                </div>
+                <div class="member-info">
+                    <h3>Erin</h3>
+                    <div class="role">Receptionist and Office Administrator</div>
+
+                    <div class="detail-block">
+                        <span class="label">What do I do?</span>
+                        <p>I am joining the team as the receptionist and administrator. While this is my first time working in a dental office, I come to the office with nearly two decades of customer service experience and over a decade of administrative experience. I am so thrilled to be joining the team!</p>
+
+                        <span class="label">Why do I love dentistry?</span>
+                        <p>I am passionate about helping people enjoy their lives. Being comfortable and happy with your teeth is such an important part of that! I am excited to be part of a team that helps people with their oral health and be comfortable with their smiles.</p>
+
+                        <span class="label">Fun fact about me</span>
+                        <p>I am a self-taught seamstress!</p>
+                    </div>
+
+                    <span class="badge">🌟 New Team Member</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    FOOTER (Centered)
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h4>🦷 Flakes Dental</h4>
+                    <p>Personalized, gentle care for your whole family.</p>
+                    <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
+                </div>
+                <div>
+                    <h4>📞 Contact</h4>
+                    <p class="phone">(425) 353-5854</p>
+                    <p>2121 Madison St Suite A<br />Everett, WA 98203</p>
+                    <p>✉️ info@flakesdental.com</p>
+                </div>
+                <div>
+                    <h4>🕒 Hours</h4>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00 – 4:00</p>
+                    <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
+                </div>
+                <div>
+                    <h4>📍 Location</h4>
+                    <p>2121 Madison St Suite A</p>
+                    <p>Everett, WA 98203</p>
+                    <p style="margin-top:4px;">🚗 Free parking available</p>
+                </div>
+                <div class="bottom">
+                    &copy; 2026 Flakes Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT — SCROLL ANIMATIONS
+    ============================================================ -->
+    <script>
+        // ===== HAMBURGER =====
+        document.getElementById('hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+        });
+
+        // ===== DROPDOWN TOGGLE (mobile) =====
+        document.querySelectorAll('.nav > li > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const nav = document.getElementById('navMenu');
+                if (!nav.classList.contains('open')) return;
+
+                const parentLi = this.closest('li');
+                const dropdown = parentLi.querySelector('.dropdown');
+                if (!dropdown) return;
+
+                e.preventDefault();
+                const wasOpen = dropdown.classList.contains('open');
+
+                document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+
+                if (!wasOpen) dropdown.classList.add('open');
+            });
+        });
+
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
+        document.addEventListener('click', function(e) {
+            const header = document.querySelector('.header');
+            if (header && !header.contains(e.target)) {
+                document.getElementById('navMenu').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            }
+        });
+
+        // ============================================================
+        // SCROLL ANIMATIONS
+        // ============================================================
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.team-member');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            elements.forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        window.addEventListener('load', function() {
+            setTimeout(animateOnScroll, 100);
+        });
+
+        console.log('🦷 doctor.html — Scroll animations active!');
+    </script>
+
+</body>
+</html>

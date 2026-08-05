@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flakes Dental | Restorative Dentistry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* Copy all styles from general.html - same header, footer, animations */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a6bdf;
+            --primary-dark: #0850a8;
+            --primary-light: #e8f0fe;
+            --dark: #0a1e2f;
+            --gray: #4a5a6e;
+            --light-gray: #f0f4f8;
+            --white: #ffffff;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 72px;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        body.page-exit {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        body.page-enter {
+            animation: pageEnter 0.5s ease forwards;
+        }
+
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER (same as general.html) ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .header .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .header .logo span {
+            color: var(--primary);
+        }
+
+        .header .nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+        }
+        .header .nav>li {
+            list-style: none;
+            position: relative;
+        }
+        .header .nav>li>a {
+            display: inline-block;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+        }
+        .header .nav>li>a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2.5px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+        .header .nav>li>a:hover::after,
+        .header .nav>li>a.active::after {
+            width: 60%;
+        }
+        .header .nav>li>a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .header .nav>li>a.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .header .nav>li>a .arrow {
+            font-size: 0.6rem;
+            margin-left: 4px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .header .nav>li:hover>a .arrow {
+            transform: rotate(180deg);
+        }
+        .header .nav .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 210px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header .nav>li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .header .nav .dropdown li {
+            list-style: none;
+        }
+        .header .nav .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .header .nav .dropdown li a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+        .header .nav .btn-schedule {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+            padding: 8px 22px !important;
+            border-radius: 40px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(10, 107, 223, 0.30);
+        }
+        .header .nav .btn-schedule:hover {
+            background: var(--primary-dark) !important;
+            transform: translateY(-2px);
+        }
+        .header .nav .btn-schedule::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--dark);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== PAGE CONTENT ===== */
+        .page-wrapper {
+            padding: 40px 0 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-bottom: 24px;
+        }
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+        .page-title .highlight {
+            color: var(--primary);
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .condition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .condition-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease;
+        }
+
+        .condition-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .condition-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .condition-card .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .condition-card .card-header .icon {
+            font-size: 2rem;
+        }
+
+        .condition-card .card-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .condition-card .card-body {
+            padding: 24px;
+        }
+
+        .condition-card .card-body .subtopic {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 14px;
+        }
+
+        .condition-card .card-body .subtopic:last-child {
+            margin-bottom: 0;
+        }
+
+        .condition-card.visible .card-body .subtopic {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .condition-card.visible .card-body .subtopic:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(2) {
+            transition-delay: 0.25s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+        .condition-card.visible .card-body .subtopic:nth-child(4) {
+            transition-delay: 0.55s;
+        }
+
+        .condition-card .card-body .subtopic .label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .condition-card .card-body .subtopic p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .condition-card .card-body .subtopic ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0 0;
+        }
+
+        .condition-card .card-body .subtopic ul li {
+            font-size: 0.92rem;
+            color: var(--gray);
+            padding: 3px 0 3px 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .condition-card .card-body .subtopic ul li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .badge-treatment {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 14px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: #c8d4e0;
+            padding: 40px 0 24px;
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+            text-align: center;
+            justify-items: center;
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .footer p {
+            margin: 6px 0;
+            font-size: 0.92rem;
+        }
+        .footer .phone {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .footer .bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.82rem;
+            color: #6a7a8e;
+            grid-column: 1 / -1;
+        }
+        .footer a {
+            color: #c8d4e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: flex;
+            }
+            .header .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 0;
+                box-shadow: var(--shadow-hover);
+                border-radius: 0 0 var(--radius) var(--radius);
+                display: none;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .header .nav.open {
+                display: flex;
+                animation: fadeIn 0.25s ease;
+            }
+            .header .nav>li {
+                width: 100%;
+            }
+            .header .nav>li>a {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 16px;
+                width: 100%;
+                border-bottom: 1px solid #f0f2f5;
+            }
+            .header .nav>li>a::after {
+                display: none;
+            }
+            .header .nav>li:last-child>a {
+                border-bottom: none;
+            }
+            .header .nav .dropdown {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: var(--light-gray);
+                border: none;
+                width: 100%;
+            }
+            .header .nav .dropdown.open {
+                display: block;
+            }
+            .header .nav .dropdown li a {
+                padding: 10px 16px 10px 32px;
+                border-left: none;
+            }
+            .header .nav .btn-schedule {
+                margin-top: 8px;
+                text-align: center !important;
+            }
+            .condition-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding-top: 64px;
+            }
+            .header {
+                height: 64px;
+                padding: 0 16px;
+            }
+            .header .logo {
+                font-size: 1rem;
+            }
+            .header .logo img {
+                height: 32px;
+            }
+            .page-title {
+                font-size: 1.6rem;
+            }
+            .condition-card .card-header {
+                padding: 14px 18px;
+            }
+            .condition-card .card-header .icon {
+                font-size: 1.6rem;
+            }
+            .condition-card .card-header h3 {
+                font-size: 1rem;
+            }
+            .condition-card .card-body {
+                padding: 18px;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .header .nav {
+                display: flex !important;
+            }
+            .header .nav .dropdown {
+                display: block !important;
+                opacity: 0;
+                visibility: hidden;
+            }
+            .header .nav>li:hover .dropdown {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <a class="logo" href="index.html">
+            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
+            <span>Flakes<span>Dental</span></span>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">
+                    About Us <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="doctor.html">Meet the Doctor</a></li>
+                    <li><a href="team.html">Meet the Team</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Services <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="general.html">General Dentistry</a></li>
+                    <li><a href="cosmetic.html">Cosmetic Dentistry</a></li>
+                    <li><a href="restorative.html" class="active">Restoration</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Resources <span class="arrow">▾</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="financial.html">Financial Info</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+        </ul>
+    </header>
+
+    <!-- ===== PAGE CONTENT ===== -->
+    <div class="container page-wrapper">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+
+        <h2 class="page-title">🔩 <span class="highlight">Restorative</span> Dentistry</h2>
+        <p class="page-subtitle">Rebuild and restore your oral health with durable, natural-looking solutions.</p>
+
+        <div class="condition-grid">
+
+            <!-- ===== CONDITION 1: Missing Teeth ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">🦷</span>
+                    <h3>Missing Teeth</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Missing teeth can affect your ability to chew, speak, and smile with confidence. They can also cause remaining teeth to shift, leading to bite problems and bone loss.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Severe tooth decay or gum disease</li>
+                            <li>Trauma or injury to the mouth</li>
+                            <li>Congenital conditions (missing teeth from birth)</li>
+                            <li>Failed previous dental work</li>
+                            <li>Advanced age</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Dental Implants:</strong> Permanent, natural-looking replacement</li>
+                            <li><strong>Dental Bridges:</strong> Fixed restoration using adjacent teeth</li>
+                            <li><strong>Full Dentures:</strong> For complete tooth loss</li>
+                            <li><strong>Partial Dentures:</strong> For multiple missing teeth</li>
+                            <li><strong>Implant-Supported Dentures:</strong> For added stability</li>
+                        </ul>
+                        <span class="badge-treatment">🔩 Permanent Solutions</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Regular checkups, good oral hygiene, and prompt treatment of decay or gum disease can prevent tooth loss.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 2: Broken or Cracked Teeth ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">💔</span>
+                    <h3>Broken or Cracked Teeth</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>A broken or cracked tooth can range from a small chip to a severe fracture that exposes the tooth's pulp. It can cause pain, sensitivity, and further damage if left untreated.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Trauma or injury to the mouth</li>
+                            <li>Teeth grinding (bruxism)</li>
+                            <li>Biting on hard objects (ice, nuts, hard candy)</li>
+                            <li>Large fillings that weaken the tooth</li>
+                            <li>Untreated decay</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Dental Crowns:</strong> Full coverage to protect and restore function</li>
+                            <li><strong>Inlays &amp; Onlays:</strong> Custom restorations for moderate damage</li>
+                            <li><strong>Dental Bonding:</strong> For smaller chips and cracks</li>
+                            <li><strong>Root Canal Therapy:</strong> If the pulp is exposed or infected</li>
+                        </ul>
+                        <span class="badge-treatment">👑 Durable Crowns</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Wear a mouthguard during sports, avoid chewing hard objects, and use a night guard if you grind your teeth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 3: Root Canal Infection ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">🔄</span>
+                    <h3>Root Canal Infection</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>A root canal infection occurs when the soft tissue inside the tooth (pulp) becomes infected or inflamed. It can cause severe pain, swelling, and tooth loss if not treated promptly.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Deep tooth decay that reaches the pulp</li>
+                            <li>Trauma or injury to the tooth</li>
+                            <li>Repeated dental procedures on the same tooth</li>
+                            <li>Cracked or broken tooth</li>
+                            <li>Untreated cavities</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Root Canal Therapy:</strong> Removes infected pulp, cleans, and seals the tooth</li>
+                            <li><strong>Dental Crown:</strong> To protect and restore the tooth after treatment</li>
+                            <li><strong>Pain Management:</strong> Gentle techniques for maximum comfort</li>
+                            <li><strong>Antibiotics:</strong> If infection has spread</li>
+                        </ul>
+                        <span class="badge-treatment">🩺 Pain-Free Treatment</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Good oral hygiene, regular checkups, and prompt treatment of cavities can prevent root canal infections.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 4: TMJ Disorder ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">😣</span>
+                    <h3>TMJ / TMD Disorder</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>TMJ disorder affects the temporomandibular joint, which connects your jaw to your skull. It can cause jaw pain, headaches, earaches, and difficulty opening or closing your mouth.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Teeth grinding or clenching (bruxism)</li>
+                            <li>Stress and anxiety</li>
+                            <li>Arthritis in the jaw joint</li>
+                            <li>Jaw injury or trauma</li>
+                            <li>Misaligned bite</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Night Guards:</strong> Custom-fitted to prevent grinding</li>
+                            <li><strong>Physical Therapy:</strong> Exercises to relieve tension</li>
+                            <li><strong>Bite Adjustment:</strong> To correct misalignment</li>
+                            <li><strong>Stress Management:</strong> Techniques to reduce clenching</li>
+                            <li><strong>Medication:</strong> For pain and inflammation</li>
+                        </ul>
+                        <span class="badge-treatment">😌 Pain Relief</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Stress management, relaxation techniques, and using a night guard can help prevent TMJ symptoms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 5: Severe Tooth Decay ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">🦠</span>
+                    <h3>Severe Tooth Decay</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Severe tooth decay occurs when cavities penetrate deep into the tooth, reaching the dentin or pulp. It can cause pain, infection, and eventual tooth loss if left untreated.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Poor oral hygiene and irregular brushing</li>
+                            <li>High-sugar diet</li>
+                            <li>Dry mouth (reduced saliva flow)</li>
+                            <li>Lack of regular dental checkups</li>
+                            <li>Genetics and tooth structure</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Dental Crowns:</strong> To cover and protect severely decayed teeth</li>
+                            <li><strong>Root Canal Therapy:</strong> If the pulp is infected</li>
+                            <li><strong>Large Fillings:</strong> For moderate decay</li>
+                            <li><strong>Extraction:</strong> If the tooth cannot be saved</li>
+                        </ul>
+                        <span class="badge-treatment">🔧 Restorative Options</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Brush twice daily, floss regularly, limit sugar intake, and visit us for routine cleanings.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONDITION 6: Denture Wearers ===== -->
+            <div class="condition-card">
+                <div class="card-header">
+                    <span class="icon">😁</span>
+                    <h3>Denture Wearers</h3>
+                </div>
+                <div class="card-body">
+                    <div class="subtopic">
+                        <span class="label">📋 What is it?</span>
+                        <p>Denture wearers are individuals who have lost some or all of their teeth and use removable dentures to restore function and appearance. Over time, dentures may need adjustment or replacement.</p>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">⚠️ Common Causes</span>
+                        <ul>
+                            <li>Tooth loss from decay, gum disease, or trauma</li>
+                            <li>Advanced age</li>
+                            <li>Medical conditions affecting oral health</li>
+                            <li>Failing previous dental work</li>
+                            <li>Bone loss in the jaw</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">💊 How We Treat It</span>
+                        <ul>
+                            <li><strong>Full Dentures:</strong> Complete tooth replacement</li>
+                            <li><strong>Partial Dentures:</strong> For multiple missing teeth</li>
+                            <li><strong>Implant-Supported Dentures:</strong> Added stability and comfort</li>
+                            <li><strong>Denture Relining:</strong> To improve fit and comfort</li>
+                            <li><strong>Denture Repairs:</strong> Quick fixes for broken dentures</li>
+                        </ul>
+                        <span class="badge-treatment">😁 Natural Look &amp; Feel</span>
+                    </div>
+                    <div class="subtopic">
+                        <span class="label">🛡️ Prevention</span>
+                        <p>Regular dental checkups and proper denture care can extend the life of your dentures and keep your mouth healthy.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h4>🦷 Flakes Dental</h4>
+                    <p>Personalized, gentle care for your whole family.</p>
+                    <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
+                </div>
+                <div>
+                    <h4>📞 Contact</h4>
+                    <p class="phone">(425) 353-5854</p>
+                    <p>2121 Madison St Suite A<br />Everett, WA 98203</p>
+                    <p>✉️ info@flakesdental.com</p>
+                </div>
+                <div>
+                    <h4>🕒 Hours</h4>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00 – 5:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00 – 4:00</p>
+                    <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
+                </div>
+                <div>
+                    <h4>📍 Location</h4>
+                    <p>2121 Madison St Suite A</p>
+                    <p>Everett, WA 98203</p>
+                    <p style="margin-top:4px;">🚗 Free parking available</p>
+                </div>
+                <div class="bottom">
+                    &copy; 2026 Flakes Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // PAGE TRANSITIONS
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('page-enter');
+
+            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) return;
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('page-exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 400);
+                });
+            });
+        });
+
+        // ===== HAMBURGER =====
+        document.getElementById('hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+        });
+
+        // ===== DROPDOWN TOGGLE (mobile) =====
+        document.querySelectorAll('.nav > li > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const nav = document.getElementById('navMenu');
+                if (!nav.classList.contains('open')) return;
+                const parentLi = this.closest('li');
+                const dropdown = parentLi.querySelector('.dropdown');
+                if (!dropdown) return;
+                e.preventDefault();
+                const wasOpen = dropdown.classList.contains('open');
+                document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+                if (!wasOpen) dropdown.classList.add('open');
+            });
+        });
+
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
+        document.addEventListener('click', function(e) {
+            const header = document.querySelector('.header');
+            if (header && !header.contains(e.target)) {
+                document.getElementById('navMenu').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.condition-card, .footer');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            elements.forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        window.addEventListener('load', function() { setTimeout(animateOnScroll, 100); });
+    </script>
+
+</body>
+</html>
