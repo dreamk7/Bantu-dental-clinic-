@@ -24,6 +24,7 @@
             --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
             --radius: 16px;
             --transition: 0.3s ease;
+            --font-base: 1rem;
         }
 
         html {
@@ -67,6 +68,26 @@
             padding: 0 24px;
         }
 
+        /* ===== SKIP LINK ===== */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 600;
+            z-index: 10000;
+            transition: top 0.3s ease;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         /* ===== HEADER ===== */
         .header {
             position: fixed;
@@ -82,6 +103,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+
+        .header .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .header .logo {
@@ -102,6 +130,37 @@
 
         .header .logo span {
             color: var(--primary);
+        }
+
+        /* slogan moved below logo */
+        .header .slogan {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--gray);
+            letter-spacing: 0.3px;
+            padding-left: 10px;
+            width: 100%;
+            margin-left: 52px; /* align with logo text */
+            margin-top: -4px;
+            border-left: 2px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header .slogan {
+                display: block;
+                margin-left: 50px;
+                font-size: 0.65rem;
+                border-left: 2px solid var(--primary);
+                padding-left: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header .slogan {
+                margin-left: 44px;
+                font-size: 0.6rem;
+            }
         }
 
         .header .nav {
@@ -128,7 +187,17 @@
             position: relative;
         }
 
-        /* ===== MENU HIGHLIGHT (underline animation) ===== */
+        /* ===== FOCUS STATES ===== */
+        .header .nav>li>a:focus-visible,
+        .header .nav .dropdown li a:focus-visible,
+        .btn-primary:focus-visible,
+        .btn-contact:focus-visible,
+        .btn-learn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ===== MENU HIGHLIGHT ===== */
         .header .nav>li>a::after {
             content: '';
             position: absolute;
@@ -291,7 +360,7 @@
         }
 
         /* ============================================================
-           HERO
+           HERO - WITH BREATHING EFFECT
            ============================================================ */
         #home {
             min-height: 90vh;
@@ -304,6 +373,18 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            animation: breatheBackground 8s ease-in-out infinite;
+        }
+
+        @keyframes breatheBackground {
+            0%, 100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: scale(1.02);
+                filter: brightness(1.05);
+            }
         }
 
         #home .hero h1 {
@@ -376,11 +457,11 @@
         }
 
         /* ============================================================
-           WHY CHOOSE FLAKES
+           WHY CHOOSE FLAKES - WHITE BACKGROUND
            ============================================================ */
         .why-choose-section {
-            background: linear-gradient(135deg, #0a1e2f 0%, #1a3a5c 100%);
-            color: var(--white);
+            background: var(--white);
+            color: var(--dark);
             padding: 80px 0 60px;
             position: relative;
             overflow: hidden;
@@ -393,7 +474,7 @@
             right: -20%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(10, 107, 223, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(10, 107, 223, 0.05) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             animation: slowZoom 20s ease-in-out infinite alternate;
@@ -432,7 +513,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 16px;
-            color: var(--white);
+            color: var(--dark);
         }
 
         .why-text h2 .highlight {
@@ -441,7 +522,7 @@
 
         .why-text p {
             font-size: 1.05rem;
-            color: #c8d4e0;
+            color: var(--gray);
             line-height: 1.8;
         }
 
@@ -477,11 +558,11 @@
         .why-title h3 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--dark);
         }
 
         .why-title p {
-            color: #c8d4e0;
+            color: var(--gray);
             font-size: 1rem;
             margin-top: 8px;
         }
@@ -503,27 +584,18 @@
             justify-content: center;
             flex-direction: column;
             position: relative;
+            overflow: hidden;
         }
 
-        .testimonial-rotator .testimonial-slide {
-            opacity: 0;
-            animation: fadeSlide 12s infinite;
-            position: absolute;
-            width: 100%;
+        .testimonial-slide {
+            display: none;
             padding: 0 20px;
+            width: 100%;
+            animation: fadeSlide 0.5s ease forwards;
         }
 
-        .testimonial-rotator .testimonial-slide:nth-child(1) {
-            animation-delay: 0s;
-        }
-        .testimonial-rotator .testimonial-slide:nth-child(2) {
-            animation-delay: 3s;
-        }
-        .testimonial-rotator .testimonial-slide:nth-child(3) {
-            animation-delay: 6s;
-        }
-        .testimonial-rotator .testimonial-slide:nth-child(4) {
-            animation-delay: 9s;
+        .testimonial-slide.active {
+            display: block;
         }
 
         @keyframes fadeSlide {
@@ -531,30 +603,19 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-            8% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            25% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            33% {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
             100% {
-                opacity: 0;
-                transform: translateY(-10px);
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .testimonial-rotator .testimonial-slide .stars {
+        .testimonial-rotator .stars {
             font-size: 1.5rem;
             color: #f5a623;
+            letter-spacing: 2px;
         }
 
-        .testimonial-rotator .testimonial-slide p {
+        .testimonial-rotator p {
             font-size: 1.1rem;
             color: var(--gray);
             margin: 12px 0;
@@ -562,17 +623,79 @@
             line-height: 1.7;
         }
 
-        .testimonial-rotator .testimonial-slide .name {
+        .testimonial-rotator .name {
             font-weight: 600;
             color: var(--dark);
             font-style: normal;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .testimonial-controls button {
+            background: var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-controls button:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .testimonial-controls button:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .testimonial-dots button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0;
+        }
+
+        .testimonial-dots button.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .testimonial-dots button:hover {
+            background: var(--primary-light);
+        }
+
+        .testimonial-dots button:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
         }
 
         .testimonial-wrapper {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
-            min-height: 220px;
         }
 
         .testimonial-sub {
@@ -587,7 +710,7 @@
         }
 
         /* ============================================================
-           SERVICES (with hover flip/tilt)
+           SERVICES
            ============================================================ */
         .services-section {
             padding: 80px 0 60px;
@@ -638,7 +761,6 @@
             background: rgba(10, 30, 47, 0.50);
         }
 
-        /* ===== 3D TILT EFFECT ON HOVER ===== */
         .service-swipe-card:hover {
             transform: translateY(-8px) perspective(600px) rotateX(2deg) rotateY(4deg) scale(1.02);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.30);
@@ -689,7 +811,7 @@
         }
 
         /* ============================================================
-           DOCTOR SECTION (typewriter + fade-in)
+           DOCTOR SECTION
            ============================================================ */
         .doctor-section {
             background: var(--white);
@@ -771,7 +893,6 @@
             color: var(--primary);
         }
 
-        /* ===== TYPEWRITER EFFECT ===== */
         .typewriter {
             display: inline-block;
             overflow: hidden;
@@ -805,7 +926,6 @@
             }
         }
 
-        /* ===== FADE-IN FOR DOCTOR INFO ===== */
         .doctor-info-wrap .role {
             font-size: 1.1rem;
             color: var(--primary);
@@ -860,7 +980,7 @@
         }
 
         /* ============================================================
-           CONTACT (with pulse ring)
+           CONTACT
            ============================================================ */
         .contact-wrap {
             text-align: center;
@@ -888,7 +1008,6 @@
             position: relative;
         }
 
-        /* ===== PULSE RING EFFECT ===== */
         .btn-contact::before {
             content: '';
             position: absolute;
@@ -923,7 +1042,7 @@
         }
 
         /* ============================================================
-           FOOTER (fade-in)
+           FOOTER
            ============================================================ */
         .footer {
             background: var(--dark);
@@ -987,6 +1106,47 @@
 
         .footer a:hover {
             color: var(--primary);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
         }
 
         /* ============================================================
@@ -1199,7 +1359,7 @@
                 padding: 30px 16px;
                 min-height: 280px;
             }
-            .testimonial-rotator .testimonial-slide p {
+            .testimonial-rotator p {
                 font-size: 0.95rem;
             }
             .service-swipe-card {
@@ -1220,6 +1380,13 @@
             }
             .doctor-info-wrap h2 {
                 font-size: 1.6rem;
+            }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
+                font-size: 1.3rem;
             }
         }
 
@@ -1248,200 +1415,252 @@
                 transform: translateY(0);
             }
         }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            #home {
+                animation: none !important;
+            }
+
+            .typewriter {
+                animation: none !important;
+                border-right: none !important;
+                width: 100% !important;
+            }
+
+            .service-swipe-card {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .why-text,
+            .why-title,
+            .doctor-image-wrap,
+            .doctor-info-wrap,
+            .testimonial-sub,
+            .footer {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <a class="logo" href="index.html">
-            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
-            <span>Flakes<span>Dental</span></span>
-        </a>
+    <!-- ===== SKIP LINK ===== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-        <button class="hamburger" id="hamburger" aria-label="Menu">
+    <!-- ===== HEADER ===== -->
+    <header class="header" role="banner">
+        <div class="logo-wrapper">
+            <a class="logo" href="index.html" aria-label="Flakes Dental Home">
+                <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
+                <span>Flakes<span>Dental</span></span>
+            </a>
+            <!-- Slogan moved below company name -->
+            <span class="slogan" aria-hidden="true">✨ Your Smile, Our Passion</span>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
 
-        <ul class="nav" id="navMenu">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li>
-                <a href="#">
-                    About Us <span class="arrow">▾</span>
+        <ul class="nav" id="navMenu" role="menubar">
+            <li role="none"><a href="index.html" class="active" role="menuitem">Home</a></li>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    About Us <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="doctor.html">Meet the Doctor</a></li>
-                    <li><a href="team.html">Meet the Team</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="doctor.html" role="menuitem">Meet the Doctor</a></li>
+                    <li role="none"><a href="team.html" role="menuitem">Meet the Team</a></li>
+                    <li role="none"><a href="reviews.html" role="menuitem">Reviews</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#services">
-                    Services <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#services" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    Services <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="general.html">General Dentistry</a></li>
-                    <li><a href="cosmetic.html">Cosmetic Dentistry</a></li>
-                    <li><a href="restorative.html">Restoration</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="general.html" role="menuitem">General Dentistry</a></li>
+                    <li role="none"><a href="cosmetic.html" role="menuitem">Cosmetic Dentistry</a></li>
+                    <li role="none"><a href="restorative.html" role="menuitem">Restoration</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    Resources <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="financial.html">Financial Info</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="faqs.html" role="menuitem">FAQs</a></li>
+                    <li role="none"><a href="financial.html" role="menuitem">Financial Info</a></li>
                 </ul>
             </li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">Contact Us</a></li>
+            <li role="none"><a href="schedule.html" class="btn-schedule" role="menuitem">📅 Schedule</a></li>
         </ul>
     </header>
 
     <!-- ============================================================
-    HOME / HERO
+    MAIN CONTENT
     ============================================================ -->
-    <section class="section" id="home" style="padding-top:80px;">
-        <div class="container">
-            <div class="hero">
-                <h1>
-                    Your Optimal<br />
-                    <span class="highlight">Oral Health</span><br />
-                    Begins Today!
-                </h1>
-                <p>
-                    Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
-                    <span style="font-size:0.9rem; color:#a0b4c8;">Everett, WA — Personalized Care You Can Trust</span>
-                </p>
-                <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
-            </div>
-        </div>
-    </section>
+    <main id="main-content">
 
-    <!-- ============================================================
-    WHY CHOOSE FLAKES
-    ============================================================ -->
-    <section class="why-choose-section" id="why-choose">
-        <div class="container">
-            <div class="why-choose-wrapper">
-                <div class="why-text">
-                    <h2>Why Choose <span class="highlight">Flakes Dental</span>?</h2>
-                    <p>At Flakes Dental, we believe that a healthy smile is the foundation of confidence and well-being. Our team of dedicated professionals combines decades of experience with the latest advancements in dental technology to provide you with exceptional care in a warm, welcoming environment.</p>
-                    <p style="margin-top:12px;">From routine cleanings to complex restorations, we tailor every treatment to your unique needs — because your smile deserves nothing less than the best.</p>
-                </div>
-                <div class="why-title">
-                    <span class="icon">🦷</span>
-                    <h3>Your Smile, Our Passion</h3>
-                    <p>Experience dentistry that puts you first — gentle, personalized, and results-driven.</p>
+        <!-- ===== HOME / HERO ===== -->
+        <section class="section" id="home" aria-label="Hero banner" style="padding-top:80px;">
+            <div class="container">
+                <div class="hero">
+                    <h1>
+                        Your Optimal<br />
+                        <span class="highlight">Oral Health</span><br />
+                        Begins Today!
+                    </h1>
+                    <p>
+                        Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
+                        <span style="font-size:0.9rem; color:#a0b4c8;">Everett, WA — Personalized Care You Can Trust</span>
+                    </p>
+                    <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-    TESTIMONIALS
-    ============================================================ -->
-    <section class="section" id="testimonials" style="background:var(--white);">
-        <div class="container">
-            <h2 class="section-title">What Our <span class="highlight">Patients</span> Say</h2>
-            <p class="section-subtitle testimonial-sub">Real stories from real people who trust us with their smiles.</p>
-
-            <div class="testimonial-wrapper">
-                <div class="testimonial-rotator">
-                    <div class="testimonial-slide">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"The best dental experience of my life! Dr. Etemadi and his team made me feel so comfortable — Netflix, blankets, and caring conversation. I actually look forward to my visits now!"</p>
-                        <p class="name">— Jessica M.</p>
+        <!-- ===== WHY CHOOSE FLAKES ===== -->
+        <section class="why-choose-section" id="why-choose" aria-label="Why choose Flakes Dental">
+            <div class="container">
+                <div class="why-choose-wrapper">
+                    <div class="why-text">
+                        <h2>Why Choose <span class="highlight">Flakes Dental</span>?</h2>
+                        <p>At Flakes Dental, we believe that a healthy smile is the foundation of confidence and well-being. Our team of dedicated professionals combines decades of experience with the latest advancements in dental technology to provide you with exceptional care in a warm, welcoming environment.</p>
+                        <p style="margin-top:12px;">From routine cleanings to complex restorations, we tailor every treatment to your unique needs — because your smile deserves nothing less than the best.</p>
                     </div>
-                    <div class="testimonial-slide">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"I was nervous about my implant, but they explained everything and the procedure was completely painless. So happy with my new tooth! I couldn't have asked for a better experience."</p>
-                        <p class="name">— David R.</p>
-                    </div>
-                    <div class="testimonial-slide">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"From cleanings to crowns, my kids actually enjoy coming here. The team is patient, kind, and always on time. We've been patients for 5 years and counting!"</p>
-                        <p class="name">— Linda T.</p>
-                    </div>
-                    <div class="testimonial-slide">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Digital X-rays, intraoral cameras, same-day crowns — quick, efficient, and pain-free. I've never had a better dental experience. Highly recommend to everyone!"</p>
-                        <p class="name">— Mark S.</p>
+                    <div class="why-title">
+                        <span class="icon" aria-hidden="true">🦷</span>
+                        <h3>Your Smile, Our Passion</h3>
+                        <p>Experience dentistry that puts you first — gentle, personalized, and results-driven.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-    SERVICES
-    ============================================================ -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <h2 class="section-title">Our <span class="highlight">Services</span></h2>
-            <p class="section-subtitle">Comprehensive care for your whole family — from routine checkups to complete smile transformations.</p>
+        <!-- ===== TESTIMONIALS ===== -->
+        <section class="section" id="testimonials" style="background:var(--white);" aria-label="Patient testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our <span class="highlight">Patients</span> Say</h2>
+                <p class="section-subtitle testimonial-sub">Real stories from real people who trust us with their smiles.</p>
 
-            <div class="service-swipe-grid">
-                <a href="General.html" class="service-swipe-card">
-                    <span class="icon">🪥</span>
-                    <h3>General Dentistry</h3>
-                    <p>Cleanings, exams, fillings, and preventive care for lasting oral health.</p>
-                </a>
+                <div class="testimonial-wrapper">
+                    <div class="testimonial-rotator" role="region" aria-label="Testimonial carousel">
+                        <div class="testimonial-slide active" data-index="0">
+                            <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+                            <p>"The best dental experience of my life! Dr. Etemadi and his team made me feel so comfortable — Netflix, blankets, and caring conversation. I actually look forward to my visits now!"</p>
+                            <p class="name">— Jessica M.</p>
+                        </div>
+                        <div class="testimonial-slide" data-index="1">
+                            <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+                            <p>"I was nervous about my implant, but they explained everything and the procedure was completely painless. So happy with my new tooth! I couldn't have asked for a better experience."</p>
+                            <p class="name">— David R.</p>
+                        </div>
+                        <div class="testimonial-slide" data-index="2">
+                            <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+                            <p>"From cleanings to crowns, my kids actually enjoy coming here. The team is patient, kind, and always on time. We've been patients for 5 years and counting!"</p>
+                            <p class="name">— Linda T.</p>
+                        </div>
+                        <div class="testimonial-slide" data-index="3">
+                            <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+                            <p>"Digital X-rays, intraoral cameras, same-day crowns — quick, efficient, and pain-free. I've never had a better dental experience. Highly recommend to everyone!"</p>
+                            <p class="name">— Mark S.</p>
+                        </div>
+                    </div>
 
-                <a href="cosmetic.html" class="service-swipe-card">
-                    <span class="icon">✨</span>
-                    <h3>Cosmetic Dentistry</h3>
-                    <p>Whitening, veneers, Invisalign, and smile design for a confident you.</p>
-                </a>
+                    <div class="testimonial-dots" role="tablist" aria-label="Testimonial navigation">
+                        <button role="tab" aria-selected="true" aria-label="Testimonial 1" data-index="0" class="active"></button>
+                        <button role="tab" aria-selected="false" aria-label="Testimonial 2" data-index="1"></button>
+                        <button role="tab" aria-selected="false" aria-label="Testimonial 3" data-index="2"></button>
+                        <button role="tab" aria-selected="false" aria-label="Testimonial 4" data-index="3"></button>
+                    </div>
 
-                <a href="restorative.html" class="service-swipe-card">
-                    <span class="icon">🔩</span>
-                    <h3>Restoration</h3>
-                    <p>Implants, crowns, dentures, and full mouth rehabilitation to restore function and beauty.</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    DOCTOR SECTION (with typewriter + fade-in)
-    ============================================================ -->
-    <section class="doctor-section" id="doctor">
-        <div class="container">
-            <div class="doctor-wrap">
-                <div class="doctor-image-wrap">
-                    <img src="dental/grace.jpg" alt="Dr. Grace" />
-                    <span class="label">DMD</span>
-                </div>
-                <div class="doctor-info-wrap">
-                    <h2>Meet <span class="highlight typewriter" id="typewriterText">Dr. Grace</span></h2>
-                    <div class="role">Lead Dentist &amp; Smile Designer</div>
-                    <p>Dr. Grace is a compassionate and skilled dentist dedicated to transforming smiles and improving lives. With a gentle touch and an artistic eye, she combines advanced clinical expertise with a warm, patient-centered approach.</p>
-                    <p>Whether you need a routine checkup or a complete smile makeover, Dr. Grace takes the time to understand your goals and create a personalized treatment plan that fits your lifestyle and budget.</p>
-                    <a href="team.html" class="btn-learn">👨‍⚕️ Learn More About Our Team →</a>
+                    <div class="testimonial-controls">
+                        <button id="prevTestimonial" aria-label="Previous testimonial">‹</button>
+                        <button id="nextTestimonial" aria-label="Next testimonial">›</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-    CONTACT SECTION (with pulse ring)
-    ============================================================ -->
-    <section class="section" id="contact-section" style="background:var(--white);">
-        <div class="container">
-            <div class="contact-wrap">
-                <h2 class="section-title">We'd Love to <span class="highlight">Hear From You</span></h2>
-                <p>Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today — we're just a click or a call away!</p>
-                <a href="contact.html" class="btn-contact">📞 Contact Us →</a>
+        <!-- ===== SERVICES ===== -->
+        <section class="services-section" id="services" aria-label="Our dental services">
+            <div class="container">
+                <h2 class="section-title">Our <span class="highlight">Services</span></h2>
+                <p class="section-subtitle">Comprehensive care for your whole family — from routine checkups to complete smile transformations.</p>
+
+                <div class="service-swipe-grid">
+                    <a href="general.html" class="service-swipe-card">
+                        <span class="icon" aria-hidden="true">🪥</span>
+                        <h3>General Dentistry</h3>
+                        <p>Cleanings, exams, fillings, and preventive care for lasting oral health.</p>
+                    </a>
+
+                    <a href="cosmetic.html" class="service-swipe-card">
+                        <span class="icon" aria-hidden="true">✨</span>
+                        <h3>Cosmetic Dentistry</h3>
+                        <p>Whitening, veneers, Invisalign, and smile design for a confident you.</p>
+                    </a>
+
+                    <a href="restorative.html" class="service-swipe-card">
+                        <span class="icon" aria-hidden="true">🔩</span>
+                        <h3>Restoration</h3>
+                        <p>Implants, crowns, dentures, and full mouth rehabilitation to restore function and beauty.</p>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-    FOOTER (fade-in)
-    ============================================================ -->
-    <footer class="footer" id="footer">
+        <!-- ===== DOCTOR SECTION ===== -->
+        <section class="doctor-section" id="doctor" aria-label="Meet the doctor">
+            <div class="container">
+                <div class="doctor-wrap">
+                    <div class="doctor-image-wrap">
+                        <img src="dental/grace.jpg" alt="Dr. Grace, Lead Dentist at Flakes Dental" loading="lazy" />
+                        <span class="label">DMD</span>
+                    </div>
+                    <div class="doctor-info-wrap">
+                        <h2>Meet <span class="highlight typewriter" id="typewriterText">Dr. Grace</span></h2>
+                        <div class="role">Lead Dentist &amp; Smile Designer</div>
+                        <p>Dr. Grace is a compassionate and skilled dentist dedicated to transforming smiles and improving lives. With a gentle touch and an artistic eye, she combines advanced clinical expertise with a warm, patient-centered approach.</p>
+                        <p>Whether you need a routine checkup or a complete smile makeover, Dr. Grace takes the time to understand your goals and create a personalized treatment plan that fits your lifestyle and budget.</p>
+                        <a href="team.html" class="btn-learn">👨‍⚕️ Learn More About Our Team →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT SECTION ===== -->
+        <section class="section" id="contact-section" style="background:var(--white);" aria-label="Contact information">
+            <div class="container">
+                <div class="contact-wrap">
+                    <h2 class="section-title">We'd Love to <span class="highlight">Hear From You</span></h2>
+                    <p>Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today — we're just a click or a call away!</p>
+                    <a href="contact.html" class="btn-contact">📞 Contact Us →</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
                 <div>
@@ -1452,9 +1671,9 @@
 
                 <div>
                     <h4>📞 Contact</h4>
-                    <p class="phone">(425) 353-5854</p>
+                    <p class="phone"><a href="tel:14253535854" aria-label="Call us at 425-353-5854">(425) 353-5854</a></p>
                     <p>2121 Madison St Suite A<br />Everett, WA 98203</p>
-                    <p>✉️ info@flakesdental.com</p>
+                    <p><a href="mailto:info@flakesdental.com">✉️ info@flakesdental.com</a></p>
                 </div>
 
                 <div>
@@ -1480,6 +1699,9 @@
         </div>
     </footer>
 
+    <!-- ===== BACK TO TOP ===== -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
+
     <script>
         // ============================================================
         // PAGE TRANSITIONS
@@ -1488,16 +1710,19 @@
             document.body.classList.add('page-enter');
 
             // Handle all internal links for smooth transition
-            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Don't apply to anchor links (#)
-                    if (this.getAttribute('href').startsWith('#')) return;
+            const internalLinks = document.querySelectorAll(
+                'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
+                'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
+                'a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], ' +
+                'a[href^="contact.html"], a[href^="schedule.html"]'
+            );
 
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) return;
                     e.preventDefault();
                     const href = this.getAttribute('href');
-
                     document.body.classList.add('page-exit');
-
                     setTimeout(() => {
                         window.location.href = href;
                     }, 400);
@@ -1508,15 +1733,19 @@
         // ============================================================
         // HAMBURGER
         // ============================================================
-        document.getElementById('hamburger').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('navMenu').classList.toggle('open');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', function() {
+            const isOpen = this.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
         });
 
         // ============================================================
         // DROPDOWN TOGGLE (mobile)
         // ============================================================
-        document.querySelectorAll('.nav > li > a').forEach(link => {
+        document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
                 if (!nav.classList.contains('open')) return;
@@ -1530,7 +1759,12 @@
 
                 document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
 
-                if (!wasOpen) dropdown.classList.add('open');
+                if (!wasOpen) {
+                    dropdown.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                } else {
+                    this.setAttribute('aria-expanded', 'false');
+                }
             });
         });
 
@@ -1540,25 +1774,95 @@
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
-                document.getElementById('navMenu').classList.remove('open');
-                document.getElementById('hamburger').classList.remove('active');
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         });
+
+        // ============================================================
+        // TESTIMONIALS - Manual Controls
+        // ============================================================
+        let currentTestimonial = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.testimonial-dots button');
+        let testimonialInterval;
+
+        function showTestimonial(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            if (slides[index]) {
+                slides[index].classList.add('active');
+            }
+            dots.forEach((dot, i) => {
+                const isActive = i === index;
+                dot.classList.toggle('active', isActive);
+                dot.setAttribute('aria-selected', isActive);
+            });
+            currentTestimonial = index;
+        }
+
+        function nextTestimonial() {
+            const next = (currentTestimonial + 1) % slides.length;
+            showTestimonial(next);
+        }
+
+        function prevTestimonial() {
+            const prev = (currentTestimonial - 1 + slides.length) % slides.length;
+            showTestimonial(prev);
+        }
+
+        function startTestimonialRotation() {
+            if (testimonialInterval) clearInterval(testimonialInterval);
+            testimonialInterval = setInterval(nextTestimonial, 5000);
+        }
+
+        function stopTestimonialRotation() {
+            if (testimonialInterval) {
+                clearInterval(testimonialInterval);
+                testimonialInterval = null;
+            }
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                stopTestimonialRotation();
+                showTestimonial(index);
+                startTestimonialRotation();
+            });
+        });
+
+        document.getElementById('prevTestimonial').addEventListener('click', function() {
+            stopTestimonialRotation();
+            prevTestimonial();
+            startTestimonialRotation();
+        });
+
+        document.getElementById('nextTestimonial').addEventListener('click', function() {
+            stopTestimonialRotation();
+            nextTestimonial();
+            startTestimonialRotation();
+        });
+
+        const rotator = document.querySelector('.testimonial-rotator');
+        rotator.addEventListener('mouseenter', stopTestimonialRotation);
+        rotator.addEventListener('mouseleave', startTestimonialRotation);
+
+        showTestimonial(0);
+        startTestimonialRotation();
 
         // ============================================================
         // SCROLL ANIMATIONS
         // ============================================================
         const animateOnScroll = () => {
             const elements = document.querySelectorAll(
-                '.why-text, .why-title, .doctor-image-wrap, .doctor-info-wrap, .service-swipe-card, .testimonial-sub, .footer'
+                '.why-text, .why-title, .doctor-image-wrap, .doctor-info-wrap, ' +
+                '.service-swipe-card, .testimonial-sub, .footer'
             );
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-
-                        // Trigger typewriter only when doctor section becomes visible
                         if (entry.target.classList.contains('doctor-info-wrap')) {
                             const typewriter = document.querySelector('.typewriter');
                             if (typewriter && !typewriter.classList.contains('done')) {
@@ -1577,12 +1881,51 @@
             elements.forEach(el => observer.observe(el));
         };
 
-        document.addEventListener('DOMContentLoaded', animateOnScroll);
-        window.addEventListener('load', function() {
-            setTimeout(animateOnScroll, 100);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateOnScroll);
+        } else {
+            animateOnScroll();
+        }
+
+        // ============================================================
+        // KEYBOARD NAVIGATION FOR TESTIMONIALS
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            const isFocused = document.activeElement?.closest('.testimonial-wrapper');
+            if (!isFocused) return;
+
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                stopTestimonialRotation();
+                prevTestimonial();
+                startTestimonialRotation();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                stopTestimonialRotation();
+                nextTestimonial();
+                startTestimonialRotation();
+            }
         });
 
-        console.log('🦷 index.html — All animations active!');
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        console.log('🦷 Flakes Dental — Slogan moved below logo, back-to-top added.');
     </script>
 
 </body>
