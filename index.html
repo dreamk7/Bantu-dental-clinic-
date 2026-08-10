@@ -139,7 +139,7 @@
             color: var(--primary);
         }
 
-        /* --- slogan glow effect with typing animation --- */
+        /* --- slogan glow effect without cursor --- */
         .header .slogan {
             font-size: 0.7rem;
             font-weight: 400;
@@ -159,20 +159,6 @@
         }
         .header .slogan:hover {
             text-shadow: 0 0 10px rgba(10, 107, 223, 0.30), 0 0 20px rgba(10, 107, 223, 0.10);
-        }
-        /* Typing cursor effect */
-        .header .slogan .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 0.8rem;
-            background: var(--primary);
-            margin-left: 2px;
-            animation: blink 0.8s step-end infinite;
-            vertical-align: text-bottom;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
         }
 
         @media (max-width: 768px) {
@@ -417,10 +403,10 @@
 
         @keyframes breatheText {
             0%, 100% {
-                opacity:1;
+                transform: scale(1);
             }
             50% {
-                opacity:0.7;
+                transform: scale(1.02);
             }
         }
 
@@ -943,6 +929,16 @@
             }
         }
 
+        @keyframes blink {
+            0%,
+            100% {
+                border-color: var(--primary);
+            }
+            50% {
+                border-color: transparent;
+            }
+        }
+
         .doctor-info-wrap .role {
             font-size: 1.1rem;
             color: var(--primary);
@@ -997,7 +993,7 @@
         }
 
         /* ============================================================
-           CONTACT
+           CONTACT - with typewriter effect
            ============================================================ */
         .contact-wrap {
             text-align: center;
@@ -1011,8 +1007,32 @@
             margin-bottom: 24px;
         }
 
+        .contact-typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--primary);
+            width: 0;
+            animation: contactType 3s steps(40) 1s forwards, contactBlink 0.8s step-end infinite;
+        }
+
+        .contact-typewriter.done {
+            border-right: none;
+            width: 100%;
+        }
+
+        @keyframes contactType {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes contactBlink {
+            0%, 100% { border-color: var(--primary); }
+            50% { border-color: transparent; }
+        }
+
         .btn-contact {
-            display: none;
+            display: inline-block;
             background: var(--primary);
             color: var(--white);
             padding: 14px 40px;
@@ -1332,7 +1352,22 @@
                 width: 100% !important;
             }
 
+            .contact-typewriter {
+                white-space: normal;
+                border-right: none;
+                width: 100% !important;
+            }
+
             @keyframes typewriter {
+                from {
+                    width: 0;
+                }
+                to {
+                    width: 100%;
+                }
+            }
+
+            @keyframes contactType {
                 from {
                     width: 0;
                 }
@@ -1457,6 +1492,12 @@
                 width: 100% !important;
             }
 
+            .contact-typewriter {
+                animation: none !important;
+                border-right: none !important;
+                width: 100% !important;
+            }
+
             .service-swipe-card {
                 transform: none !important;
                 opacity: 1 !important;
@@ -1486,7 +1527,7 @@
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
                 <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental</span></span>
             </a>
-            <!-- Slogan with typing effect + glow -->
+            <!-- Slogan with typing effect + glow (no cursor) -->
             <span class="slogan" aria-hidden="true" id="sloganText">
                 <span id="sloganDisplay"></span>
             </span>
@@ -1665,12 +1706,12 @@
             </div>
         </section>
 
-        <!-- ===== CONTACT SECTION ===== -->
+        <!-- ===== CONTACT SECTION with typewriter effect ===== -->
         <section class="section" id="contact-section" style="background:var(--white);" aria-label="Contact information">
             <div class="container">
                 <div class="contact-wrap">
                     <h2 class="section-title">We'd Love to <span class="highlight">Hear From You</span></h2>
-                    <p>Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today, we're just a click or a call away!</p>
+                    <p><span class="contact-typewriter" id="contactTypewriter">Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today, we're just a click or a call away!</span></p>
                     <a href="contact.html" class="btn-contact">Contact Us</a>
                 </div>
             </div>
@@ -1708,7 +1749,7 @@
                 </div>
 
                 <div class="bottom">
-                    &copy; 2026 Bantu Dental Clinic. All Rights Reserved. &bull; Designed with &heart;
+                    &copy; 2026 Bantu Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
                 </div>
             </div>
         </div>
@@ -1719,7 +1760,7 @@
 
     <script>
         // ============================================================
-        // SLOGAN TYPING EFFECT (loops continuously)
+        // SLOGAN TYPING EFFECT (loops continuously, no cursor)
         // ============================================================
         (function() {
             const sloganDisplay = document.getElementById('sloganDisplay');
@@ -1731,33 +1772,47 @@
 
             function typeSlogan() {
                 if (!isDeleting) {
-                    // Typing
                     if (charIndex < sloganText.length) {
                         sloganDisplay.textContent = sloganText.substring(0, charIndex + 1);
                         charIndex++;
                         setTimeout(typeSlogan, typingSpeed);
                     } else {
-                        // Pause before deleting
                         isDeleting = true;
                         setTimeout(typeSlogan, pauseTime);
                     }
                 } else {
-                    // Deleting
                     if (charIndex > 0) {
                         sloganDisplay.textContent = sloganText.substring(0, charIndex - 1);
                         charIndex--;
                         setTimeout(typeSlogan, typingSpeed / 2);
                     } else {
-                        // Reset and start over
                         isDeleting = false;
                         setTimeout(typeSlogan, 500);
                     }
                 }
             }
 
-            // Start the typing effect
             setTimeout(typeSlogan, 500);
         })();
+
+        // ============================================================
+        // CONTACT TYPEWRITER EFFECT (triggers when scrolled into view)
+        // ============================================================
+        const contactTypewriter = document.getElementById('contactTypewriter');
+
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    contactTypewriter.style.animation = 'contactType 3s steps(40) 1s forwards, contactBlink 0.8s step-end infinite';
+                    contactObserver.unobserve(contactTypewriter);
+                    setTimeout(() => {
+                        contactTypewriter.classList.add('done');
+                    }, 4000);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        contactObserver.observe(contactTypewriter);
 
         // ============================================================
         // PAGE TRANSITIONS
@@ -1980,7 +2035,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental clinic — Text breathing effect, slogan typing loop, footer simplified.');
+        console.log('🦷 Bantu Dental clinic — Text breathing, slogan typing, contact typewriter, footer simplified.');
     </script>
 
 </body>
