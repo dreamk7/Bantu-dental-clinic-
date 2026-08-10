@@ -128,11 +128,18 @@
             object-fit: contain;
         }
 
-        .header .logo span {
+        /* --- space between Bantu and Dental in logo text --- */
+        .header .logo .brand {
+            letter-spacing: 2px;
+        }
+        .header .logo .brand .bantu {
+            margin-right: 6px;
+        }
+        .header .logo .brand .dental {
             color: var(--primary);
         }
 
-        /* slogan moved below logo */
+        /* --- slogan glow effect with typing animation --- */
         .header .slogan {
             font-size: 0.7rem;
             font-weight: 400;
@@ -140,10 +147,32 @@
             letter-spacing: 0.3px;
             padding-left: 10px;
             width: 100%;
-            margin-left: 52px; /* align with logo text */
+            margin-left: 52px;
             margin-top: -4px;
             border-left: 2px solid var(--primary);
             padding-left: 10px;
+            text-shadow: 0 0 6px rgba(10, 107, 223, 0.15), 0 0 12px rgba(10, 107, 223, 0.05);
+            transition: text-shadow 0.3s ease;
+            min-height: 1.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .header .slogan:hover {
+            text-shadow: 0 0 10px rgba(10, 107, 223, 0.30), 0 0 20px rgba(10, 107, 223, 0.10);
+        }
+        /* Typing cursor effect */
+        .header .slogan .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 0.8rem;
+            background: var(--primary);
+            margin-left: 2px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         @media (max-width: 768px) {
@@ -360,7 +389,7 @@
         }
 
         /* ============================================================
-           HERO - WITH BREATHING EFFECT
+           HERO - Background static, text breathes
            ============================================================ */
         #home {
             min-height: 90vh;
@@ -373,18 +402,6 @@
             background-size: cover;
             background-position: center;
             position: relative;
-            animation: breatheBackground 8s ease-in-out infinite;
-        }
-
-        @keyframes breatheBackground {
-            0%, 100% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
-            50% {
-                transform: scale(1.02);
-                filter: brightness(1.05);
-            }
         }
 
         #home .hero h1 {
@@ -394,7 +411,17 @@
             color: var(--white);
             opacity: 0;
             transform: translateY(40px) scale(0.95);
-            animation: heroFloat 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+            animation: heroFloat 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards,
+                       breatheText 4s ease-in-out 1.5s infinite;
+        }
+
+        @keyframes breatheText {
+            0%, 100% {
+                opacity:1;
+            }
+            50% {
+                opacity:0.7;
+            }
         }
 
         #home .hero h1 .highlight {
@@ -916,16 +943,6 @@
             }
         }
 
-        @keyframes blink {
-            0%,
-            100% {
-                border-color: var(--primary);
-            }
-            50% {
-                border-color: transparent;
-            }
-        }
-
         .doctor-info-wrap .role {
             font-size: 1.1rem;
             color: var(--primary);
@@ -995,7 +1012,7 @@
         }
 
         .btn-contact {
-            display: inline-block;
+            display: none;
             background: var(--primary);
             color: var(--white);
             padding: 14px 40px;
@@ -1042,7 +1059,7 @@
         }
 
         /* ============================================================
-           FOOTER
+           FOOTER — only Contact, Hours, Location
            ============================================================ */
         .footer {
             background: var(--dark);
@@ -1061,7 +1078,7 @@
 
         .footer .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
             text-align: center;
             justify-items: center;
@@ -1088,16 +1105,6 @@
             color: var(--white);
         }
 
-        .footer .bottom {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.82rem;
-            color: #6a7a8e;
-            grid-column: 1 / -1;
-        }
-
         .footer a {
             color: #c8d4e0;
             text-decoration: none;
@@ -1106,6 +1113,16 @@
 
         .footer a:hover {
             color: var(--primary);
+        }
+
+        .footer .bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.82rem;
+            color: #6a7a8e;
+            grid-column: 1 / -1;
         }
 
         /* ===== BACK TO TOP ===== */
@@ -1430,8 +1447,8 @@
                 scroll-behavior: auto;
             }
 
-            #home {
-                animation: none !important;
+            #home .hero h1 {
+                animation: heroFloat 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards !important;
             }
 
             .typewriter {
@@ -1467,10 +1484,12 @@
         <div class="logo-wrapper">
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
-                <span>Bantu<span>Dental</span></span>
+                <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental</span></span>
             </a>
-            <!-- Slogan moved below company name -->
-            <span class="slogan" aria-hidden="true">it all begins with a smile</span>
+            <!-- Slogan with typing effect + glow -->
+            <span class="slogan" aria-hidden="true" id="sloganText">
+                <span id="sloganDisplay"></span>
+            </span>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -1659,23 +1678,18 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER — only Contact, Hours, Location ===== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
+                <!-- Contact -->
                 <div>
-                    <h4>🦷 Bantu Dental</h4>
-                    <p>it all begins with a smile.</p>
-                    <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
-                </div>
-
-                <div>
-                    <h4> Contact</h4>
-                    <p class="phone"><a href="tel:+256 752 229366" aria-label="Call us at +256 752 229366">(425) 353-5854</a></p>
-                    <p>kasenyi kumwalo<br />+256 752 229366</p>
+                    <h4>📞 Contact</h4>
+                    <p class="phone"><a href="tel:+2568002580" aria-label="Call us at +256 800 2580">+256 800 2580</a></p>
                     <p><a href="mailto:info@bantudentalclinic.com">✉️ info@bantudentalclinic.com</a></p>
                 </div>
 
+                <!-- Hours -->
                 <div>
                     <h4>🕒 Hours</h4>
                     <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
@@ -1685,10 +1699,11 @@
                     <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
                 </div>
 
+                <!-- Location -->
                 <div>
                     <h4>📍 Location</h4>
-                    <p>kasenyi kumwalo A</p>
-                    <p>-256 752 229366</p>
+                    <p>Kiwatule Banda</p>
+                    <p>Kampala, Uganda</p>
                     <p style="margin-top:4px;">🚗 Free parking available</p>
                 </div>
 
@@ -1704,12 +1719,52 @@
 
     <script>
         // ============================================================
+        // SLOGAN TYPING EFFECT (loops continuously)
+        // ============================================================
+        (function() {
+            const sloganDisplay = document.getElementById('sloganDisplay');
+            const sloganText = "it all begins with a smile";
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 80;
+            let pauseTime = 2000;
+
+            function typeSlogan() {
+                if (!isDeleting) {
+                    // Typing
+                    if (charIndex < sloganText.length) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typeSlogan, typingSpeed);
+                    } else {
+                        // Pause before deleting
+                        isDeleting = true;
+                        setTimeout(typeSlogan, pauseTime);
+                    }
+                } else {
+                    // Deleting
+                    if (charIndex > 0) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex - 1);
+                        charIndex--;
+                        setTimeout(typeSlogan, typingSpeed / 2);
+                    } else {
+                        // Reset and start over
+                        isDeleting = false;
+                        setTimeout(typeSlogan, 500);
+                    }
+                }
+            }
+
+            // Start the typing effect
+            setTimeout(typeSlogan, 500);
+        })();
+
+        // ============================================================
         // PAGE TRANSITIONS
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
-            // Handle all internal links for smooth transition
             const internalLinks = document.querySelectorAll(
                 'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
                 'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
@@ -1925,7 +1980,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental clinic— Slogan moved below logo, back-to-top added.');
+        console.log('🦷 Bantu Dental clinic — Text breathing effect, slogan typing loop, footer simplified.');
     </script>
 
 </body>
