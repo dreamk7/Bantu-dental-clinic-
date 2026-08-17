@@ -24,7 +24,6 @@
             --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
             --radius: 16px;
             --transition: 0.3s ease;
-            --font-base: 1rem;
         }
 
         html {
@@ -338,51 +337,11 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ===== SECTIONS ===== */
-        .section {
-            padding: 80px 0 60px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .section:nth-child(even) {
-            background: var(--white);
-        }
-
-        .section:first-of-type {
-            padding-top: 40px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--dark);
-            text-align: center;
-            margin-bottom: 8px;
-        }
-
-        .section-title .highlight {
-            color: var(--primary);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
         /* ============================================================
-           HOMEPAGE SECTION - ONE BACKGROUND FOR ALL CONTENT
+           HOMEPAGE - SPLIT LAYOUT WITH BACKGROUND IMAGE
            ============================================================ */
         .homepage-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(10, 30, 47, 0.75), rgba(10, 107, 223, 0.55)), 
-                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=1080&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             padding: 100px 0 60px;
             display: flex;
             flex-direction: column;
@@ -390,6 +349,11 @@
             position: relative;
             overflow: hidden;
             width: 100%;
+            background: linear-gradient(135deg, rgba(10, 30, 47, 0.80), rgba(10, 107, 223, 0.60)), 
+                        url('dental/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .homepage-section::before {
@@ -416,49 +380,21 @@
             }
         }
 
-        .homepage-section .container {
+        .homepage-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            min-height: 80vh;
             position: relative;
             z-index: 1;
-            width: 100%;
         }
 
-        /* Hero Text */
-        .slogan-text {
-            font-size: clamp(2.8rem, 8vw, 4.8rem);
-            font-weight: 800;
-            line-height: 1.2;
-            color: var(--white);
-            text-align: center;
-            opacity: 0;
-            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
-        }
-
-        .slogan-text .highlight {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .slogan-text .highlight::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 4px;
-            width: 100%;
-            height: 10px;
-            background: rgba(10, 107, 223, 0.30);
-            border-radius: 10px;
-            z-index: -1;
-        }
-
-        .hero-subtext {
-            font-size: 1.2rem;
-            color: #c8d4e0;
-            max-width: 600px;
-            margin: 20px auto 30px;
-            text-align: center;
+        /* Left Side - Text */
+        .homepage-text {
             opacity: 0;
             transform: translateY(30px);
-            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
         }
 
         @keyframes heroFloat {
@@ -472,22 +408,67 @@
             }
         }
 
-        /* Image Columns */
+        .homepage-text h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .homepage-text h1 .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .homepage-text h1 .highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 4px;
+            width: 100%;
+            height: 10px;
+            background: rgba(10, 107, 223, 0.30);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .homepage-text p {
+            font-size: 1.1rem;
+            color: #c8d4e0;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 24px;
+        }
+
+        .homepage-text p span {
+            color: #a0b4c8;
+            font-size: 0.9rem;
+        }
+
+        /* Right Side - Images */
+        .homepage-images {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+            position: relative;
+        }
+
         .scroll-container {
             display: flex;
             justify-content: center;
             gap: 30px;
-            max-width: 1200px;
-            margin: 40px auto 30px;
-            padding: 0 24px;
+            max-width: 100%;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding: 10px;
         }
 
         .scroll-column {
             flex: 1;
-            max-width: 280px;
-            height: 500px;
+            max-width: 320px;
+            height: 650px;
             overflow: hidden;
             border-radius: var(--radius);
             position: relative;
@@ -497,7 +478,7 @@
         .scroll-column-inner {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 24px;
             animation: scrollUp 30s linear infinite;
         }
 
@@ -507,15 +488,15 @@
 
         .scroll-column img {
             width: 100%;
-            height: 180px;
+            height: 240px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 12px;
             flex-shrink: 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .scroll-column img:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
@@ -562,12 +543,9 @@
         .hero-buttons {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
             margin-top: 10px;
-            opacity: 0;
-            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
         }
 
         .btn-primary {
@@ -616,62 +594,16 @@
             font-size: 1.3rem;
         }
 
-        @media (max-width: 768px) {
-            .scroll-container {
-                gap: 16px;
-                padding: 0 16px;
-            }
-            .scroll-column {
-                max-width: 200px;
-                height: 350px;
-            }
-            .scroll-column img {
-                height: 140px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .scroll-container {
-                gap: 10px;
-                padding: 0 12px;
-            }
-            .scroll-column {
-                max-width: 150px;
-                height: 280px;
-            }
-            .scroll-column img {
-                height: 100px;
-            }
-            .hero-buttons {
-                flex-direction: column;
-                gap: 12px;
-                width: 100%;
-                max-width: 300px;
-                margin: 10px auto 0;
-            }
-            .btn-primary {
-                width: 100%;
-                text-align: center;
-                padding: 14px 28px;
-                font-size: 0.95rem;
-            }
-            .btn-call {
-                width: 100%;
-                justify-content: center;
-            }
-            .slogan-text {
-                font-size: 2.2rem;
-            }
-            .hero-subtext {
-                font-size: 1rem;
-            }
+        /* Mobile Buttons (hidden on desktop) */
+        .mobile-buttons {
+            display: none;
         }
 
         /* ============================================================
-           VIDEO SECTION - FULL WIDTH, WHITE BACKGROUND
+           VIDEO SECTION
            ============================================================ */
         .video-section {
-            background: var(--white);
+            background: var(--dark);
             padding: 0;
             position: relative;
             width: 100%;
@@ -693,29 +625,11 @@
             object-fit: cover;
         }
 
-        .video-wrapper::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.05);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .video-wrapper:hover::after {
-            opacity: 1;
-        }
-
         /* ============================================================
            WHY CHOOSE
            ============================================================ */
         .why-choose-section {
-            background: var(--white);
+            background: var(--light-gray);
             color: var(--dark);
             padding: 80px 0 60px;
             position: relative;
@@ -757,7 +671,7 @@
         .why-text {
             opacity: 0;
             transform: translateX(-60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .why-text.visible {
@@ -785,7 +699,7 @@
         .why-title {
             opacity: 0;
             transform: translateX(60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
             text-align: center;
         }
 
@@ -821,6 +735,39 @@
             color: var(--gray);
             font-size: 1rem;
             margin-top: 8px;
+        }
+
+        /* ============================================================
+           SECTION (General)
+           ============================================================ */
+        .section {
+            padding: 80px 0 60px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .section-title .highlight {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
         /* ============================================================
@@ -970,7 +917,7 @@
            ============================================================ */
         .services-section {
             padding: 80px 0 60px;
-            background: var(--light-gray);
+            background: var(--white);
             width: 100%;
         }
 
@@ -1076,42 +1023,25 @@
             transform: translateY(0);
         }
 
+        /* ===== SERVICE BACKGROUNDS - LOCAL IMAGES ===== */
         .service-bg-1 {
-            background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop');
+            background-image: url('dental/service-general.jpg');
         }
         .service-bg-2 {
-            background-image: url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&h=400&fit=crop');
+            background-image: url('dental/service-cosmetic.jpg');
         }
         .service-bg-3 {
-            background-image: url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&h=400&fit=crop');
+            background-image: url('dental/service-restorative.jpg');
         }
         .service-bg-4 {
-            background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop');
-        }
-
-        @media (max-width: 1024px) {
-            .service-swipe-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .service-swipe-grid {
-                grid-template-columns: 1fr;
-                max-width: 380px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .service-swipe-card {
-                min-height: 260px;
-            }
+            background-image: url('dental/service-emergency.jpg');
         }
 
         /* ============================================================
            DOCTOR SECTION
            ============================================================ */
         .doctor-section {
-            background: var(--white);
+            background: var(--light-gray);
             padding: 80px 0 60px;
             width: 100%;
         }
@@ -1127,7 +1057,7 @@
             text-align: center;
             opacity: 0;
             transform: translateX(-60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .doctor-image-wrap.visible {
@@ -1171,7 +1101,7 @@
         .doctor-info-wrap {
             opacity: 0;
             transform: translateX(60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
         }
 
         .doctor-info-wrap.visible {
@@ -1230,12 +1160,11 @@
             font-weight: 600;
             margin-bottom: 12px;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: opacity 1s ease 1.2s;
         }
 
         .doctor-info-wrap.visible .role {
             opacity: 1;
-            transition-delay: 0.4s;
         }
 
         .doctor-info-wrap p {
@@ -1245,19 +1174,12 @@
             margin-bottom: 12px;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
         }
 
         .doctor-info-wrap.visible p {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .doctor-info-wrap p:nth-of-type(1) {
-            transition-delay: 0.6s;
-        }
-        .doctor-info-wrap p:nth-of-type(2) {
-            transition-delay: 0.8s;
         }
 
         .doctor-info-wrap .btn-learn {
@@ -1272,13 +1194,12 @@
             margin-top: 8px;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s ease;
+            transition: opacity 0.8s ease 1.6s, transform 0.8s ease 1.6s, background 0.3s ease;
         }
 
         .doctor-info-wrap.visible .btn-learn {
             opacity: 1;
             transform: translateY(0);
-            transition-delay: 1s;
         }
 
         .doctor-info-wrap .btn-learn:hover {
@@ -1287,18 +1208,36 @@
         }
 
         /* ============================================================
-           CONTACT - with Google Maps and "Come to Us"
+           CONTACT SECTION
            ============================================================ */
         .contact-wrap {
             text-align: center;
-            max-width: 700px;
+            max-width: 850px;
             margin: 0 auto;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .contact-wrap.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-wrap .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
         }
 
         .contact-wrap p {
             font-size: 1.1rem;
             color: var(--gray);
             margin-bottom: 24px;
+            line-height: 1.8;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-typewriter {
@@ -1307,7 +1246,7 @@
             white-space: nowrap;
             border-right: 3px solid var(--primary);
             width: 0;
-            animation: contactType 3s steps(40) 1s forwards, contactBlink 0.8s step-end infinite;
+            animation: contactType 3.5s steps(50) 1s forwards, contactBlink 0.8s step-end infinite;
         }
 
         .contact-typewriter.done {
@@ -1423,23 +1362,6 @@
         .map-container .map-overlay a:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-        }
-
-        @media (max-width: 500px) {
-            .map-container iframe {
-                height: 300px;
-            }
-            .map-container .map-overlay {
-                bottom: 12px;
-                right: 12px;
-            }
-            .map-container .map-overlay a {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            .map-title {
-                font-size: 1.4rem;
-            }
         }
 
         /* ============================================================
@@ -1558,6 +1480,15 @@
             .service-swipe-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .scroll-column {
+                max-width: 280px;
+                height: 550px;
+            }
+            
+            .scroll-column img {
+                height: 210px;
+            }
         }
 
         @media (max-width: 900px) {
@@ -1634,10 +1565,111 @@
                 text-align: center !important;
             }
 
+            /* ===== HOMEPAGE MOBILE ===== */
+            .homepage-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                min-height: auto;
+            }
+
+            .homepage-text {
+                text-align: center;
+                order: 1;
+            }
+
+            .homepage-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .homepage-text p {
+                max-width: 100%;
+                margin: 0 auto 20px;
+                font-size: 1rem;
+                color: #c8d4e0;
+            }
+
+            /* Desktop buttons hidden on mobile */
+            .homepage-text .hero-buttons {
+                display: none;
+            }
+
+            .homepage-images {
+                order: 2;
+                width: 100%;
+            }
+
+            .scroll-container {
+                gap: 20px;
+                padding: 0 10px;
+            }
+
+            .scroll-column {
+                max-width: 220px;
+                height: 380px;
+            }
+
+            .scroll-column img {
+                height: 155px;
+            }
+
+            .scroll-column::before,
+            .scroll-column::after {
+                height: 40px;
+            }
+
+            /* Mobile buttons - shown after images */
+            .mobile-buttons {
+                display: flex !important;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                max-width: 380px;
+                margin: 20px auto 0;
+                order: 3;
+            }
+
+            .mobile-buttons .btn-primary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .mobile-buttons .btn-call {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 20px;
+                font-size: 0.95rem;
+                color: var(--white);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .mobile-buttons .btn-call:hover {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: var(--white);
+            }
+
+            /* ===== OTHER SECTIONS ===== */
             .why-choose-wrapper {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 30px;
+            }
+
+            .why-text {
+                transform: translateX(0);
+            }
+
+            .why-title {
+                transform: translateX(0);
+            }
+
+            .why-text.visible {
+                transform: translateX(0);
+            }
+
+            .why-title.visible {
+                transform: translateX(0);
             }
 
             .doctor-wrap {
@@ -1661,22 +1693,6 @@
                 transform: translateX(0);
             }
 
-            .why-text {
-                transform: translateX(0);
-            }
-
-            .why-title {
-                transform: translateX(0);
-            }
-
-            .why-text.visible {
-                transform: translateX(0);
-            }
-
-            .why-title.visible {
-                transform: translateX(0);
-            }
-
             .service-swipe-grid {
                 grid-template-columns: 1fr 1fr;
                 max-width: 500px;
@@ -1690,10 +1706,6 @@
 
             .service-swipe-card.visible {
                 transform: translateY(0);
-            }
-
-            .service-swipe-card:hover {
-                transform: translateY(-4px) scale(1.02);
             }
 
             .footer .grid {
@@ -1734,12 +1746,138 @@
                     width: 100%;
                 }
             }
+
+            .map-container iframe {
+                height: 300px;
+            }
+            .map-container .map-overlay {
+                bottom: 12px;
+                right: 12px;
+            }
+            .map-container .map-overlay a {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .map-title {
+                font-size: 1.4rem;
+            }
+
+            .contact-wrap {
+                padding: 0 10px;
+            }
+            
+            .contact-wrap .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-wrap p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .btn-contact {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 600px) {
+            .homepage-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .homepage-text p {
+                font-size: 0.95rem;
+            }
+
+            .homepage-section {
+                padding: 80px 0 40px;
+            }
+
             .service-swipe-grid {
                 grid-template-columns: 1fr;
                 max-width: 380px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+
+            .scroll-container {
+                gap: 14px;
+                padding: 0 6px;
+            }
+
+            .scroll-column {
+                max-width: 170px;
+                height: 300px;
+            }
+
+            .scroll-column img {
+                height: 120px;
+            }
+
+            .testimonial-rotator {
+                padding: 30px 16px;
+            }
+
+            .testimonial-rotator p {
+                font-size: 0.95rem;
+            }
+
+            .why-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .doctor-info-wrap h2 {
+                font-size: 1.6rem;
+            }
+
+            .contact-wrap .section-title {
+                font-size: 1.6rem;
+            }
+
+            .mobile-buttons {
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .homepage-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .homepage-text p {
+                font-size: 0.85rem;
+            }
+
+            .scroll-column {
+                max-width: 140px;
+                height: 240px;
+            }
+
+            .scroll-column img {
+                height: 95px;
+                border-radius: 8px;
+            }
+
+            .scroll-column-inner {
+                gap: 14px;
+            }
+
+            .mobile-buttons .btn-primary {
+                font-size: 0.85rem;
+                padding: 12px 20px;
+            }
+
+            .mobile-buttons .btn-call {
+                font-size: 0.85rem;
+                padding: 12px 16px;
             }
         }
 
@@ -1755,6 +1893,10 @@
             .header .nav>li:hover .dropdown {
                 opacity: 1;
                 visibility: visible;
+            }
+
+            .mobile-buttons {
+                display: none !important;
             }
         }
 
@@ -1783,8 +1925,11 @@
                 scroll-behavior: auto;
             }
 
-            .slogan-text {
-                animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards !important;
+            .homepage-text,
+            .homepage-images {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
 
             .typewriter {
@@ -1809,17 +1954,14 @@
             .doctor-image-wrap,
             .doctor-info-wrap,
             .testimonial-sub,
-            .footer {
+            .footer,
+            .contact-wrap {
                 opacity: 1 !important;
                 transform: none !important;
             }
 
             .scroll-column-inner {
                 animation: none !important;
-            }
-
-            .hero-buttons {
-                animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards !important;
             }
 
             .scroll-column::before,
@@ -1892,66 +2034,80 @@
     ============================================================ -->
     <main id="main-content">
 
-        <!-- ===== HOMEPAGE SECTION - ONE BACKGROUND FOR ALL ===== -->
+        <!-- ===== HOMEPAGE - SPLIT LAYOUT WITH BACKGROUND ===== -->
         <section class="homepage-section" aria-label="Hero banner">
             <div class="container">
-                <!-- Hero Text -->
-                <div class="slogan-text">
-                    Your <span class="highlight">Optimal</span> Oral <span class="highlight">Health</span> Begins Today!
-                </div>
-                <p class="hero-subtext">
-                    Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
-                    <span style="font-size:0.9rem; color:#a0b4c8;">Everett, WA — Personalized Care You Can Trust</span>
-                </p>
+                <div class="homepage-wrapper">
 
-                <!-- Image Columns -->
-                <div class="scroll-container">
-                    <!-- Column 1 - Scrolls UP -->
-                    <div class="scroll-column">
-                        <div class="scroll-column-inner">
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental clinic" loading="lazy" />
-                            <!-- Duplicate for seamless loop -->
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental clinic" loading="lazy" />
+                    <!-- Left Side - Text -->
+                    <div class="homepage-text">
+                        <h1>
+                            Your <span class="highlight">Optimal</span> Oral <span class="highlight">Health</span> Begins Today!
+                        </h1>
+                        <p>
+                            Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
+                            <span>Everett, WA — Personalized Care You Can Trust</span>
+                        </p>
+
+                        <!-- Desktop Buttons -->
+                        <div class="hero-buttons">
+                            <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
+                            <a href="#contact-section" class="btn-call">
+                                <span class="phone-icon">📞</span> Call Us
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Column 2 - Scrolls DOWN -->
-                    <div class="scroll-column">
-                        <div class="scroll-column-inner">
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
-                            <!-- Duplicate for seamless loop -->
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                    <!-- Right Side - Images -->
+                    <div class="homepage-images">
+                        <div class="scroll-container">
+                            <!-- Column 1 - Scrolls UP -->
+                            <div class="scroll-column">
+                                <div class="scroll-column-inner">
+                                    <img src="dental/scroll1-1.jpg" alt="Dental care" loading="lazy" />
+                                    <img src="dental/scroll1-2.jpg" alt="Smile" loading="lazy" />
+                                    <img src="dental/scroll1-3.jpg" alt="Dental treatment" loading="lazy" />
+                                    <img src="dental/scroll1-4.jpg" alt="Dental clinic" loading="lazy" />
+                                    <img src="dental/scroll1-1.jpg" alt="Dental care" loading="lazy" />
+                                    <img src="dental/scroll1-2.jpg" alt="Smile" loading="lazy" />
+                                    <img src="dental/scroll1-3.jpg" alt="Dental treatment" loading="lazy" />
+                                    <img src="dental/scroll1-4.jpg" alt="Dental clinic" loading="lazy" />
+                                </div>
+                            </div>
+
+                            <!-- Column 2 - Scrolls DOWN -->
+                            <div class="scroll-column">
+                                <div class="scroll-column-inner">
+                                    <img src="dental/scroll2-1.jpg" alt="Smile" loading="lazy" />
+                                    <img src="dental/scroll2-2.jpg" alt="Dental treatment" loading="lazy" />
+                                    <img src="dental/scroll2-3.jpg" alt="Dental care" loading="lazy" />
+                                    <img src="dental/scroll2-4.jpg" alt="Smile" loading="lazy" />
+                                    <img src="dental/scroll2-1.jpg" alt="Smile" loading="lazy" />
+                                    <img src="dental/scroll2-2.jpg" alt="Dental treatment" loading="lazy" />
+                                    <img src="dental/scroll2-3.jpg" alt="Dental care" loading="lazy" />
+                                    <img src="dental/scroll2-4.jpg" alt="Smile" loading="lazy" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Buttons -->
-                <div class="hero-buttons">
-                    <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
-                    <a href="#contact-section" class="btn-call">
-                        <span class="phone-icon">📞</span> Call Us
-                    </a>
+                    <!-- Mobile Buttons - AFTER Images -->
+                    <div class="mobile-buttons">
+                        <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
+                        <a href="#contact-section" class="btn-call">
+                            <span class="phone-icon">📞</span> Call Us
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== VIDEO SECTION - FULL WIDTH, WHITE BACKGROUND ===== -->
+        <!-- ===== VIDEO SECTION ===== -->
         <section class="video-section" id="video-section" aria-label="Dental care video">
             <div class="video-wrapper">
                 <video autoplay muted loop playsinline>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                    <source src="dental/video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -1985,7 +2141,7 @@
                     <div class="testimonial-rotator" role="region" aria-label="Testimonial carousel">
                         <div class="testimonial-slide active" data-index="0">
                             <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
-                            <p>"The best dental experience of my life! Dr. Joseph and his team made me feel so comfortable; Netflix, blankets, and caring conversation. I actually look forward to my visits now!"</p>
+                            <p>"The best dental experience of my life! Dr. Etemadi and his team made me feel so comfortable — Netflix, blankets, and caring conversation. I actually look forward to my visits now!"</p>
                             <p class="name">— Jessica M.</p>
                         </div>
                         <div class="testimonial-slide" data-index="1">
@@ -2054,7 +2210,7 @@
                         </div>
                     </a>
 
-                    <a href="contact.html" class="service-swipe-card">
+                    <a href="emergency.html" class="service-swipe-card">
                         <div class="service-bg service-bg-4"></div>
                         <div class="service-content">
                             <span class="icon" aria-hidden="true">🚨</span>
@@ -2079,13 +2235,13 @@
                         <div class="role">Lead Dentist &amp; Smile Designer</div>
                         <p>Dr. wahab is a compassionate and skilled dentist dedicated to transforming smiles and improving lives. With a gentle touch and an artistic eye, she combines advanced clinical expertise with a warm, patient-centered approach.</p>
                         <p>Whether you need a routine checkup or a complete smile makeover, Dr. wahab takes the time to understand your goals and create a personalized treatment plan that fits your lifestyle and budget.</p>
-                        <a href="team.html" class="btn-learn">👨‍⚕️ Meet the entire Team</a>
+                        <a href="team.html" class="btn-learn">👨‍⚕️ Learn More About Our Team</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== CONTACT SECTION with Google Maps and "Come to Us" ===== -->
+        <!-- ===== CONTACT SECTION ===== -->
         <section class="section" id="contact-section" style="background:var(--white);" aria-label="Contact information">
             <div class="container">
                 <div class="contact-wrap">
@@ -2093,8 +2249,7 @@
                     <p><span class="contact-typewriter" id="contactTypewriter">Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today, we're just a click or a call away!</span></p>
                     <a href="contact.html" class="btn-contact">Contact Us</a>
 
-                    <!-- "Come to Us" title + Google Maps -->
-                    <h3 class="map-title">📍 <span class="highlight">Vist us</span></h3>
+                    <h3 class="map-title">📍 <span class="highlight">Come to Us</span></h3>
                     <div class="map-container">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000" 
@@ -2121,7 +2276,6 @@
             <div class="grid">
                 <div>
                     <h4>📞 Contact</h4>
-                    <p class="phone"><a href="tel:+256708927914" aria-label="Call us at +256708927914">+256 708 927914</a></p>
                     <p class="phone"><a href="tel:+256758985317" aria-label="Call us at +256 758 985317">+256 758 985317</a></p>
                     <p><a href="mailto:info@bantudentalhub.com">✉️ info@bantudentalhub.com</a></p>
                 </div>
@@ -2196,19 +2350,12 @@
         // ============================================================
         const contactTypewriter = document.getElementById('contactTypewriter');
 
-        const contactObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    contactTypewriter.style.animation = 'contactType 3s steps(40) 1s forwards, contactBlink 0.8s step-end infinite';
-                    contactObserver.unobserve(contactTypewriter);
-                    setTimeout(() => {
-                        contactTypewriter.classList.add('done');
-                    }, 4000);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        contactObserver.observe(contactTypewriter);
+        setTimeout(function() {
+            contactTypewriter.style.animation = 'contactType 3.5s steps(50) 1s forwards, contactBlink 0.8s step-end infinite';
+            setTimeout(function() {
+                contactTypewriter.classList.add('done');
+            }, 4500);
+        }, 500);
 
         // ============================================================
         // PAGE TRANSITIONS
@@ -2357,21 +2504,19 @@
         startTestimonialRotation();
 
         // ============================================================
-        // SCROLL ANIMATIONS - WORKS BOTH WAYS (up AND down)
+        // SCROLL ANIMATIONS - WORKS BOTH WAYS
         // ============================================================
         const animateOnScroll = () => {
             const elements = document.querySelectorAll(
                 '.why-text, .why-title, .doctor-image-wrap, .doctor-info-wrap, ' +
-                '.service-swipe-card, .testimonial-sub, .footer'
+                '.service-swipe-card, .testimonial-sub, .footer, .contact-wrap'
             );
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    // Add class when entering viewport (scroll down OR up)
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Handle typewriter specifically when doctor-info comes into view
                         if (entry.target.classList.contains('doctor-info-wrap')) {
                             const typewriter = document.querySelector('.typewriter');
                             if (typewriter && !typewriter.classList.contains('done')) {
@@ -2381,7 +2526,6 @@
                             }
                         }
                     } else {
-                        // REMOVE class when leaving viewport (so it re-animates when scrolling back)
                         entry.target.classList.remove('visible');
                     }
                 });
@@ -2437,7 +2581,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Scroll animations now work BOTH ways!');
+        console.log('🦷 Bantu Dental hub — All images replaced with local files!');
     </script>
 
 </body>
