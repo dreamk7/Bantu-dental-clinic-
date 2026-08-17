@@ -41,7 +41,6 @@
             transition: opacity 0.4s ease;
         }
 
-        /* ===== PAGE TRANSITION ===== */
         body.page-exit {
             opacity: 0;
             transform: translateY(10px);
@@ -66,6 +65,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
+            width: 100%;
+            overflow: hidden;
         }
 
         /* ===== SKIP LINK ===== */
@@ -128,7 +129,6 @@
             object-fit: contain;
         }
 
-        /* --- space between Bantu and Dental in logo text --- */
         .header .logo .brand {
             letter-spacing: 2px;
         }
@@ -139,7 +139,6 @@
             color: var(--primary);
         }
 
-        /* --- slogan glow effect without cursor --- */
         .header .slogan {
             font-size: 0.7rem;
             font-weight: 400;
@@ -202,7 +201,6 @@
             position: relative;
         }
 
-        /* ===== FOCUS STATES ===== */
         .header .nav>li>a:focus-visible,
         .header .nav .dropdown li a:focus-visible,
         .btn-primary:focus-visible,
@@ -212,7 +210,6 @@
             outline-offset: 2px;
         }
 
-        /* ===== MENU HIGHLIGHT ===== */
         .header .nav>li>a::after {
             content: '';
             position: absolute;
@@ -344,6 +341,8 @@
         /* ===== SECTIONS ===== */
         .section {
             padding: 80px 0 60px;
+            width: 100%;
+            overflow: hidden;
         }
 
         .section:nth-child(even) {
@@ -375,47 +374,71 @@
         }
 
         /* ============================================================
-           HERO - Background static, text breathes
+           HOMEPAGE SECTION - ONE BACKGROUND FOR ALL CONTENT
            ============================================================ */
-        #home {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 0 60px;
-            background: linear-gradient(rgba(10, 30, 47, 0.60), rgba(10, 30, 47, 0.75)), url('dental/homegirl.jpg');
+        .homepage-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 30, 47, 0.75), rgba(10, 107, 223, 0.55)), 
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=1080&fit=crop');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
+            padding: 100px 0 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
+            overflow: hidden;
+            width: 100%;
         }
 
-        #home .hero h1 {
+        .homepage-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(10, 107, 223, 0.15), transparent 60%),
+                        radial-gradient(circle at 70% 80%, rgba(10, 107, 223, 0.10), transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes bgPulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.1) rotate(5deg);
+                opacity: 1;
+            }
+        }
+
+        .homepage-section .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        /* Hero Text */
+        .slogan-text {
             font-size: clamp(2.8rem, 8vw, 4.8rem);
             font-weight: 800;
-            line-height: 1.05;
+            line-height: 1.2;
             color: var(--white);
+            text-align: center;
             opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            animation: heroFloat 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards,
-                       breatheText 4s ease-in-out 1.5s infinite;
+            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
         }
 
-        @keyframes breatheText {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-        }
-
-        #home .hero h1 .highlight {
+        .slogan-text .highlight {
             color: var(--primary);
             position: relative;
         }
 
-        #home .hero h1 .highlight::after {
+        .slogan-text .highlight::after {
             content: '';
             position: absolute;
             left: 0;
@@ -427,35 +450,15 @@
             z-index: -1;
         }
 
-        #home .hero p {
+        .hero-subtext {
             font-size: 1.2rem;
             color: #c8d4e0;
             max-width: 600px;
             margin: 20px auto 30px;
+            text-align: center;
             opacity: 0;
             transform: translateY(30px);
-            animation: heroFloat 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
-        }
-
-        #home .hero .btn-primary {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 16px 44px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            box-shadow: 0 8px 28px rgba(10, 107, 223, 0.30);
-            text-decoration: none;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: heroFloat 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
-        }
-
-        #home .hero .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
+            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
         }
 
         @keyframes heroFloat {
@@ -469,8 +472,247 @@
             }
         }
 
+        /* Image Columns */
+        .scroll-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 30px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scroll-column {
+            flex: 1;
+            max-width: 280px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: var(--radius);
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .scroll-column-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: scrollUp 30s linear infinite;
+        }
+
+        .scroll-column:nth-child(2) .scroll-column-inner {
+            animation: scrollDown 30s linear infinite;
+        }
+
+        .scroll-column img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scroll-column img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes scrollDown {
+            0% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-column::before,
+        .scroll-column::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .scroll-column::before {
+            top: 0;
+            background: linear-gradient(to bottom, rgba(10, 30, 47, 0.9), transparent);
+        }
+
+        .scroll-column::after {
+            bottom: 0;
+            background: linear-gradient(to top, rgba(10, 30, 47, 0.9), transparent);
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            opacity: 0;
+            animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 44px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            box-shadow: 0 8px 28px rgba(10, 107, 223, 0.30);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .btn-call {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .btn-call:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn-call .phone-icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-container {
+                gap: 16px;
+                padding: 0 16px;
+            }
+            .scroll-column {
+                max-width: 200px;
+                height: 350px;
+            }
+            .scroll-column img {
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .scroll-container {
+                gap: 10px;
+                padding: 0 12px;
+            }
+            .scroll-column {
+                max-width: 150px;
+                height: 280px;
+            }
+            .scroll-column img {
+                height: 100px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                max-width: 300px;
+                margin: 10px auto 0;
+            }
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+            .btn-call {
+                width: 100%;
+                justify-content: center;
+            }
+            .slogan-text {
+                font-size: 2.2rem;
+            }
+            .hero-subtext {
+                font-size: 1rem;
+            }
+        }
+
         /* ============================================================
-           WHY CHOOSE FLAKES - WHITE BACKGROUND
+           VIDEO SECTION - FULL WIDTH, WHITE BACKGROUND
+           ============================================================ */
+        .video-section {
+            background: var(--white);
+            padding: 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .video-wrapper::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-wrapper:hover::after {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           WHY CHOOSE
            ============================================================ */
         .why-choose-section {
             background: var(--white);
@@ -478,6 +720,7 @@
             padding: 80px 0 60px;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .why-choose-section::before {
@@ -514,7 +757,7 @@
         .why-text {
             opacity: 0;
             transform: translateX(-60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .why-text.visible {
@@ -542,7 +785,7 @@
         .why-title {
             opacity: 0;
             transform: translateX(60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-align: center;
         }
 
@@ -555,7 +798,7 @@
             font-size: 4rem;
             display: block;
             margin-bottom: 12px;
-            animation: gentlePulse 3s ease-in-out infinite;
+            animation: gentlePulse 4s ease-in-out infinite;
         }
 
         @keyframes gentlePulse {
@@ -728,34 +971,35 @@
         .services-section {
             padding: 80px 0 60px;
             background: var(--light-gray);
+            width: 100%;
         }
 
         .service-swipe-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
             margin-top: 20px;
         }
 
         .service-swipe-card {
-            padding: 50px 30px;
+            padding: 0;
             border-radius: var(--radius);
             text-align: center;
             text-decoration: none;
             color: var(--white);
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             opacity: 0;
-            transform: translateX(-80px) perspective(600px) rotateY(0deg);
-            min-height: 280px;
+            transform: translateY(40px);
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             background-size: cover;
             background-position: center;
             position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
+            padding-bottom: 30px;
         }
 
         .service-swipe-card::before {
@@ -765,62 +1009,102 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(10, 30, 47, 0.70);
+            background: linear-gradient(to top, rgba(10, 30, 47, 0.85) 10%, rgba(10, 30, 47, 0.2) 100%);
             border-radius: var(--radius);
             transition: var(--transition);
         }
 
         .service-swipe-card:hover::before {
-            background: rgba(10, 30, 47, 0.50);
+            background: linear-gradient(to top, rgba(10, 30, 47, 0.75) 10%, rgba(10, 30, 47, 0.1) 100%);
         }
 
         .service-swipe-card:hover {
-            transform: translateY(-8px) perspective(600px) rotateX(2deg) rotateY(4deg) scale(1.02);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.30);
         }
 
-        .service-swipe-card>* {
+        .service-swipe-card .service-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius);
+            z-index: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .service-swipe-card:hover .service-bg {
+            transform: scale(1.05);
+        }
+
+        .service-swipe-card .service-content {
             position: relative;
             z-index: 2;
+            padding: 20px 24px 30px;
+            width: 100%;
+            text-align: center;
         }
 
-        .service-swipe-card:nth-child(1) {
-            background-image: url('dental/general-bg.jpg');
-            transform: translateX(-80px);
+        .service-swipe-card .service-content .icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 8px;
         }
 
-        .service-swipe-card:nth-child(2) {
-            background-image: url('dental/cosmetic-bg.jpg');
-            transform: translateX(80px);
+        .service-swipe-card .service-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .service-swipe-card:nth-child(3) {
-            background-image: url('dental/restoration-bg.jpeg');
-            transform: translateX(80px);
+        .service-swipe-card .service-content p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 280px;
+            margin: 0 auto;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            line-height: 1.4;
         }
 
         .service-swipe-card.visible {
             opacity: 1;
-            transform: translateX(0) perspective(600px) rotateY(0deg);
+            transform: translateY(0);
         }
 
-        .service-swipe-card .icon {
-            font-size: 3.5rem;
-            display: block;
-            margin-bottom: 12px;
+        .service-bg-1 {
+            background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop');
+        }
+        .service-bg-2 {
+            background-image: url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&h=400&fit=crop');
+        }
+        .service-bg-3 {
+            background-image: url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&h=400&fit=crop');
+        }
+        .service-bg-4 {
+            background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop');
         }
 
-        .service-swipe-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+        @media (max-width: 1024px) {
+            .service-swipe-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        .service-swipe-card p {
-            font-size: 0.9rem;
-            color: #c8d4e0;
-            margin-top: 6px;
-            max-width: 280px;
+        @media (max-width: 600px) {
+            .service-swipe-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .service-swipe-card {
+                min-height: 260px;
+            }
         }
 
         /* ============================================================
@@ -829,6 +1113,7 @@
         .doctor-section {
             background: var(--white);
             padding: 80px 0 60px;
+            width: 100%;
         }
 
         .doctor-wrap {
@@ -842,7 +1127,7 @@
             text-align: center;
             opacity: 0;
             transform: translateX(-60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .doctor-image-wrap.visible {
@@ -886,7 +1171,7 @@
         .doctor-info-wrap {
             opacity: 0;
             transform: translateX(60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .doctor-info-wrap.visible {
@@ -945,11 +1230,12 @@
             font-weight: 600;
             margin-bottom: 12px;
             opacity: 0;
-            transition: opacity 1s ease 1.2s;
+            transition: opacity 0.6s ease;
         }
 
         .doctor-info-wrap.visible .role {
             opacity: 1;
+            transition-delay: 0.4s;
         }
 
         .doctor-info-wrap p {
@@ -959,12 +1245,19 @@
             margin-bottom: 12px;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .doctor-info-wrap.visible p {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .doctor-info-wrap p:nth-of-type(1) {
+            transition-delay: 0.6s;
+        }
+        .doctor-info-wrap p:nth-of-type(2) {
+            transition-delay: 0.8s;
         }
 
         .doctor-info-wrap .btn-learn {
@@ -979,12 +1272,13 @@
             margin-top: 8px;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.8s ease 1.6s, transform 0.8s ease 1.6s, background 0.3s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s ease;
         }
 
         .doctor-info-wrap.visible .btn-learn {
             opacity: 1;
             transform: translateY(0);
+            transition-delay: 1s;
         }
 
         .doctor-info-wrap .btn-learn:hover {
@@ -993,7 +1287,7 @@
         }
 
         /* ============================================================
-           CONTACT - with typewriter effect
+           CONTACT - with Google Maps and "Come to Us"
            ============================================================ */
         .contact-wrap {
             text-align: center;
@@ -1043,6 +1337,7 @@
             transition: var(--transition);
             box-shadow: 0 8px 28px rgba(10, 107, 223, 0.30);
             position: relative;
+            margin-bottom: 30px;
         }
 
         .btn-contact::before {
@@ -1078,8 +1373,77 @@
             animation-duration: 1s;
         }
 
+        .map-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .map-title .highlight {
+            color: var(--primary);
+        }
+
+        .map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            display: block;
+        }
+
+        .map-container .map-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .map-container .map-overlay a {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
+        }
+
+        .map-container .map-overlay a:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 500px) {
+            .map-container iframe {
+                height: 300px;
+            }
+            .map-container .map-overlay {
+                bottom: 12px;
+                right: 12px;
+            }
+            .map-container .map-overlay a {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .map-title {
+                font-size: 1.4rem;
+            }
+        }
+
         /* ============================================================
-           FOOTER — only Contact, Hours, Location
+           FOOTER
            ============================================================ */
         .footer {
             background: var(--dark);
@@ -1089,6 +1453,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
         }
 
         .footer.visible {
@@ -1313,28 +1678,22 @@
             }
 
             .service-swipe-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
+                grid-template-columns: 1fr 1fr;
+                max-width: 500px;
                 margin-left: auto;
                 margin-right: auto;
             }
 
-            .service-swipe-card:nth-child(1) {
-                transform: translateX(0);
-            }
-            .service-swipe-card:nth-child(2) {
-                transform: translateX(0);
-            }
-            .service-swipe-card:nth-child(3) {
-                transform: translateX(0);
+            .service-swipe-card {
+                transform: translateY(40px);
             }
 
             .service-swipe-card.visible {
-                transform: translateX(0) perspective(600px) rotateY(0deg);
+                transform: translateY(0);
             }
 
             .service-swipe-card:hover {
-                transform: translateY(-4px) perspective(600px) rotateX(0deg) rotateY(0deg) scale(1.02);
+                transform: translateY(-4px) scale(1.02);
             }
 
             .footer .grid {
@@ -1377,68 +1736,10 @@
             }
         }
 
-        @media (max-width: 500px) {
-            .header {
-                height: 64px;
-                padding: 0 16px;
-            }
-            .header .logo {
-                font-size: 1rem;
-            }
-            .header .logo img {
-                height: 32px;
-            }
-            .section-title {
-                font-size: 1.6rem;
-            }
-            #home .hero h1 {
-                font-size: 2.2rem;
-            }
-            #home .hero p {
-                font-size: 1rem;
-            }
-            #home .hero .btn-primary {
-                padding: 14px 28px;
-                font-size: 0.95rem;
-                width: 100%;
-                max-width: 300px;
-            }
-            .btn-contact {
-                width: 100%;
-                text-align: center;
-            }
-            .testimonial-rotator {
-                padding: 30px 16px;
-                min-height: 280px;
-            }
-            .testimonial-rotator p {
-                font-size: 0.95rem;
-            }
-            .service-swipe-card {
-                min-height: 220px;
-                padding: 30px 20px;
-            }
-            .service-swipe-card .icon {
-                font-size: 2.8rem;
-            }
-            .why-text h2 {
-                font-size: 1.8rem;
-            }
-            .why-title h3 {
-                font-size: 1.4rem;
-            }
-            .doctor-image-wrap img {
-                max-width: 280px;
-            }
-            .doctor-info-wrap h2 {
-                font-size: 1.6rem;
-            }
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 42px;
-                height: 42px;
-                font-size: 1.3rem;
+        @media (max-width: 600px) {
+            .service-swipe-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
             }
         }
 
@@ -1482,8 +1783,8 @@
                 scroll-behavior: auto;
             }
 
-            #home .hero h1 {
-                animation: heroFloat 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards !important;
+            .slogan-text {
+                animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards !important;
             }
 
             .typewriter {
@@ -1512,6 +1813,19 @@
                 opacity: 1 !important;
                 transform: none !important;
             }
+
+            .scroll-column-inner {
+                animation: none !important;
+            }
+
+            .hero-buttons {
+                animation: heroFloat 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards !important;
+            }
+
+            .scroll-column::before,
+            .scroll-column::after {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1527,7 +1841,6 @@
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
                 <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental hub</span></span>
             </a>
-            <!-- Slogan with typing effect + glow (no cursor) -->
             <span class="slogan" aria-hidden="true" id="sloganText">
                 <span id="sloganDisplay"></span>
             </span>
@@ -1557,6 +1870,7 @@
                     <li role="none"><a href="general.html" role="menuitem">General Dentistry</a></li>
                     <li role="none"><a href="cosmetic.html" role="menuitem">Cosmetic Dentistry</a></li>
                     <li role="none"><a href="restorative.html" role="menuitem">Restoration</a></li>
+                    <li role="none"><a href="emergency.html" role="menuitem">Emergency Dental Care</a></li>
                 </ul>
             </li>
             <li role="none">
@@ -1578,25 +1892,72 @@
     ============================================================ -->
     <main id="main-content">
 
-        <!-- ===== HOME / HERO ===== -->
-        <section class="section" id="home" aria-label="Hero banner" style="padding-top:80px;">
+        <!-- ===== HOMEPAGE SECTION - ONE BACKGROUND FOR ALL ===== -->
+        <section class="homepage-section" aria-label="Hero banner">
             <div class="container">
-                <div class="hero">
-                    <h1>
-                        Your Optimal<br />
-                        <span class="highlight">Oral Health</span><br />
-                        Begins Today!
-                    </h1>
-                    <p>
-                        Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
-                        <span style="font-size:0.9rem; color:#a0b4c8;">Everett, WA — Personalized Care You Can Trust</span>
-                    </p>
+                <!-- Hero Text -->
+                <div class="slogan-text">
+                    Your <span class="highlight">Optimal</span> Oral <span class="highlight">Health</span> Begins Today!
+                </div>
+                <p class="hero-subtext">
+                    Comprehensive General, Cosmetic &amp; Restorative Dentistry<br />
+                    <span style="font-size:0.9rem; color:#a0b4c8;">Everett, WA — Personalized Care You Can Trust</span>
+                </p>
+
+                <!-- Image Columns -->
+                <div class="scroll-container">
+                    <!-- Column 1 - Scrolls UP -->
+                    <div class="scroll-column">
+                        <div class="scroll-column-inner">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental clinic" loading="lazy" />
+                            <!-- Duplicate for seamless loop -->
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental clinic" loading="lazy" />
+                        </div>
+                    </div>
+
+                    <!-- Column 2 - Scrolls DOWN -->
+                    <div class="scroll-column">
+                        <div class="scroll-column-inner">
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                            <!-- Duplicate for seamless loop -->
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop" alt="Dental treatment" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="hero-buttons">
                     <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
+                    <a href="#contact-section" class="btn-call">
+                        <span class="phone-icon">📞</span> Call Us
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- ===== WHY CHOOSE FLAKES ===== -->
+        <!-- ===== VIDEO SECTION - FULL WIDTH, WHITE BACKGROUND ===== -->
+        <section class="video-section" id="video-section" aria-label="Dental care video">
+            <div class="video-wrapper">
+                <video autoplay muted loop playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- ===== WHY CHOOSE ===== -->
         <section class="why-choose-section" id="why-choose" aria-label="Why choose Bantu Dental">
             <div class="container">
                 <div class="why-choose-wrapper">
@@ -1667,21 +2028,39 @@
 
                 <div class="service-swipe-grid">
                     <a href="general.html" class="service-swipe-card">
-                        <span class="icon" aria-hidden="true">🪥</span>
-                        <h3>General Dentistry</h3>
-                        <p>Cleanings, exams, fillings, and preventive care for lasting oral health.</p>
+                        <div class="service-bg service-bg-1"></div>
+                        <div class="service-content">
+                            <span class="icon" aria-hidden="true">🪥</span>
+                            <h3>General Dentistry</h3>
+                            <p>Cleanings, exams, fillings, and preventive care for lasting oral health.</p>
+                        </div>
                     </a>
 
                     <a href="cosmetic.html" class="service-swipe-card">
-                        <span class="icon" aria-hidden="true">✨</span>
-                        <h3>Cosmetic Dentistry</h3>
-                        <p>Whitening, veneers, Invisalign, and smile design for a confident you.</p>
+                        <div class="service-bg service-bg-2"></div>
+                        <div class="service-content">
+                            <span class="icon" aria-hidden="true">✨</span>
+                            <h3>Cosmetic Dentistry</h3>
+                            <p>Whitening, veneers, Invisalign, and smile design for a confident you.</p>
+                        </div>
                     </a>
 
                     <a href="restorative.html" class="service-swipe-card">
-                        <span class="icon" aria-hidden="true"></span>
-                        <h3>Restoration</h3>
-                        <p>Implants, crowns, dentures, and full mouth rehabilitation to restore function and beauty.</p>
+                        <div class="service-bg service-bg-3"></div>
+                        <div class="service-content">
+                            <span class="icon" aria-hidden="true">🦷</span>
+                            <h3>Restoration</h3>
+                            <p>Implants, crowns, dentures, and full mouth rehabilitation.</p>
+                        </div>
+                    </a>
+
+                    <a href="emergency.html" class="service-swipe-card">
+                        <div class="service-bg service-bg-4"></div>
+                        <div class="service-content">
+                            <span class="icon" aria-hidden="true">🚨</span>
+                            <h3>Emergency Dental Care</h3>
+                            <p>24/7 emergency services for toothaches, fractures, and urgent dental needs.</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -1696,41 +2075,56 @@
                         <span class="label">Dr Abdul Wahab</span>
                     </div>
                     <div class="doctor-info-wrap">
-                        <h2>Meet <span class="highlight typewriter" id="typewriterText"Dr Abdul Wahab</span></h2>
+                        <h2>Meet <span class="highlight typewriter" id="typewriterText">Dr Abdul Wahab</span></h2>
                         <div class="role">Lead Dentist &amp; Smile Designer</div>
                         <p>Dr. wahab is a compassionate and skilled dentist dedicated to transforming smiles and improving lives. With a gentle touch and an artistic eye, she combines advanced clinical expertise with a warm, patient-centered approach.</p>
                         <p>Whether you need a routine checkup or a complete smile makeover, Dr. wahab takes the time to understand your goals and create a personalized treatment plan that fits your lifestyle and budget.</p>
-                        <a href="team.html" class="btn-learn">👨‍⚕️ Learn More About Our Team </a>
+                        <a href="team.html" class="btn-learn">👨‍⚕️ Learn More About Our Team</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== CONTACT SECTION with typewriter effect ===== -->
+        <!-- ===== CONTACT SECTION with Google Maps and "Come to Us" ===== -->
         <section class="section" id="contact-section" style="background:var(--white);" aria-label="Contact information">
             <div class="container">
                 <div class="contact-wrap">
                     <h2 class="section-title">We'd Love to <span class="highlight">Hear From You</span></h2>
                     <p><span class="contact-typewriter" id="contactTypewriter">Have questions about your dental health? Want to schedule an appointment? Our friendly team is here to help. Reach out today, we're just a click or a call away!</span></p>
                     <a href="contact.html" class="btn-contact">Contact Us</a>
+
+                    <!-- "Come to Us" title + Google Maps -->
+                    <h3 class="map-title">📍 <span class="highlight">Come to Us</span></h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Bantu Dental Hub Location"
+                        ></iframe>
+                        <div class="map-overlay">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kasenyi+Entebbe+Uganda" target="_blank" rel="noopener noreferrer">
+                                📍 View in Maps
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- ===== FOOTER — only Contact, Hours, Location ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
-                <!-- Contact -->
                 <div>
                     <h4>📞 Contact</h4>
-                    <p class="phone"><a href="tel:+256 708 927914" aria-label="Call us at +256 708 927914">+256 758 985317</a></p>
-                    <p><a href="mailto:info@bantudentalclinic.com">✉️ info@bantudentalhub.com</a></p>
+                    <p class="phone"><a href="tel:+256758985317" aria-label="Call us at +256 758 985317">+256 758 985317</a></p>
+                    <p><a href="mailto:info@bantudentalhub.com">✉️ info@bantudentalhub.com</a></p>
                 </div>
 
-                <!-- Hours -->
                 <div>
                     <h4>🕒 Hours</h4>
                     <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00am – 6:00pm</p>
@@ -1742,7 +2136,6 @@
                     <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
                 </div>
 
-                <!-- Location -->
                 <div>
                     <h4>📍 Location</h4>
                     <p>Kasenyi</p>
@@ -1762,7 +2155,7 @@
 
     <script>
         // ============================================================
-        // SLOGAN TYPING EFFECT (loops continuously, no cursor)
+        // SLOGAN TYPING EFFECT
         // ============================================================
         (function() {
             const sloganDisplay = document.getElementById('sloganDisplay');
@@ -1798,7 +2191,7 @@
         })();
 
         // ============================================================
-        // CONTACT TYPEWRITER EFFECT (triggers when scrolled into view)
+        // CONTACT TYPEWRITER EFFECT
         // ============================================================
         const contactTypewriter = document.getElementById('contactTypewriter');
 
@@ -1825,8 +2218,8 @@
             const internalLinks = document.querySelectorAll(
                 'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
                 'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
-                'a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], ' +
-                'a[href^="contact.html"], a[href^="schedule.html"]'
+                'a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], ' +
+                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]'
             );
 
             internalLinks.forEach(link => {
@@ -1893,7 +2286,7 @@
         });
 
         // ============================================================
-        // TESTIMONIALS - Manual Controls
+        // TESTIMONIALS
         // ============================================================
         let currentTestimonial = 0;
         const slides = document.querySelectorAll('.testimonial-slide');
@@ -1963,7 +2356,7 @@
         startTestimonialRotation();
 
         // ============================================================
-        // SCROLL ANIMATIONS
+        // SCROLL ANIMATIONS - WORKS BOTH WAYS (up AND down)
         // ============================================================
         const animateOnScroll = () => {
             const elements = document.querySelectorAll(
@@ -1973,8 +2366,11 @@
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    // Add class when entering viewport (scroll down OR up)
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        
+                        // Handle typewriter specifically when doctor-info comes into view
                         if (entry.target.classList.contains('doctor-info-wrap')) {
                             const typewriter = document.querySelector('.typewriter');
                             if (typewriter && !typewriter.classList.contains('done')) {
@@ -1983,6 +2379,9 @@
                                 }, 500);
                             }
                         }
+                    } else {
+                        // REMOVE class when leaving viewport (so it re-animates when scrolling back)
+                        entry.target.classList.remove('visible');
                     }
                 });
             }, {
@@ -2037,7 +2436,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Text breathing, slogan typing, contact typewriter, footer simplified.');
+        console.log('🦷 Bantu Dental hub — Scroll animations now work BOTH ways!');
     </script>
 
 </body>
