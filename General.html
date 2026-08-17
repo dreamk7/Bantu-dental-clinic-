@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flakes Dental | General Dentistry</title>
+    <title>Bantu Dental Hub | General Dentistry</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ===== SAME STYLES AS PREVIOUS PAGES ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #0a6bdf;
             --primary-dark: #0850a8;
@@ -25,932 +21,451 @@
             --radius: 16px;
             --transition: 0.3s ease;
         }
-
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--light-gray);
             color: var(--dark);
             line-height: 1.6;
-            padding-top: 72px;
             overflow-x: hidden;
             opacity: 1;
             transition: opacity 0.4s ease;
         }
-
-        body.page-exit {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        body.page-enter {
-            animation: pageEnter 0.5s ease forwards;
-        }
-
+        body.page-exit { opacity: 0; transform: translateY(10px); }
+        body.page-enter { animation: pageEnter 0.5s ease forwards; }
         @keyframes pageEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; overflow: hidden; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+        /* ===== SKIP LINK ===== */
+        .skip-link {
+            position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: var(--white); padding: 12px 24px;
+            border-radius: 0 0 8px 8px; font-weight: 600; z-index: 10000;
+            transition: top 0.3s ease; text-decoration: none;
         }
+        .skip-link:focus { top: 0; }
 
         /* ===== HEADER ===== */
         .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 0 24px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04); padding: 0 24px;
+            height: 72px; display: flex; align-items: center; justify-content: space-between;
         }
-
+        .header .logo-wrapper { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .header .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--dark);
-            text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 1.25rem; color: var(--dark); text-decoration: none;
         }
-
-        .header .logo img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
+        .header .logo img { height: 40px; width: auto; object-fit: contain; }
+        .header .logo .brand { letter-spacing: 2px; }
+        .header .logo .brand .bantu { margin-right: 6px; }
+        .header .logo .brand .dental { color: var(--primary); }
+        .header .slogan {
+            font-size: 0.7rem; font-weight: 400; color: var(--gray); letter-spacing: 0.3px;
+            padding-left: 10px; width: 100%; margin-left: 52px; margin-top: -4px;
+            border-left: 2px solid var(--primary); padding-left: 10px;
+            text-shadow: 0 0 6px rgba(10,107,223,0.15), 0 0 12px rgba(10,107,223,0.05);
+            transition: text-shadow 0.3s ease; min-height: 1.2rem;
+            overflow: hidden; white-space: nowrap;
         }
-        .header .logo span {
-            color: var(--primary);
+        .header .slogan:hover {
+            text-shadow: 0 0 10px rgba(10,107,223,0.30), 0 0 20px rgba(10,107,223,0.10);
         }
-
-        .header .nav {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            list-style: none;
+        @media (max-width: 768px) {
+            .header .slogan { display: block; margin-left: 50px; font-size: 0.65rem; border-left: 2px solid var(--primary); padding-left: 10px; }
         }
-        .header .nav>li {
-            list-style: none;
-            position: relative;
+        @media (max-width: 500px) {
+            .header .slogan { margin-left: 44px; font-size: 0.6rem; }
         }
+        .header .nav { display: flex; align-items: center; gap: 4px; list-style: none; }
+        .header .nav>li { list-style: none; position: relative; }
         .header .nav>li>a {
-            display: inline-block;
-            padding: 8px 14px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--gray);
-            border-radius: 8px;
-            transition: var(--transition);
-            text-decoration: none;
-            position: relative;
+            display: inline-block; padding: 8px 14px; font-size: 0.88rem; font-weight: 500;
+            color: var(--gray); border-radius: 8px; transition: var(--transition);
+            text-decoration: none; position: relative;
+        }
+        .header .nav>li>a:focus-visible,
+        .header .nav .dropdown li a:focus-visible,
+        .btn-primary:focus-visible,
+        .btn-contact:focus-visible,
+        .btn-learn:focus-visible {
+            outline: 3px solid var(--primary); outline-offset: 2px;
         }
         .header .nav>li>a::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            width: 0;
-            height: 2.5px;
-            background: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-            border-radius: 4px;
+            content: ''; position: absolute; bottom: 4px; left: 50%;
+            width: 0; height: 2.5px; background: var(--primary);
+            transition: all 0.3s ease; transform: translateX(-50%); border-radius: 4px;
         }
         .header .nav>li>a:hover::after,
-        .header .nav>li>a.active::after {
-            width: 60%;
-        }
-        .header .nav>li>a:hover {
-            color: var(--primary);
-            background: var(--primary-light);
-        }
-        .header .nav>li>a.active {
-            color: var(--primary);
-            background: var(--primary-light);
-        }
+        .header .nav>li>a.active::after { width: 60%; }
+        .header .nav>li>a:hover { color: var(--primary); background: var(--primary-light); }
+        .header .nav>li>a.active { color: var(--primary); background: var(--primary-light); }
         .header .nav>li>a .arrow {
-            font-size: 0.6rem;
-            margin-left: 4px;
-            display: inline-block;
+            font-size: 0.6rem; margin-left: 4px; display: inline-block;
             transition: transform 0.3s ease;
         }
-        .header .nav>li:hover>a .arrow {
-            transform: rotate(180deg);
-        }
+        .header .nav>li:hover>a .arrow { transform: rotate(180deg); }
         .header .nav .dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            min-width: 210px;
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-hover);
-            padding: 8px 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-6px);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: absolute; top: calc(100% + 8px); left: 0; min-width: 210px;
+            background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-hover);
+            padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: var(--transition); border: 1px solid rgba(0, 0, 0, 0.04);
         }
         .header .nav>li:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            opacity: 1; visibility: visible; transform: translateY(0);
         }
-        .header .nav .dropdown li {
-            list-style: none;
-        }
+        .header .nav .dropdown li { list-style: none; }
         .header .nav .dropdown li a {
-            display: block;
-            padding: 10px 20px;
-            font-size: 0.85rem;
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-            border-left: 3px solid transparent;
+            display: block; padding: 10px 20px; font-size: 0.85rem; color: var(--gray);
+            text-decoration: none; transition: var(--transition); border-left: 3px solid transparent;
         }
         .header .nav .dropdown li a:hover {
-            color: var(--primary);
-            background: var(--primary-light);
-            border-left-color: var(--primary);
+            color: var(--primary); background: var(--primary-light); border-left-color: var(--primary);
         }
         .header .nav .btn-schedule {
-            background: var(--primary) !important;
-            color: var(--white) !important;
-            padding: 8px 22px !important;
-            border-radius: 40px !important;
-            font-weight: 600 !important;
-            box-shadow: 0 4px 14px rgba(10, 107, 223, 0.30);
+            background: var(--primary) !important; color: var(--white) !important;
+            padding: 8px 22px !important; border-radius: 40px !important;
+            font-weight: 600 !important; box-shadow: 0 4px 14px rgba(10,107,223,0.30);
         }
         .header .nav .btn-schedule:hover {
-            background: var(--primary-dark) !important;
-            transform: translateY(-2px);
+            background: var(--primary-dark) !important; transform: translateY(-2px);
         }
-        .header .nav .btn-schedule::after {
-            display: none !important;
-        }
-
+        .header .nav .btn-schedule::after { display: none !important; }
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 6px;
-            cursor: pointer;
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; padding: 6px; cursor: pointer;
         }
         .hamburger span {
-            display: block;
-            width: 26px;
-            height: 2.5px;
-            background: var(--dark);
-            border-radius: 4px;
-            transition: var(--transition);
+            display: block; width: 26px; height: 2.5px;
+            background: var(--dark); border-radius: 4px; transition: var(--transition);
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, rgba(10,30,47,0.85), rgba(10,107,223,0.70)),
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=600&fit=crop');
+            background-size: cover; background-position: center; text-align: center;
+            color: var(--white); min-height: 300px;
+            display: flex; align-items: center; justify-content: center;
         }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .page-hero .typewriter-heading {
+            font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800;
+            overflow: hidden; white-space: nowrap; display: inline-block; width: 0;
+            animation: typewriter 3s steps(40) 0.5s forwards;
         }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .page-hero .subtitle {
+            font-size: 1.2rem; color: #c8d4e0; margin-top: 16px;
+            opacity: 0; animation: fadeInUp 0.8s ease 3.5s forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== PAGE CONTENT ===== */
-        .page-wrapper {
-            padding: 40px 0 60px;
+        /* ===== CONTENT SECTION ===== */
+        .content-section { padding: 60px 0; background: var(--white); }
+        .content-section:nth-child(even) { background: var(--light-gray); }
+        .slide-paragraph {
+            max-width: 800px; margin: 0 auto 30px;
+            opacity: 0; transform: translateX(0);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .slide-paragraph.slide-right { transform: translateX(80px); }
+        .slide-paragraph.slide-left { transform: translateX(-80px); }
+        .slide-paragraph.visible { opacity: 1; transform: translateX(0); }
+        .slide-paragraph p {
+            font-size: 1.05rem; color: var(--gray); line-height: 1.8;
+            opacity: 0; transform: translateY(15px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .slide-paragraph.visible p { opacity: 1; transform: translateY(0); }
+        .slide-paragraph.visible p:nth-child(1) { transition-delay: 0.2s; }
+        .slide-paragraph.visible p:nth-child(2) { transition-delay: 0.4s; }
+        .slide-paragraph.visible p:nth-child(3) { transition-delay: 0.6s; }
+        .slide-paragraph.visible p:nth-child(4) { transition-delay: 0.8s; }
+        .slide-paragraph h3 {
+            font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 12px;
+        }
+        .slide-paragraph .icon { font-size: 2.5rem; display: block; margin-bottom: 8px; }
 
-        .back-btn {
-            display: inline-block;
-            background: var(--light-gray);
-            color: var(--dark);
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: var(--transition);
-            margin-bottom: 24px;
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; background: var(--primary);
+            color: var(--white); width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(10,107,223,0.35); text-decoration: none;
+            transition: var(--transition); opacity: 0; visibility: hidden;
+            transform: translateY(20px); z-index: 999; border: none; cursor: pointer;
         }
-        .back-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .page-title {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 6px;
-        }
-        .page-title .highlight {
-            color: var(--primary);
-        }
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 32px;
-            border-bottom: 3px solid var(--primary);
-            display: inline-block;
-            padding-bottom: 6px;
-        }
-
-        /* ===== CONDITION CARDS ===== */
-        .condition-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .condition-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease;
-        }
-
-        .condition-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .condition-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .condition-card .card-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .condition-card .card-header .icon {
-            font-size: 2rem;
-        }
-
-        .condition-card .card-header h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        .condition-card .card-body {
-            padding: 24px;
-        }
-
-        /* Floating animations */
-        .condition-card .card-body .subtopic {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin-bottom: 14px;
-        }
-
-        .condition-card .card-body .subtopic:last-child {
-            margin-bottom: 0;
-        }
-
-        .condition-card.visible .card-body .subtopic {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Stagger delays */
-        .condition-card.visible .card-body .subtopic:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-        .condition-card.visible .card-body .subtopic:nth-child(2) {
-            transition-delay: 0.25s;
-        }
-        .condition-card.visible .card-body .subtopic:nth-child(3) {
-            transition-delay: 0.4s;
-        }
-        .condition-card.visible .card-body .subtopic:nth-child(4) {
-            transition-delay: 0.55s;
-        }
-
-        .condition-card .card-body .subtopic .label {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .condition-card .card-body .subtopic p {
-            font-size: 0.95rem;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .condition-card .card-body .subtopic ul {
-            list-style: none;
-            padding: 0;
-            margin: 4px 0 0 0;
-        }
-
-        .condition-card .card-body .subtopic ul li {
-            font-size: 0.92rem;
-            color: var(--gray);
-            padding: 3px 0 3px 22px;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .condition-card .card-body .subtopic ul li::before {
-            content: '•';
-            color: var(--primary);
-            font-weight: 700;
-            position: absolute;
-            left: 0;
-        }
-
-        .badge-treatment {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 14px;
-            border-radius: 20px;
-            margin-top: 4px;
-        }
+        .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+        .back-to-top:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
 
         /* ===== FOOTER ===== */
         .footer {
-            background: var(--dark);
-            color: #c8d4e0;
-            padding: 40px 0 24px;
-            margin-top: 40px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: var(--dark); color: #c8d4e0; padding: 40px 0 24px;
+            text-align: center; width: 100%;
         }
-
-        .footer.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .footer .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 32px;
-            text-align: center;
-            justify-items: center;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 32px; text-align: center; justify-items: center;
         }
-
         .footer h4 {
-            color: var(--white);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            border-bottom: 2px solid var(--primary);
-            display: inline-block;
-            padding-bottom: 4px;
+            color: var(--white); font-size: 1rem; font-weight: 600; margin-bottom: 12px;
+            border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 4px;
         }
-
-        .footer p {
-            margin: 6px 0;
-            font-size: 0.92rem;
-        }
-        .footer .phone {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--white);
-        }
+        .footer p { margin: 6px 0; font-size: 0.92rem; }
+        .footer .phone { font-size: 1.2rem; font-weight: 600; color: var(--white); }
+        .footer a { color: #c8d4e0; text-decoration: none; transition: var(--transition); }
+        .footer a:hover { color: var(--primary); }
         .footer .bottom {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.82rem;
-            color: #6a7a8e;
-            grid-column: 1 / -1;
-        }
-        .footer a {
-            color: #c8d4e0;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer a:hover {
-            color: var(--primary);
+            text-align: center; padding-top: 20px; margin-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.82rem;
+            color: #6a7a8e; grid-column: 1 / -1;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .hamburger {
-                display: flex;
-            }
+            .hamburger { display: flex; }
             .header .nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 12px 16px 20px;
-                gap: 0;
-                box-shadow: var(--shadow-hover);
-                border-radius: 0 0 var(--radius) var(--radius);
-                display: none;
-                max-height: 80vh;
-                overflow-y: auto;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--white); flex-direction: column; padding: 12px 16px 20px;
+                gap: 0; box-shadow: var(--shadow-hover);
+                border-radius: 0 0 var(--radius) var(--radius); display: none;
+                max-height: 80vh; overflow-y: auto;
             }
-            .header .nav.open {
-                display: flex;
-                animation: fadeIn 0.25s ease;
-            }
-            .header .nav>li {
-                width: 100%;
-            }
+            .header .nav.open { display: flex; animation: fadeIn 0.25s ease; }
+            .header .nav>li { width: 100%; }
             .header .nav>li>a {
-                display: flex;
-                justify-content: space-between;
-                padding: 12px 16px;
-                width: 100%;
-                border-bottom: 1px solid #f0f2f5;
+                display: flex; justify-content: space-between; padding: 12px 16px;
+                width: 100%; border-bottom: 1px solid #f0f2f5;
             }
-            .header .nav>li>a::after {
-                display: none;
-            }
-            .header .nav>li:last-child>a {
-                border-bottom: none;
-            }
+            .header .nav>li>a::after { display: none; }
+            .header .nav>li:last-child>a { border-bottom: none; }
             .header .nav .dropdown {
-                position: static;
-                box-shadow: none;
-                border-radius: 0;
-                padding: 0;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                display: none;
-                background: var(--light-gray);
-                border: none;
-                width: 100%;
+                position: static; box-shadow: none; border-radius: 0; padding: 0;
+                opacity: 1; visibility: visible; transform: none; display: none;
+                background: var(--light-gray); border: none; width: 100%;
             }
-            .header .nav .dropdown.open {
-                display: block;
-            }
-            .header .nav .dropdown li a {
-                padding: 10px 16px 10px 32px;
-                border-left: none;
-            }
-            .header .nav .btn-schedule {
-                margin-top: 8px;
-                text-align: center !important;
-            }
-            .condition-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer .grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-            .page-title {
-                font-size: 1.8rem;
-            }
+            .header .nav .dropdown.open { display: block; }
+            .header .nav .dropdown li a { padding: 10px 16px 10px 32px; border-left: none; }
+            .header .nav .btn-schedule { margin-top: 8px; text-align: center !important; }
+            .footer .grid { grid-template-columns: 1fr; gap: 24px; }
         }
-
-        @media (max-width: 500px) {
-            body {
-                padding-top: 64px;
-            }
-            .header {
-                height: 64px;
-                padding: 0 16px;
-            }
-            .header .logo {
-                font-size: 1rem;
-            }
-            .header .logo img {
-                height: 32px;
-            }
-            .page-title {
-                font-size: 1.6rem;
-            }
-            .condition-card .card-header {
-                padding: 14px 18px;
-            }
-            .condition-card .card-header .icon {
-                font-size: 1.6rem;
-            }
-            .condition-card .card-header h3 {
-                font-size: 1rem;
-            }
-            .condition-card .card-body {
-                padding: 18px;
-            }
-        }
-
         @media (min-width: 901px) {
-            .header .nav {
-                display: flex !important;
-            }
-            .header .nav .dropdown {
-                display: block !important;
-                opacity: 0;
-                visibility: hidden;
-            }
-            .header .nav>li:hover .dropdown {
-                opacity: 1;
-                visibility: visible;
-            }
+            .header .nav { display: flex !important; }
+            .header .nav .dropdown { display: block !important; opacity: 0; visibility: hidden; }
+            .header .nav>li:hover .dropdown { opacity: 1; visibility: visible; }
         }
-
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(-8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .page-hero .typewriter-heading { white-space: normal; width: 100% !important; animation: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <a class="logo" href="index.html">
-            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
-            <span>Flakes<span>Dental</span></span>
-        </a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-        <button class="hamburger" id="hamburger" aria-label="Menu">
+    <header class="header" role="banner">
+        <div class="logo-wrapper">
+            <a class="logo" href="index.html" aria-label="Bantu Dental Home">
+                <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
+                <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental hub</span></span>
+            </a>
+            <span class="slogan" aria-hidden="true" id="sloganText">
+                <span id="sloganDisplay"></span>
+            </span>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
 
-        <ul class="nav" id="navMenu">
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="#">
-                    About Us <span class="arrow">▾</span>
+        <ul class="nav" id="navMenu" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    About Us <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="doctor.html">Meet the Doctor</a></li>
-                    <li><a href="team.html">Meet the Team</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="doctor.html" role="menuitem">Meet the Doctor</a></li>
+                    <li role="none"><a href="team.html" role="menuitem">Meet the Team</a></li>
+                    <li role="none"><a href="reviews.html" role="menuitem">Reviews</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    Services <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false" class="active">
+                    Services <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="general.html" class="active">General Dentistry</a></li>
-                    <li><a href="cosmetic.html">Cosmetic Dentistry</a></li>
-                    <li><a href="restorative.html">Restoration</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="general.html" role="menuitem">General Dentistry</a></li>
+                    <li role="none"><a href="cosmetic.html" role="menuitem">Cosmetic Dentistry</a></li>
+                    <li role="none"><a href="restorative.html" role="menuitem">Restoration</a></li>
+                    <li role="none"><a href="emergency.html" role="menuitem">Emergency Dental Care</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    Resources <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="financial.html">Financial Info</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="faqs.html" role="menuitem">FAQs</a></li>
+                    <li role="none"><a href="financial.html" role="menuitem">Financial Info</a></li>
                 </ul>
             </li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">Contact Us</a></li>
+            <li role="none"><a href="schedule.html" class="btn-schedule" role="menuitem">📅 Schedule</a></li>
         </ul>
     </header>
 
-    <!-- ===== PAGE CONTENT ===== -->
-    <div class="container page-wrapper">
-        <a href="index.html" class="back-btn">← Back to Home</a>
+    <main id="main-content">
 
-        <h2 class="page-title">🪥 <span class="highlight">General</span> Dentistry</h2>
-        <p class="page-subtitle">Comprehensive care for your whole family — from routine checkups to advanced treatments.</p>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="typewriter-heading">General Dentistry</h1>
+                <p class="subtitle">Comprehensive Care for Your Whole Family</p>
+            </div>
+        </section>
 
-        <div class="condition-grid">
+        <section class="content-section" id="general-content">
+            <div class="container">
 
-            <!-- ===== CONDITION 1: Tooth Decay ===== -->
-            <div class="condition-card">
-                <div class="card-header">
+                <div class="slide-paragraph slide-right">
+                    <span class="icon">🪥</span>
+                    <h3>Preventive Care</h3>
+                    <p>Regular checkups and cleanings are the foundation of a healthy smile. Our comprehensive exams include digital X-rays, oral cancer screenings, and thorough evaluations of your teeth and gums.</p>
+                    <p>We recommend visiting us every six months to catch potential issues early and keep your smile bright and healthy.</p>
+                </div>
+
+                <div class="slide-paragraph slide-left">
                     <span class="icon">🦷</span>
-                    <h3>Tooth Decay (Cavities)</h3>
+                    <h3>Fillings & Restorations</h3>
+                    <p>When cavities occur, we offer tooth-colored fillings that blend seamlessly with your natural teeth. Our composite fillings are durable, safe, and virtually invisible.</p>
+                    <p>We also provide inlays, onlays, and crowns to restore damaged teeth and protect them from further decay.</p>
                 </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Tooth decay is the destruction of tooth enamel caused by acids produced by bacteria in plaque. It creates cavities that, if left untreated, can lead to pain, infection, and tooth loss.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Poor oral hygiene and irregular brushing</li>
-                            <li>Frequent consumption of sugary or acidic foods and drinks</li>
-                            <li>Dry mouth (reduced saliva flow)</li>
-                            <li>Deep tooth crevices that trap food and bacteria</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>Fillings:</strong> Tooth-colored composite fillings for small to moderate cavities</li>
-                            <li><strong>Fluoride Treatments:</strong> Professional fluoride varnish to strengthen enamel</li>
-                            <li><strong>Dental Sealants:</strong> Protective coatings for children's molars</li>
-                            <li><strong>Crowns:</strong> For advanced decay, we may recommend a dental crown</li>
-                        </ul>
-                        <span class="badge-treatment">✅ Mercury-Free Fillings</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Regular cleanings, fluoride treatments, and reducing sugar intake can help prevent tooth decay. We'll work with you to build healthy habits.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ===== CONDITION 2: Gum Disease ===== -->
-            <div class="condition-card">
-                <div class="card-header">
-                    <span class="icon">🦠</span>
-                    <h3>Gum Disease (Periodontitis)</h3>
+                <div class="slide-paragraph slide-right">
+                    <span class="icon">🦷</span>
+                    <h3>Root Canal Therapy</h3>
+                    <p>Root canal treatment saves infected teeth and eliminates pain. With modern techniques and local anesthesia, the procedure is comfortable and effective.</p>
+                    <p>We use advanced technology to ensure precise treatment and quick recovery, helping you preserve your natural smile.</p>
                 </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Gum disease is an infection of the tissues that surround and support your teeth. It ranges from mild gingivitis to severe periodontitis, which can destroy the bone supporting your teeth.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Plaque buildup along and under the gumline</li>
-                            <li>Smoking or tobacco use</li>
-                            <li>Genetics and family history</li>
-                            <li>Diabetes and other systemic conditions</li>
-                            <li>Hormonal changes (pregnancy, menopause)</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>Scaling &amp; Root Planing:</strong> Deep cleaning to remove tartar from beneath the gums</li>
-                            <li><strong>Ultrasonic Cleaning:</strong> Gentle removal of plaque and tartar</li>
-                            <li><strong>Antimicrobial Therapy:</strong> Local antibiotics to control infection</li>
-                            <li><strong>Regular Maintenance:</strong> Ongoing supportive care to prevent recurrence</li>
-                        </ul>
-                        <span class="badge-treatment">🩺 Non-Surgical Options Available</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Daily brushing, flossing, and regular dental cleanings are your best defense against gum disease. We'll guide you on proper techniques.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ===== CONDITION 3: Tooth Sensitivity ===== -->
-            <div class="condition-card">
-                <div class="card-header">
-                    <span class="icon">⚡</span>
-                    <h3>Tooth Sensitivity</h3>
-                </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Tooth sensitivity is a sharp pain or discomfort in your teeth when exposed to hot, cold, sweet, or acidic foods. It occurs when the protective enamel wears down, exposing the sensitive dentin underneath.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Enamel erosion from acidic foods or aggressive brushing</li>
-                            <li>Receding gums (exposes tooth roots)</li>
-                            <li>Cracked or chipped teeth</li>
-                            <li>Teeth grinding (bruxism)</li>
-                            <li>Recent dental work</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>Fluoride Varnish:</strong> Applied to strengthen enamel and reduce sensitivity</li>
-                            <li><strong>Desensitizing Agents:</strong> Customized treatments to block pain signals</li>
-                            <li><strong>Bonding:</strong> To cover exposed roots or repair worn enamel</li>
-                            <li><strong>Night Guards:</strong> For patients who grind their teeth</li>
-                        </ul>
-                        <span class="badge-treatment">🔬 Gentle, Effective Relief</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Use a soft-bristled toothbrush, avoid acidic foods, and follow a gentle brushing technique. We'll recommend the best products for your sensitivity.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== CONDITION 4: Oral Cancer ===== -->
-            <div class="condition-card">
-                <div class="card-header">
-                    <span class="icon">🔬</span>
-                    <h3>Oral Cancer</h3>
-                </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Oral cancer refers to cancers that develop in the mouth, lips, tongue, gums, or throat. Early detection is critical for successful treatment and survival.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Tobacco use (smoking and chewing)</li>
-                            <li>Excessive alcohol consumption</li>
-                            <li>HPV (human papillomavirus) infection</li>
-                            <li>Prolonged sun exposure (lip cancer)</li>
-                            <li>Family history of cancer</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>VELscope® Screening:</strong> Advanced technology for early detection</li>
-                            <li><strong>Thorough Exams:</strong> Regular screenings during routine checkups</li>
-                            <li><strong>Biopsy Referral:</strong> If suspicious tissues are found, we refer you to a specialist</li>
-                            <li><strong>Education:</strong> Awareness of warning signs and risk factors</li>
-                        </ul>
-                        <span class="badge-treatment">🔬 VELscope® Technology</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Regular screenings, avoiding tobacco, limiting alcohol, and using sun protection for your lips are key prevention strategies.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== CONDITION 5: Bruxism (Teeth Grinding) ===== -->
-            <div class="condition-card">
-                <div class="card-header">
-                    <span class="icon">🌙</span>
-                    <h3>Bruxism (Teeth Grinding)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Bruxism is the involuntary grinding or clenching of teeth, often during sleep. It can cause jaw pain, headaches, tooth wear, and even cracked teeth.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Stress and anxiety</li>
-                            <li>Sleep disorders (sleep apnea)</li>
-                            <li>Misaligned or missing teeth</li>
-                            <li>Medications (antidepressants, stimulants)</li>
-                            <li>Caffeine and alcohol consumption</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>Night Guards:</strong> Custom-fitted guards to protect teeth from grinding</li>
-                            <li><strong>Stress Management:</strong> Techniques to reduce jaw tension</li>
-                            <li><strong>Dental Correction:</strong> Addressing misaligned teeth</li>
-                            <li><strong>Relaxation Exercises:</strong> To reduce muscle tension</li>
-                        </ul>
-                        <span class="badge-treatment">😴 Custom-Fitted Night Guards</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Stress reduction, limiting caffeine, and using a night guard can help prevent grinding. We'll help you find the right solution.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== CONDITION 6: Bad Breath ===== -->
-            <div class="condition-card">
-                <div class="card-header">
+                <div class="slide-paragraph slide-left">
                     <span class="icon">😷</span>
-                    <h3>Chronic Bad Breath (Halitosis)</h3>
+                    <h3>Gum Disease Treatment</h3>
+                    <p>Periodontal disease affects millions of people and can lead to tooth loss if untreated. We offer scaling and root planing, as well as advanced gum disease treatments to restore your oral health.</p>
+                    <p>Our team provides personalized care plans to manage and reverse gum disease, helping you maintain healthy gums for life.</p>
                 </div>
-                <div class="card-body">
-                    <div class="subtopic">
-                        <span class="label">📋 What is it?</span>
-                        <p>Chronic bad breath is a persistent unpleasant odor from the mouth. It's often caused by bacteria that produce sulfur compounds, and it can be a sign of underlying health issues.</p>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">⚠️ Common Causes</span>
-                        <ul>
-                            <li>Poor oral hygiene and trapped food particles</li>
-                            <li>Gum disease or tooth decay</li>
-                            <li>Dry mouth (xerostomia)</li>
-                            <li>Smoking or tobacco use</li>
-                            <li>Medical conditions (sinus infections, diabetes)</li>
-                        </ul>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">💊 How We Treat It</span>
-                        <ul>
-                            <li><strong>Professional Cleanings:</strong> Removing plaque and tartar buildup</li>
-                            <li><strong>Addressing Underlying Issues:</strong> Treating cavities, gum disease, or dry mouth</li>
-                            <li><strong>Oral Hygiene Education:</strong> Proper brushing and flossing techniques</li>
-                            <li><strong>Mouthwash &amp; Products:</strong> Recommended specifically for your condition</li>
-                        </ul>
-                        <span class="badge-treatment">✅ Fresh Breath Solutions</span>
-                    </div>
-                    <div class="subtopic">
-                        <span class="label">🛡️ Prevention</span>
-                        <p>Brush twice daily, floss regularly, stay hydrated, and visit us for routine cleanings to keep your breath fresh.</p>
-                    </div>
+
+                <div class="slide-paragraph slide-right">
+                    <span class="icon">👶</span>
+                    <h3>Pediatric Dentistry</h3>
+                    <p>We love caring for young smiles! Our team creates a fun, welcoming environment where children feel safe and comfortable during their dental visits.</p>
+                    <p>We provide fluoride treatments, sealants, and preventive care to set your child up for a lifetime of healthy teeth.</p>
                 </div>
+
             </div>
+        </section>
 
-        </div>
-    </div>
+    </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" id="footer">
+    <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
                 <div>
-                    <h4>🦷 Flakes Dental</h4>
-                    <p>Personalized, gentle care for your whole family.</p>
-                    <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
-                </div>
-                <div>
                     <h4>📞 Contact</h4>
-                    <p class="phone">(425) 353-5854</p>
-                    <p>2121 Madison St Suite A<br />Everett, WA 98203</p>
-                    <p>✉️ info@flakesdental.com</p>
+                    <p class="phone"><a href="tel:+256758985317" aria-label="Call us at +256 758 985317">+256 758 985317</a></p>
+                    <p><a href="mailto:info@bantudentalhub.com">✉️ info@bantudentalhub.com</a></p>
                 </div>
                 <div>
                     <h4>🕒 Hours</h4>
-                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
-                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00 – 5:00</p>
-                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00 – 5:00</p>
-                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00 – 4:00</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Friday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Saturday</span> 8:00am – 6:00pm</p>
                     <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
                 </div>
                 <div>
                     <h4>📍 Location</h4>
-                    <p>2121 Madison St Suite A</p>
-                    <p>Everett, WA 98203</p>
+                    <p>Kasenyi</p>
+                    <p>Entebbe, Uganda</p>
                     <p style="margin-top:4px;">🚗 Free parking available</p>
                 </div>
-                <div class="bottom">
-                    &copy; 2026 Flakes Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
-                </div>
+                <div class="bottom">&copy; 2026 Bantu Dental Hub. All Rights Reserved</div>
             </div>
         </div>
     </footer>
 
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
+
     <script>
-        // ============================================================
-        // PAGE TRANSITIONS
-        // ============================================================
+        // ===== SLOGAN TYPING =====
+        (function() {
+            const sloganDisplay = document.getElementById('sloganDisplay');
+            const sloganText = "it all begins with a smile";
+            let charIndex = 0, isDeleting = false, typingSpeed = 80, pauseTime = 2000;
+            function typeSlogan() {
+                if (!isDeleting) {
+                    if (charIndex < sloganText.length) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typeSlogan, typingSpeed);
+                    } else { isDeleting = true; setTimeout(typeSlogan, pauseTime); }
+                } else {
+                    if (charIndex > 0) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex - 1);
+                        charIndex--;
+                        setTimeout(typeSlogan, typingSpeed / 2);
+                    } else { isDeleting = false; setTimeout(typeSlogan, 500); }
+                }
+            }
+            setTimeout(typeSlogan, 500);
+        })();
+
+        // ===== PAGE TRANSITIONS =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
-
-            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
+            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     if (this.getAttribute('href').startsWith('#')) return;
                     e.preventDefault();
                     const href = this.getAttribute('href');
                     document.body.classList.add('page-exit');
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 400);
+                    setTimeout(() => { window.location.href = href; }, 400);
                 });
             });
         });
 
         // ===== HAMBURGER =====
-        document.getElementById('hamburger').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('navMenu').classList.toggle('open');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', function() {
+            const isOpen = this.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
         });
 
         // ===== DROPDOWN TOGGLE (mobile) =====
-        document.querySelectorAll('.nav > li > a').forEach(link => {
+        document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
                 if (!nav.classList.contains('open')) return;
@@ -960,7 +475,12 @@
                 e.preventDefault();
                 const wasOpen = dropdown.classList.contains('open');
                 document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-                if (!wasOpen) dropdown.classList.add('open');
+                if (!wasOpen) {
+                    dropdown.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                } else {
+                    this.setAttribute('aria-expanded', 'false');
+                }
             });
         });
 
@@ -968,26 +488,43 @@
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
-                document.getElementById('navMenu').classList.remove('open');
-                document.getElementById('hamburger').classList.remove('active');
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         });
 
         // ===== SCROLL ANIMATIONS =====
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.condition-card, .footer');
+            const elements = document.querySelectorAll('.slide-paragraph');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
                     }
                 });
             }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
             elements.forEach(el => observer.observe(el));
         };
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateOnScroll);
+        } else { animateOnScroll(); }
 
-        document.addEventListener('DOMContentLoaded', animateOnScroll);
-        window.addEventListener('load', function() { setTimeout(animateOnScroll, 100); });
+        // ===== BACK TO TOP =====
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 
 </body>
