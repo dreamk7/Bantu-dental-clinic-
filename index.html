@@ -126,14 +126,100 @@
             object-fit: contain;
         }
 
-        .header .logo .brand {
-            letter-spacing: 2px;
+        /* ===== ANIMATED LOGO - LETTER BASED (SLOWER BLINK) ===== */
+        .animated-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: normal;
         }
-        .header .logo .brand .bantu {
-            margin-right: 6px;
+
+        .animated-logo .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: letterSlide 0.5s ease forwards;
         }
-        .header .logo .brand .dental {
-            color: var(--primary);
+
+        /* Letter slide-in delays */
+        .char-1 { animation-delay: 0.00s; }
+        .char-2 { animation-delay: 0.05s; }
+        .char-3 { animation-delay: 0.10s; }
+        .char-4 { animation-delay: 0.15s; }
+        .char-5 { animation-delay: 0.20s; }
+        .char-6 { animation-delay: 0.25s; }
+        .char-7 { animation-delay: 0.30s; }
+        .char-8 { animation-delay: 0.35s; }
+        .char-9 { animation-delay: 0.40s; }
+        .char-10 { animation-delay: 0.45s; }
+        .char-11 { animation-delay: 0.50s; }
+        .char-12 { animation-delay: 0.55s; }
+        .char-13 { animation-delay: 0.60s; }
+        .char-14 { animation-delay: 0.65s; }
+
+        /* Dark letters (Bantu + Hub) */
+        .char-dark { color: var(--dark); }
+        /* Blue letters (Dental) */
+        .char-blue { color: var(--primary); }
+
+        @keyframes letterSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SLOWER LETTER-BASED BLINK (WAVE EFFECT) ===== */
+        .animated-logo.blink-all .char {
+            animation: letterBlink 1.8s ease-in-out infinite;
+        }
+
+        /* Staggered blink delays - slower wave effect */
+        .animated-logo.blink-all .char-1 { animation-delay: 0.00s; }
+        .animated-logo.blink-all .char-2 { animation-delay: 0.12s; }
+        .animated-logo.blink-all .char-3 { animation-delay: 0.24s; }
+        .animated-logo.blink-all .char-4 { animation-delay: 0.36s; }
+        .animated-logo.blink-all .char-5 { animation-delay: 0.48s; }
+        .animated-logo.blink-all .char-6 { animation-delay: 0.60s; }
+        .animated-logo.blink-all .char-7 { animation-delay: 0.72s; }
+        .animated-logo.blink-all .char-8 { animation-delay: 0.84s; }
+        .animated-logo.blink-all .char-9 { animation-delay: 0.96s; }
+        .animated-logo.blink-all .char-10 { animation-delay: 1.08s; }
+        .animated-logo.blink-all .char-11 { animation-delay: 1.20s; }
+        .animated-logo.blink-all .char-12 { animation-delay: 1.32s; }
+        .animated-logo.blink-all .char-13 { animation-delay: 1.44s; }
+        .animated-logo.blink-all .char-14 { animation-delay: 1.56s; }
+
+        @keyframes letterBlink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 0px rgba(10, 107, 223, 0);
+            }
+            25% {
+                opacity: 0.3;
+                text-shadow: 0 0 5px rgba(10, 107, 223, 0.1);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(10, 107, 223, 0.5), 0 0 60px rgba(10, 107, 223, 0.15);
+                color: var(--primary);
+            }
+            75% {
+                opacity: 0.5;
+                text-shadow: 0 0 10px rgba(10, 107, 223, 0.2);
+            }
+        }
+
+        /* Space between words */
+        .animated-logo .space {
+            display: inline-block;
+            width: 5px;
         }
 
         .header .slogan {
@@ -171,6 +257,12 @@
             .header .slogan {
                 margin-left: 44px;
                 font-size: 0.6rem;
+            }
+            .animated-logo {
+                font-size: 1rem;
+            }
+            .animated-logo .space {
+                width: 3px;
             }
         }
 
@@ -592,28 +684,37 @@
             display: none;
         }
 
-        /* ===== VIDEO SECTION ===== */
+        /* ===== VIDEO SECTION - WIDTH FIT (OPTION 1) ===== */
         .video-section {
             background: var(--dark);
             padding: 0;
             position: relative;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
         .video-wrapper {
             width: 100%;
+            max-width: 100%;
             margin: 0;
             padding: 0;
             overflow: hidden;
             background: #000;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .video-wrapper video {
             width: 100%;
+            height: auto;
             display: block;
-            aspect-ratio: 16/9;
-            object-fit: cover;
+            object-fit: contain;
+            background: #000;
         }
 
         /* ===== WHY CHOOSE ===== */
@@ -1233,13 +1334,22 @@
         }
 
         @keyframes contactType {
-            from { width: 0; }
-            to { width: 100%; }
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
         }
 
         @keyframes contactBlink {
-            0%, 100% { border-color: var(--primary); }
-            50% { border-color: transparent; }
+            0%,
+            100% {
+                border-color: var(--primary);
+            }
+            50% {
+                border-color: transparent;
+            }
         }
 
         .btn-contact {
@@ -1453,12 +1563,12 @@
             .service-swipe-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .scroll-column {
                 max-width: 280px;
                 height: 550px;
             }
-            
+
             .scroll-column img {
                 height: 210px;
             }
@@ -1734,16 +1844,16 @@
             .contact-wrap {
                 padding: 0 10px;
             }
-            
+
             .contact-wrap .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .contact-wrap p {
                 font-size: 1rem;
                 padding: 0 10px;
             }
-            
+
             .btn-contact {
                 padding: 12px 30px;
                 font-size: 0.95rem;
@@ -1936,6 +2046,16 @@
             .scroll-column::after {
                 display: none;
             }
+
+            .animated-logo .char {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .animated-logo.blink-all .char {
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -1947,7 +2067,27 @@
         <div class="logo-wrapper">
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
-                <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental hub</span></span>
+                <span class="animated-logo blink-all" id="animatedLogo">
+                    <!-- Bantu - dark letters -->
+                    <span class="char char-1 char-dark">B</span>
+                    <span class="char char-2 char-dark">a</span>
+                    <span class="char char-3 char-dark">n</span>
+                    <span class="char char-4 char-dark">t</span>
+                    <span class="char char-5 char-dark">u</span>
+                    <span class="space"></span>
+                    <!-- Dental - blue letters -->
+                    <span class="char char-6 char-blue">D</span>
+                    <span class="char char-7 char-blue">e</span>
+                    <span class="char char-8 char-blue">n</span>
+                    <span class="char char-9 char-blue">t</span>
+                    <span class="char char-10 char-blue">a</span>
+                    <span class="char char-11 char-blue">l</span>
+                    <span class="space"></span>
+                    <!-- Hub - dark letters -->
+                    <span class="char char-12 char-dark">H</span>
+                    <span class="char char-13 char-dark">u</span>
+                    <span class="char char-14 char-dark">b</span>
+                </span>
             </a>
             <span class="slogan" aria-hidden="true" id="sloganText">
                 <span id="sloganDisplay"></span>
@@ -2063,7 +2203,7 @@
             </div>
         </section>
 
-        <!-- ===== VIDEO SECTION - Using your mydental.mp4 ===== -->
+        <!-- ===== VIDEO SECTION - WIDTH FIT (OPTION 1) ===== -->
         <section class="video-section" id="video-section" aria-label="Dental care video">
             <div class="video-wrapper">
                 <video autoplay muted loop playsinline>
@@ -2211,10 +2351,10 @@
 
                     <h3 class="map-title">📍 <span class="highlight">Come to Us</span></h3>
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000" 
-                            allowfullscreen="" 
-                            loading="lazy" 
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000"
+                            allowfullscreen=""
+                            loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
                             title="Bantu Dental Hub Location"
                         ></iframe>
@@ -2304,7 +2444,8 @@
         // ===== CONTACT TYPEWRITER =====
         const contactTypewriter = document.getElementById('contactTypewriter');
         setTimeout(function() {
-            contactTypewriter.style.animation = 'contactType 3.5s steps(50) 1s forwards, contactBlink 0.8s step-end infinite';
+            contactTypewriter.style.animation =
+            'contactType 3.5s steps(50) 1s forwards, contactBlink 0.8s step-end infinite';
             setTimeout(function() {
                 contactTypewriter.classList.add('done');
             }, 4500);
@@ -2457,7 +2598,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        
+
                         if (entry.target.classList.contains('doctor-info-wrap')) {
                             const typewriter = document.querySelector('.typewriter');
                             if (typewriter && !typewriter.classList.contains('done')) {
@@ -2518,7 +2659,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Two-column scrolling image layout with mydental.mp4!');
+        console.log('🦷 Bantu Dental hub — Width fit with contain!');
     </script>
 
 </body>
