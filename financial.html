@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flakes Dental | Financial Info</title>
+    <title>Bantu Dental Hub | Financial Information</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        /* ===== SAME STYLES AS TEAM PAGE (header, footer, etc.) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -26,14 +27,14 @@
             --transition: 0.3s ease;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--light-gray);
             color: var(--dark);
             line-height: 1.6;
-            padding-top: 72px;
             overflow-x: hidden;
-            max-width: 100%;
             opacity: 1;
             transition: opacity 0.4s ease;
         }
@@ -42,28 +43,42 @@
             opacity: 0;
             transform: translateY(10px);
         }
+
         body.page-enter {
             animation: pageEnter 0.5s ease forwards;
         }
 
         @keyframes pageEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
+            width: 100%;
+            overflow: hidden;
         }
 
-        /* ===== HEADER ===== */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 600;
+            z-index: 10000;
+            transition: top 0.3s ease;
+            text-decoration: none;
+        }
+
+        .skip-link:focus { top: 0; }
+
+        /* ===== HEADER (SAME AS INDEX) ===== */
         .header {
             position: fixed;
             top: 0;
@@ -78,6 +93,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+
+        .header .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .header .logo {
@@ -95,12 +117,132 @@
             width: auto;
             object-fit: contain;
         }
-        .header .logo span {
-            color: var(--primary);
+
+        .animated-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: normal;
         }
 
-        .header .logo .space {
-            margin: 0 4px;
+        .animated-logo .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: letterSlide 0.5s ease forwards;
+        }
+
+        .char-1 { animation-delay: 0.00s; }
+        .char-2 { animation-delay: 0.05s; }
+        .char-3 { animation-delay: 0.10s; }
+        .char-4 { animation-delay: 0.15s; }
+        .char-5 { animation-delay: 0.20s; }
+        .char-6 { animation-delay: 0.25s; }
+        .char-7 { animation-delay: 0.30s; }
+        .char-8 { animation-delay: 0.35s; }
+        .char-9 { animation-delay: 0.40s; }
+        .char-10 { animation-delay: 0.45s; }
+        .char-11 { animation-delay: 0.50s; }
+        .char-12 { animation-delay: 0.55s; }
+        .char-13 { animation-delay: 0.60s; }
+        .char-14 { animation-delay: 0.65s; }
+
+        .char-dark { color: var(--dark); }
+        .char-blue { color: var(--primary); }
+
+        @keyframes letterSlide {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-logo.blink-all .char {
+            animation: letterBlink 1.8s ease-in-out infinite;
+        }
+
+        .animated-logo.blink-all .char-1 { animation-delay: 0.00s; }
+        .animated-logo.blink-all .char-2 { animation-delay: 0.12s; }
+        .animated-logo.blink-all .char-3 { animation-delay: 0.24s; }
+        .animated-logo.blink-all .char-4 { animation-delay: 0.36s; }
+        .animated-logo.blink-all .char-5 { animation-delay: 0.48s; }
+        .animated-logo.blink-all .char-6 { animation-delay: 0.60s; }
+        .animated-logo.blink-all .char-7 { animation-delay: 0.72s; }
+        .animated-logo.blink-all .char-8 { animation-delay: 0.84s; }
+        .animated-logo.blink-all .char-9 { animation-delay: 0.96s; }
+        .animated-logo.blink-all .char-10 { animation-delay: 1.08s; }
+        .animated-logo.blink-all .char-11 { animation-delay: 1.20s; }
+        .animated-logo.blink-all .char-12 { animation-delay: 1.32s; }
+        .animated-logo.blink-all .char-13 { animation-delay: 1.44s; }
+        .animated-logo.blink-all .char-14 { animation-delay: 1.56s; }
+
+        @keyframes letterBlink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 0px rgba(10, 107, 223, 0);
+            }
+            25% {
+                opacity: 0.3;
+                text-shadow: 0 0 5px rgba(10, 107, 223, 0.1);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(10, 107, 223, 0.5), 0 0 60px rgba(10, 107, 223, 0.15);
+                color: var(--primary);
+            }
+            75% {
+                opacity: 0.5;
+                text-shadow: 0 0 10px rgba(10, 107, 223, 0.2);
+            }
+        }
+
+        .animated-logo .space {
+            display: inline-block;
+            width: 5px;
+        }
+
+        .header .slogan {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--gray);
+            letter-spacing: 0.3px;
+            padding-left: 10px;
+            width: 100%;
+            margin-left: 52px;
+            margin-top: -4px;
+            border-left: 2px solid var(--primary);
+            padding-left: 10px;
+            text-shadow: 0 0 6px rgba(10, 107, 223, 0.15), 0 0 12px rgba(10, 107, 223, 0.05);
+            transition: text-shadow 0.3s ease;
+            min-height: 1.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .header .slogan:hover {
+            text-shadow: 0 0 10px rgba(10, 107, 223, 0.30), 0 0 20px rgba(10, 107, 223, 0.10);
+        }
+
+        @media (max-width: 768px) {
+            .header .slogan {
+                display: block;
+                margin-left: 50px;
+                font-size: 0.65rem;
+                border-left: 2px solid var(--primary);
+                padding-left: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header .slogan {
+                margin-left: 44px;
+                font-size: 0.6rem;
+            }
+            .animated-logo {
+                font-size: 1rem;
+            }
+            .animated-logo .space {
+                width: 3px;
+            }
         }
 
         .header .nav {
@@ -109,10 +251,12 @@
             gap: 4px;
             list-style: none;
         }
+
         .header .nav>li {
             list-style: none;
             position: relative;
         }
+
         .header .nav>li>a {
             display: inline-block;
             padding: 8px 14px;
@@ -124,6 +268,16 @@
             text-decoration: none;
             position: relative;
         }
+
+        .header .nav>li>a:focus-visible,
+        .header .nav .dropdown li a:focus-visible,
+        .btn-primary:focus-visible,
+        .btn-contact:focus-visible,
+        .btn-learn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         .header .nav>li>a::after {
             content: '';
             position: absolute;
@@ -136,27 +290,33 @@
             transform: translateX(-50%);
             border-radius: 4px;
         }
+
         .header .nav>li>a:hover::after,
         .header .nav>li>a.active::after {
             width: 60%;
         }
+
         .header .nav>li>a:hover {
             color: var(--primary);
             background: var(--primary-light);
         }
+
         .header .nav>li>a.active {
             color: var(--primary);
             background: var(--primary-light);
         }
+
         .header .nav>li>a .arrow {
             font-size: 0.6rem;
             margin-left: 4px;
             display: inline-block;
             transition: transform 0.3s ease;
         }
+
         .header .nav>li:hover>a .arrow {
             transform: rotate(180deg);
         }
+
         .header .nav .dropdown {
             position: absolute;
             top: calc(100% + 8px);
@@ -172,14 +332,17 @@
             transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
+
         .header .nav>li:hover .dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
+
         .header .nav .dropdown li {
             list-style: none;
         }
+
         .header .nav .dropdown li a {
             display: block;
             padding: 10px 20px;
@@ -189,11 +352,13 @@
             transition: var(--transition);
             border-left: 3px solid transparent;
         }
+
         .header .nav .dropdown li a:hover {
             color: var(--primary);
             background: var(--primary-light);
             border-left-color: var(--primary);
         }
+
         .header .nav .btn-schedule {
             background: var(--primary) !important;
             color: var(--white) !important;
@@ -202,10 +367,12 @@
             font-weight: 600 !important;
             box-shadow: 0 4px 14px rgba(10, 107, 223, 0.30);
         }
+
         .header .nav .btn-schedule:hover {
             background: var(--primary-dark) !important;
             transform: translateY(-2px);
         }
+
         .header .nav .btn-schedule::after {
             display: none !important;
         }
@@ -219,6 +386,7 @@
             padding: 6px;
             cursor: pointer;
         }
+
         .hamburger span {
             display: block;
             width: 26px;
@@ -227,6 +395,7 @@
             border-radius: 4px;
             transition: var(--transition);
         }
+
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 6px);
         }
@@ -237,303 +406,147 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ============================================================
-           PAGE CONTENT — Alternating Float Animations
-           ============================================================ */
-        .page-wrapper {
-            padding: 40px 0 60px;
+        /* ===== FINANCIAL PAGE SPECIFIC ===== */
+        .page-hero {
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, rgba(10, 30, 47, 0.90), rgba(10, 107, 223, 0.70)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
             text-align: center;
-        }
-
-        /* ===== BACK BUTTON WITH ARROW ===== */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--light-gray);
-            color: var(--dark);
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: var(--transition);
-            margin-bottom: 24px;
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .back-btn.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
             color: var(--white);
         }
 
-        .back-btn .arrow {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .back-btn:hover .arrow {
-            transform: translateX(-4px);
-        }
-
-        .page-title {
-            font-size: 2.4rem;
+        .page-hero h1 {
+            font-size: 3rem;
             font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 6px;
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 16px;
         }
 
-        .page-title.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .page-title .highlight {
+        .page-hero h1 .highlight {
             color: var(--primary);
         }
 
-        /* ===== BREATHING EFFECT ON "FINANCIAL INFO" ===== */
-        .breathing {
-            display: inline-block;
-            animation: breathe 3s ease-in-out infinite;
+        .page-hero p {
+            font-size: 1.2rem;
+            color: #c8d4e0;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        @keyframes breathe {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.04);
-                opacity: 0.85;
-            }
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 32px;
-            border-bottom: 3px solid var(--primary);
-            display: inline-block;
-            padding-bottom: 6px;
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .page-subtitle.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ===== FINANCIAL GRID ===== */
         .financial-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 20px;
-            text-align: left;
+            padding: 60px 0;
         }
 
-        /* ===== FINANCIAL CARDS ===== */
         .financial-card {
             background: var(--white);
-            padding: 30px;
             border-radius: var(--radius);
+            padding: 30px;
             box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: var(--transition);
+            text-align: center;
         }
 
-        .financial-card.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .financial-card:nth-child(1) {
-            transition-delay: 0.05s;
-        }
-        .financial-card:nth-child(2) {
-            transition-delay: 0.15s;
-        }
-        .financial-card:nth-child(3) {
-            transition-delay: 0.25s;
-        }
-        .financial-card:nth-child(4) {
-            transition-delay: 0.35s;
+        .financial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .financial-card .icon {
-            font-size: 2.8rem;
-            display: block;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 16px;
         }
 
         .financial-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 8px;
         }
 
         .financial-card p {
-            font-size: 0.95rem;
             color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .financial-card .badge {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 14px;
-            border-radius: 20px;
-            margin-top: 10px;
-        }
-
-        .financial-card .insurance-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .financial-card .insurance-logos span {
-            background: var(--light-gray);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
-            border: 1px solid #dce2ec;
-            transition: var(--transition);
-        }
-
-        .financial-card .insurance-logos span:hover {
-            border-color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .financial-card .btn-carecredit {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 10px 28px;
-            border-radius: 40px;
-            font-weight: 600;
             font-size: 0.95rem;
-            text-decoration: none;
-            transition: var(--transition);
-            margin-top: 12px;
-            position: relative;
+            line-height: 1.6;
         }
 
-        .financial-card .btn-carecredit::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 40px;
-            border: 3px solid var(--primary);
-            animation: pulseRing 2s ease-in-out infinite;
-            opacity: 0;
+        .financial-card .highlight-text {
+            color: var(--primary);
+            font-weight: 600;
         }
 
-        .financial-card .btn-carecredit:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .section {
+            padding: 60px 0;
         }
 
-        .financial-card .btn-carecredit:hover::before {
-            animation-duration: 1s;
+        .section:nth-child(even) {
+            background: var(--white);
         }
 
-        @keyframes pulseRing {
-            0% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scale(1.15);
-                opacity: 0;
-            }
-        }
-
-        /* ===== FINANCIAL CTA ===== */
-        .financial-cta {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 35px;
-            border-radius: var(--radius);
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
             text-align: center;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.45s;
-        }
-
-        .financial-cta.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .financial-cta h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
             margin-bottom: 8px;
         }
 
-        .financial-cta p {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 16px;
+        .section-title .highlight {
+            color: var(--primary);
         }
 
-        .financial-cta .btn-phone {
-            display: inline-block;
-            background: var(--white);
-            color: var(--primary);
-            padding: 12px 36px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            text-decoration: none;
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .payment-option {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
             transition: var(--transition);
         }
 
-        .financial-cta .btn-phone:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.20);
+        .payment-option:hover {
+            background: var(--primary-light);
         }
 
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        .payment-option h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .payment-option p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER (SAME AS INDEX) ===== */
         .footer {
             background: var(--dark);
             color: #c8d4e0;
             padding: 40px 0 24px;
-            margin-top: 40px;
             text-align: center;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
         }
 
         .footer.visible {
@@ -543,7 +556,7 @@
 
         .footer .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
             text-align: center;
             justify-items: center;
@@ -563,11 +576,23 @@
             margin: 6px 0;
             font-size: 0.92rem;
         }
+
         .footer .phone {
             font-size: 1.2rem;
             font-weight: 600;
             color: var(--white);
         }
+
+        .footer a {
+            color: #c8d4e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
         .footer .bottom {
             text-align: center;
             padding-top: 20px;
@@ -577,18 +602,47 @@
             color: #6a7a8e;
             grid-column: 1 / -1;
         }
-        .footer a {
-            color: #c8d4e0;
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
             text-decoration: none;
             transition: var(--transition);
-        }
-        .footer a:hover {
-            color: var(--primary);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            border: none;
+            cursor: pointer;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         @media (max-width: 900px) {
             .hamburger {
                 display: flex;
@@ -663,57 +717,35 @@
                 text-align: center !important;
             }
 
-            .financial-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .financial-cta {
-                grid-column: 1;
-            }
-
             .footer .grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
 
-            .page-title {
-                font-size: 1.8rem;
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .financial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
-        @media (max-width: 500px) {
-            body {
-                padding-top: 64px;
+        @media (max-width: 600px) {
+            .page-hero {
+                padding: 120px 0 40px;
             }
-            .header {
-                height: 64px;
-                padding: 0 16px;
+
+            .page-hero h1 {
+                font-size: 1.8rem;
             }
-            .header .logo {
-                font-size: 1rem;
-            }
-            .header .logo img {
-                height: 32px;
-            }
-            .page-title {
-                font-size: 1.6rem;
-            }
-            .financial-card {
-                padding: 20px 16px;
-            }
-            .financial-cta {
-                padding: 24px 18px;
-            }
-            .financial-cta h3 {
-                font-size: 1.2rem;
-            }
-            .financial-card .insurance-logos span {
-                font-size: 0.7rem;
-                padding: 4px 12px;
-            }
-            .back-btn {
-                font-size: 0.8rem;
-                padding: 8px 16px;
+
+            .payment-options {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -733,238 +765,362 @@
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-8px);
+            0% { opacity: 0; transform: translateY(-8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .animated-logo .char {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .animated-logo.blink-all .char {
+                animation: none !important;
+            }
+
+            .footer {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <a class="logo" href="index.html">
-            <img src="dental/logo.dental.jpg" alt="Flakes Dental Logo" />
-            <span>Flakes<span class="space"></span>Dental</span>
-        </a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-        <button class="hamburger" id="hamburger" aria-label="Menu">
+    <header class="header" role="banner">
+        <div class="logo-wrapper">
+            <a class="logo" href="index.html" aria-label="Bantu Dental Home">
+                <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
+                <span class="animated-logo blink-all" id="animatedLogo">
+                    <span class="char char-1 char-dark">B</span>
+                    <span class="char char-2 char-dark">a</span>
+                    <span class="char char-3 char-dark">n</span>
+                    <span class="char char-4 char-dark">t</span>
+                    <span class="char char-5 char-dark">u</span>
+                    <span class="space"></span>
+                    <span class="char char-6 char-blue">D</span>
+                    <span class="char char-7 char-blue">e</span>
+                    <span class="char char-8 char-blue">n</span>
+                    <span class="char char-9 char-blue">t</span>
+                    <span class="char char-10 char-blue">a</span>
+                    <span class="char char-11 char-blue">l</span>
+                    <span class="space"></span>
+                    <span class="char char-12 char-dark">H</span>
+                    <span class="char char-13 char-dark">u</span>
+                    <span class="char char-14 char-dark">b</span>
+                </span>
+            </a>
+            <span class="slogan" aria-hidden="true" id="sloganText">
+                <span id="sloganDisplay"></span>
+            </span>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
 
-        <ul class="nav" id="navMenu">
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="#">
-                    About Us <span class="arrow">▾</span>
+        <ul class="nav" id="navMenu" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    About Us <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="doctor.html">Meet the Doctor</a></li>
-                    <li><a href="team.html">Meet the Team</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="doctor.html" role="menuitem">Meet the Doctor</a></li>
+                    <li role="none"><a href="team.html" role="menuitem">Meet the Team</a></li>
+                    <li role="none"><a href="reviews.html" role="menuitem">Reviews</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    Services <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#services" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    Services <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="general.html">General Dentistry</a></li>
-                    <li><a href="cosmetic.html">Cosmetic Dentistry</a></li>
-                    <li><a href="restorative.html">Restoration</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="general.html" role="menuitem">General Dentistry</a></li>
+                    <li role="none"><a href="cosmetic.html" role="menuitem">Cosmetic Dentistry</a></li>
+                    <li role="none"><a href="restorative.html" role="menuitem">Restoration</a></li>
+                    <li role="none"><a href="emergency.html" role="menuitem">Emergency Dental Care</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    Resources <span class="arrow">▾</span>
+            <li role="none">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="arrow" aria-hidden="true">▾</span>
                 </a>
-                <ul class="dropdown">
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="financial.html" class="active">Financial Info</a></li>
+                <ul class="dropdown" role="menu">
+                    <li role="none"><a href="faqs.html" role="menuitem">FAQs</a></li>
+                    <li role="none"><a href="financial.html" role="menuitem" class="active">Financial Info</a></li>
                 </ul>
             </li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="schedule.html" class="btn-schedule">📅 Schedule</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">Contact Us</a></li>
+            <li role="none"><a href="schedule.html" class="btn-schedule" role="menuitem">📅 Schedule</a></li>
         </ul>
     </header>
 
-    <!-- ============================================================
-    PAGE CONTENT
-    ============================================================ -->
-    <div class="container page-wrapper">
+    <main id="main-content">
 
-        <!-- Back Button with Arrow -->
-        <a href="index.html" class="back-btn">
-            <span class="arrow">←</span> Back to Home
-        </a>
-
-        <!-- Page Title -->
-        <h2 class="page-title">💰 <span class="highlight breathing">Financial Info</span></h2>
-        <p class="page-subtitle">Affordable care, transparent pricing — we never want cost to prevent you from getting the care you need.</p>
-
-        <!-- ===== FINANCIAL GRID ===== -->
-        <div class="financial-grid">
-
-            <!-- Card 1: Insurance -->
-            <div class="financial-card">
-                <span class="icon">🏦</span>
-                <h3>Insurance Accepted</h3>
-                <p>We work with all major insurance providers. We'll verify your coverage and maximize your benefits.</p>
-                <div class="insurance-logos">
-                    <span>Delta Dental</span>
-                    <span>Cigna</span>
-                    <span>Aetna</span>
-                    <span>MetLife</span>
-                    <span>Premera</span>
-                    <span>Regence</span>
-                    <span>UnitedHealthcare</span>
-                </div>
-                <span class="badge">📞 We'll Verify for You</span>
-            </div>
-
-            <!-- Card 2: Payment Options -->
-            <div class="financial-card">
-                <span class="icon">💳</span>
-                <h3>Payment Options</h3>
-                <p>We accept multiple payment methods for your convenience:</p>
-                <p style="margin-top:8px;">• Cash • Credit Cards (Visa, MasterCard, Amex, Discover) • Debit Cards • HSA • FSA</p>
-                <span class="badge">💲 Flexible Payment</span>
-            </div>
-
-            <!-- Card 3: CareCredit -->
-            <div class="financial-card">
-                <span class="icon">📋</span>
-                <h3>CareCredit Financing</h3>
-                <p>Flexible payment plans with 0% interest options. Apply in-office or online — approved in minutes.</p>
-                <a href="#" class="btn-carecredit">💳 Apply In-Office</a>
-                <span class="badge">0% Interest Options</span>
-            </div>
-
-            <!-- Card 4: Cost Estimates -->
-            <div class="financial-card">
-                <span class="icon">🎯</span>
-                <h3>Cost Estimates</h3>
-                <p>We provide detailed treatment plans with cost breakdowns before any procedure. No surprise bills — transparent pricing.</p>
-                <p style="margin-top:8px;"><strong>📞 Call us:</strong> +256 8000 5820 for a free estimate.</p>
-                <span class="badge">🧾 Written Estimates</span>
-            </div>
-
-            <!-- CTA Section -->
-            <div class="financial-cta">
-                <h3>💙 We Never Want Cost to Prevent You from Getting the Care You Need</h3>
-                <p>Call us to discuss payment plans, insurance coverage, and affordable options. We're here to help!</p>
-                <a href="tel:+25680005820" class="btn-phone">📞 Call +256 8000 5820</a>
-            </div>
-
-        </div>
-
-        <!-- ============================================================
-        FOOTER
-        ============================================================ -->
-        <footer class="footer" id="footer">
+        <!-- ===== FINANCIAL HERO ===== -->
+        <section class="page-hero">
             <div class="container">
-                <div class="grid">
-                    <div>
-                        <h4>🦷 Flakes Dental</h4>
-                        <p>Personalized, gentle care for your whole family.</p>
-                        <p style="margin-top:8px; font-size:0.82rem; color:#6a7a8e;">© 2026 Flakes Dental Clinic.<br />All Rights Reserved.</p>
+                <h1>Financial <span class="highlight">Information</span></h1>
+                <p>Quality dental care should be accessible and affordable for everyone.</p>
+            </div>
+        </section>
+
+        <!-- ===== FINANCIAL OPTIONS ===== -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Payment <span class="highlight">Options</span></h2>
+                <p class="section-subtitle">We offer flexible payment solutions to fit your budget.</p>
+
+                <div class="financial-grid">
+                    <div class="financial-card">
+                        <div class="icon">🏦</div>
+                        <h3>Insurance Accepted</h3>
+                        <p>We work with most major dental insurance providers. Our team will help you maximize your benefits.</p>
+                        <p style="margin-top:8px;"><span class="highlight-text">✓</span> Delta Dental</p>
+                        <p><span class="highlight-text">✓</span> Cigna</p>
+                        <p><span class="highlight-text">✓</span> Aetna</p>
+                        <p><span class="highlight-text">✓</span> UnitedHealthcare</p>
                     </div>
-                    <div>
-                        <h4>📞 Contact</h4>
-                        <p class="phone">+256 8000 5820</p>
-                        <p>Kiwatule Banda</p>
-                        <p>✉️ info@flakesdental.com</p>
+
+                    <div class="financial-card">
+                        <div class="icon">💳</div>
+                        <h3>Payment Plans</h3>
+                        <p>We offer flexible payment plans through trusted financing partners to make your treatment affordable.</p>
+                        <p style="margin-top:8px;"><span class="highlight-text">✓</span> CareCredit</p>
+                        <p><span class="highlight-text">✓</span> LendingClub</p>
+                        <p><span class="highlight-text">✓</span> In-house financing</p>
                     </div>
-                    <div>
-                        <h4>🕒 Hours</h4>
-                        <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00 – 5:00</p>
-                        <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00 – 5:00</p>
-                        <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00 – 5:00</p>
-                        <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00 – 4:00</p>
-                        <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
-                    </div>
-                    <div>
-                        <h4>📍 Location</h4>
-                        <p>Kiwatule Banda</p>
-                        <p style="margin-top:4px;">🚗 Free parking available</p>
-                    </div>
-                    <div class="bottom">
-                        &copy; 2026 Flakes Dental Clinic. All Rights Reserved. &bull; Designed with &hearts;
+
+                    <div class="financial-card">
+                        <div class="icon">💵</div>
+                        <h3>Accepted Payments</h3>
+                        <p>We accept all major forms of payment for your convenience.</p>
+                        <p style="margin-top:8px;"><span class="highlight-text">✓</span> Cash</p>
+                        <p><span class="highlight-text">✓</span> Credit Cards (Visa, MC, Amex, Discover)</p>
+                        <p><span class="highlight-text">✓</span> Debit Cards</p>
+                        <p><span class="highlight-text">✓</span> Health Savings Accounts (HSA)</p>
                     </div>
                 </div>
             </div>
-        </footer>
+        </section>
 
-    </div>
+        <!-- ===== PAYMENT METHODS ===== -->
+        <section class="section" style="background:var(--white);">
+            <div class="container">
+                <h2 class="section-title">Accepted <span class="highlight">Payment Methods</span></h2>
+                <p class="section-subtitle">Choose the payment option that works best for you.</p>
+
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <h4>💳 Credit Cards</h4>
+                        <p>Visa, MasterCard, American Express, Discover</p>
+                    </div>
+                    <div class="payment-option">
+                        <h4>🏦 Insurance</h4>
+                        <p>We submit claims on your behalf</p>
+                    </div>
+                    <div class="payment-option">
+                        <h4>💰 Financing</h4>
+                        <p>CareCredit &amp; LendingClub available</p>
+                    </div>
+                    <div class="payment-option">
+                        <h4>💵 Cash</h4>
+                        <p>Discounted rates for cash payments</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ SECTION ===== -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+                <p class="section-subtitle">Common questions about payment and insurance.</p>
+
+                <div style="max-width:800px; margin:0 auto;">
+                    <div style="background:var(--white); border-radius:var(--radius); padding:24px; margin-bottom:16px; box-shadow:var(--shadow);">
+                        <h4 style="color:var(--dark); margin-bottom:8px;">Do you accept my insurance?</h4>
+                        <p style="color:var(--gray);">We accept most major insurance plans. Contact us with your insurance details and we'll verify your coverage.</p>
+                    </div>
+
+                    <div style="background:var(--white); border-radius:var(--radius); padding:24px; margin-bottom:16px; box-shadow:var(--shadow);">
+                        <h4 style="color:var(--dark); margin-bottom:8px;">What if I don't have insurance?</h4>
+                        <p style="color:var(--gray);">We offer flexible payment plans and financing options to make care affordable for everyone.</p>
+                    </div>
+
+                    <div style="background:var(--white); border-radius:var(--radius); padding:24px; margin-bottom:16px; box-shadow:var(--shadow);">
+                        <h4 style="color:var(--dark); margin-bottom:8px;">Do you offer discounts for cash payments?</h4>
+                        <p style="color:var(--gray);">Yes, we offer discounted rates for patients who pay with cash or debit card at the time of service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h4>📞 Contact</h4>
+                    <p class="phone"><a href="tel:+256758985317" aria-label="Call us at +256 758 985317">+256 758 985317</a></p>
+                    <p><a href="mailto:info@bantudentalhub.com">✉️ info@bantudentalhub.com</a></p>
+                </div>
+
+                <div>
+                    <h4>🕒 Hours</h4>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Monday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Tuesday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Wednesday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Thursday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Friday</span> 8:00am – 6:00pm</p>
+                    <p><span style="display:inline-block; min-width:80px; font-weight:500; color:white;">Saturday</span> 8:00am – 6:00pm</p>
+                    <p style="color:var(--primary); font-weight:500; margin-top:4px;">Lunch 12:00 – 1:00</p>
+                </div>
+
+                <div>
+                    <h4>📍 Location</h4>
+                    <p>Kasenyi</p>
+                    <p>Entebbe, Uganda</p>
+                    <p style="margin-top:4px;">🚗 Free parking available</p>
+                </div>
+
+                <div class="bottom">
+                    &copy; 2026 Bantu Dental Hub. All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
 
     <script>
-        // ============================================================
-        // PAGE TRANSITIONS & ENTRANCE ANIMATION
-        // ============================================================
+        // ===== SLOGAN TYPING =====
+        (function() {
+            const sloganDisplay = document.getElementById('sloganDisplay');
+            const sloganText = "it all begins with a smile";
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 80;
+            let pauseTime = 2000;
+
+            function typeSlogan() {
+                if (!isDeleting) {
+                    if (charIndex < sloganText.length) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typeSlogan, typingSpeed);
+                    } else {
+                        isDeleting = true;
+                        setTimeout(typeSlogan, pauseTime);
+                    }
+                } else {
+                    if (charIndex > 0) {
+                        sloganDisplay.textContent = sloganText.substring(0, charIndex - 1);
+                        charIndex--;
+                        setTimeout(typeSlogan, typingSpeed / 2);
+                    } else {
+                        isDeleting = false;
+                        setTimeout(typeSlogan, 500);
+                    }
+                }
+            }
+
+            setTimeout(typeSlogan, 500);
+        })();
+
+        // ===== PAGE TRANSITIONS =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
-            document.querySelectorAll('a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], a[href^="restorative.html"], a[href^="faqs.html"], a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]').forEach(link => {
+            const internalLinks = document.querySelectorAll(
+                'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
+                'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
+                'a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], ' +
+                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"], ' +
+                'a[href^="schedule"]'
+            );
+
+            internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     if (this.getAttribute('href').startsWith('#')) return;
+                    if (this.getAttribute('href').startsWith('http')) return;
+                    if (this.getAttribute('target') === '_blank') return;
+                    
                     e.preventDefault();
                     const href = this.getAttribute('href');
                     document.body.classList.add('page-exit');
                     setTimeout(() => {
                         window.location.href = href;
-                    }, 400);
+                    }, 300);
                 });
             });
         });
 
-        // ============================================================
-        // HAMBURGER
-        // ============================================================
-        document.getElementById('hamburger').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('navMenu').classList.toggle('open');
+        // ===== HAMBURGER =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', function() {
+            const isOpen = this.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
         });
 
-        // ============================================================
-        // DROPDOWN TOGGLE (mobile)
-        // ============================================================
-        document.querySelectorAll('.nav > li > a').forEach(link => {
+        // ===== DROPDOWN TOGGLE =====
+        document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
                 if (!nav.classList.contains('open')) return;
+
                 const parentLi = this.closest('li');
                 const dropdown = parentLi.querySelector('.dropdown');
                 if (!dropdown) return;
+
                 e.preventDefault();
                 const wasOpen = dropdown.classList.contains('open');
+
                 document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-                if (!wasOpen) dropdown.classList.add('open');
+
+                if (!wasOpen) {
+                    dropdown.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                } else {
+                    this.setAttribute('aria-expanded', 'false');
+                }
             });
         });
 
-        // ============================================================
-        // CLOSE MENU ON OUTSIDE CLICK
-        // ============================================================
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
-                document.getElementById('navMenu').classList.remove('open');
-                document.getElementById('hamburger').classList.remove('active');
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         });
 
-        // ============================================================
-        // SCROLL ANIMATIONS (Works Both Directions)
-        // ============================================================
+        // ===== SCROLL ANIMATIONS =====
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll(
-                '.back-btn, .page-title, .page-subtitle, .financial-card, .financial-cta, .footer'
-            );
+            const elements = document.querySelectorAll('.footer');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -972,10 +1128,6 @@
                         entry.target.classList.add('visible');
                     } else {
                         entry.target.classList.remove('visible');
-                        setTimeout(() => {
-                            if (!entry.isIntersecting) return;
-                            entry.target.classList.add('visible');
-                        }, 50);
                     }
                 });
             }, {
@@ -986,12 +1138,29 @@
             elements.forEach(el => observer.observe(el));
         };
 
-        document.addEventListener('DOMContentLoaded', animateOnScroll);
-        window.addEventListener('load', function() {
-            setTimeout(animateOnScroll, 100);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateOnScroll);
+        } else {
+            animateOnScroll();
+        }
+
+        // ===== BACK TO TOP =====
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
         });
 
-        console.log('💰 financial.html — Alternating float animations active!');
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        console.log('🦷 Bantu Dental hub — Financial Information page!');
     </script>
 
 </body>
