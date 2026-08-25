@@ -6,6 +6,7 @@
     <title>Bantu Dental Hub | Contact Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        /* ===== SAME STYLES AS PREVIOUS PAGES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -26,9 +27,7 @@
             --transition: 0.3s ease;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -50,14 +49,8 @@
         }
 
         @keyframes pageEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .container {
@@ -68,7 +61,6 @@
             overflow: hidden;
         }
 
-        /* ===== SKIP LINK ===== */
         .skip-link {
             position: absolute;
             top: -100%;
@@ -84,9 +76,7 @@
             text-decoration: none;
         }
 
-        .skip-link:focus {
-            top: 0;
-        }
+        .skip-link:focus { top: 0; }
 
         /* ===== HEADER ===== */
         .header {
@@ -128,14 +118,87 @@
             object-fit: contain;
         }
 
-        .header .logo .brand {
-            letter-spacing: 2px;
+        .animated-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: normal;
         }
-        .header .logo .brand .bantu {
-            margin-right: 6px;
+
+        .animated-logo .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: letterSlide 0.5s ease forwards;
         }
-        .header .logo .brand .dental {
-            color: var(--primary);
+
+        .char-1 { animation-delay: 0.00s; }
+        .char-2 { animation-delay: 0.05s; }
+        .char-3 { animation-delay: 0.10s; }
+        .char-4 { animation-delay: 0.15s; }
+        .char-5 { animation-delay: 0.20s; }
+        .char-6 { animation-delay: 0.25s; }
+        .char-7 { animation-delay: 0.30s; }
+        .char-8 { animation-delay: 0.35s; }
+        .char-9 { animation-delay: 0.40s; }
+        .char-10 { animation-delay: 0.45s; }
+        .char-11 { animation-delay: 0.50s; }
+        .char-12 { animation-delay: 0.55s; }
+        .char-13 { animation-delay: 0.60s; }
+        .char-14 { animation-delay: 0.65s; }
+
+        .char-dark { color: var(--dark); }
+        .char-blue { color: var(--primary); }
+
+        @keyframes letterSlide {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-logo.blink-all .char {
+            animation: letterBlink 1.8s ease-in-out infinite;
+        }
+
+        .animated-logo.blink-all .char-1 { animation-delay: 0.00s; }
+        .animated-logo.blink-all .char-2 { animation-delay: 0.12s; }
+        .animated-logo.blink-all .char-3 { animation-delay: 0.24s; }
+        .animated-logo.blink-all .char-4 { animation-delay: 0.36s; }
+        .animated-logo.blink-all .char-5 { animation-delay: 0.48s; }
+        .animated-logo.blink-all .char-6 { animation-delay: 0.60s; }
+        .animated-logo.blink-all .char-7 { animation-delay: 0.72s; }
+        .animated-logo.blink-all .char-8 { animation-delay: 0.84s; }
+        .animated-logo.blink-all .char-9 { animation-delay: 0.96s; }
+        .animated-logo.blink-all .char-10 { animation-delay: 1.08s; }
+        .animated-logo.blink-all .char-11 { animation-delay: 1.20s; }
+        .animated-logo.blink-all .char-12 { animation-delay: 1.32s; }
+        .animated-logo.blink-all .char-13 { animation-delay: 1.44s; }
+        .animated-logo.blink-all .char-14 { animation-delay: 1.56s; }
+
+        @keyframes letterBlink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 0px rgba(10, 107, 223, 0);
+            }
+            25% {
+                opacity: 0.3;
+                text-shadow: 0 0 5px rgba(10, 107, 223, 0.1);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(10, 107, 223, 0.5), 0 0 60px rgba(10, 107, 223, 0.15);
+                color: var(--primary);
+            }
+            75% {
+                opacity: 0.5;
+                text-shadow: 0 0 10px rgba(10, 107, 223, 0.2);
+            }
+        }
+
+        .animated-logo .space {
+            display: inline-block;
+            width: 5px;
         }
 
         .header .slogan {
@@ -173,6 +236,12 @@
             .header .slogan {
                 margin-left: 44px;
                 font-size: 0.6rem;
+            }
+            .animated-logo {
+                font-size: 1rem;
+            }
+            .animated-logo .space {
+                width: 3px;
             }
         }
 
@@ -337,153 +406,256 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ============================================================
-           PAGE HERO
-           ============================================================ */
+        /* ===== CONTACT PAGE SPECIFIC ===== */
         .page-hero {
-            padding: 120px 0 60px;
-            background: linear-gradient(135deg, rgba(10, 30, 47, 0.85), rgba(10, 107, 223, 0.70)), 
-                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=600&fit=crop');
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, rgba(10, 30, 47, 0.90), rgba(10, 107, 223, 0.70)), 
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=400&fit=crop');
             background-size: cover;
             background-position: center;
             text-align: center;
             color: var(--white);
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .page-hero .typewriter-heading {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+        .page-hero h1 {
+            font-size: 3rem;
             font-weight: 800;
-            overflow: hidden;
-            white-space: nowrap;
-            display: inline-block;
-            width: 0;
-            animation: typewriter 3s steps(40) 0.5s forwards;
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .page-hero .subtitle {
-            font-size: 1.2rem;
-            color: #c8d4e0;
-            margin-top: 16px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 3.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============================================================
-           CONTACT CONTENT SECTION
-           ============================================================ */
-        .content-section {
-            padding: 60px 0;
-            background: var(--white);
-        }
-
-        .content-section:nth-child(even) {
-            background: var(--light-gray);
-        }
-
-        .slide-paragraph {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0;
-            transform: translateX(0);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .slide-paragraph.slide-right {
-            transform: translateX(80px);
-        }
-
-        .slide-paragraph.slide-left {
-            transform: translateX(-80px);
-        }
-
-        .slide-paragraph.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-paragraph p {
-            font-size: 1.05rem;
-            color: var(--gray);
-            line-height: 1.8;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .slide-paragraph.visible p {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-paragraph.visible p:nth-child(1) { transition-delay: 0.2s; }
-        .slide-paragraph.visible p:nth-child(2) { transition-delay: 0.4s; }
-        .slide-paragraph.visible p:nth-child(3) { transition-delay: 0.6s; }
-
-        .slide-paragraph h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 12px;
-        }
-
-        .slide-paragraph .icon {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .slide-paragraph a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .slide-paragraph a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        /* ============================================================
-           MAP SECTION
-           ============================================================ */
-        .map-section {
-            padding: 60px 0 80px;
-            background: var(--light-gray);
-        }
-
-        .map-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark);
-            text-align: center;
             margin-bottom: 16px;
         }
 
-        .map-title .highlight {
+        .page-hero h1 .highlight {
             color: var(--primary);
         }
 
+        .page-hero p {
+            font-size: 1.2rem;
+            color: #c8d4e0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px 0;
+        }
+
+        .contact-info {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .contact-info h2 .highlight {
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .contact-info .detail {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .contact-info .detail:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info .detail .icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-info .detail .text {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .contact-info .detail .text a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info .detail .text a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info .detail .sub {
+            color: var(--gray);
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .contact-form h2 .highlight {
+            color: var(--primary);
+        }
+
+        .contact-form p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--dark);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 107, 223, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn-submit {
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 40px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .contact-form .btn-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .section-title .highlight {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        .team-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .team-card .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 4px 0 8px;
+        }
+
+        .team-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== MAP SECTION ===== */
         .map-container {
             max-width: 800px;
             margin: 0 auto;
@@ -525,75 +697,21 @@
             transform: translateY(-2px);
         }
 
-        @media (max-width: 500px) {
-            .map-container iframe {
-                height: 300px;
-            }
-            .map-container .map-overlay {
-                bottom: 12px;
-                right: 12px;
-            }
-            .map-container .map-overlay a {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            .map-title {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* ============================================================
-           BACK TO TOP
-           ============================================================ */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            color: var(--white);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
-            text-decoration: none;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            z-index: 999;
-            border: none;
-            cursor: pointer;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .back-to-top:focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* ===== FOOTER ===== */
         .footer {
             background: var(--dark);
             color: #c8d4e0;
             padding: 40px 0 24px;
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             width: 100%;
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .footer .grid {
@@ -645,9 +763,46 @@
             grid-column: 1 / -1;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         @media (max-width: 900px) {
             .hamburger {
                 display: flex;
@@ -726,6 +881,54 @@
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+            .map-container .map-overlay {
+                bottom: 12px;
+                right: 12px;
+            }
+            .map-container .map-overlay a {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero {
+                padding: 120px 0 40px;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 24px;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
         }
 
         @media (min-width: 901px) {
@@ -744,36 +947,66 @@
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(-8px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .page-hero .typewriter-heading {
-                white-space: normal;
-                width: 100% !important;
-                animation: none;
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .animated-logo .char {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .animated-logo.blink-all .char {
+                animation: none !important;
+            }
+
+            .footer {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== SKIP LINK ===== -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- ===== HEADER ===== -->
     <header class="header" role="banner">
         <div class="logo-wrapper">
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
-                <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental hub</span></span>
+                <span class="animated-logo blink-all" id="animatedLogo">
+                    <span class="char char-1 char-dark">B</span>
+                    <span class="char char-2 char-dark">a</span>
+                    <span class="char char-3 char-dark">n</span>
+                    <span class="char char-4 char-dark">t</span>
+                    <span class="char char-5 char-dark">u</span>
+                    <span class="space"></span>
+                    <span class="char char-6 char-blue">D</span>
+                    <span class="char char-7 char-blue">e</span>
+                    <span class="char char-8 char-blue">n</span>
+                    <span class="char char-9 char-blue">t</span>
+                    <span class="char char-10 char-blue">a</span>
+                    <span class="char char-11 char-blue">l</span>
+                    <span class="space"></span>
+                    <span class="char char-12 char-dark">H</span>
+                    <span class="char char-13 char-dark">u</span>
+                    <span class="char char-14 char-dark">b</span>
+                </span>
             </a>
             <span class="slogan" aria-hidden="true" id="sloganText">
                 <span id="sloganDisplay"></span>
@@ -797,7 +1030,7 @@
                 </ul>
             </li>
             <li role="none">
-                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                <a href="#services" role="menuitem" aria-haspopup="true" aria-expanded="false">
                     Services <span class="arrow" aria-hidden="true">▾</span>
                 </a>
                 <ul class="dropdown" role="menu">
@@ -816,73 +1049,152 @@
                     <li role="none"><a href="financial.html" role="menuitem">Financial Info</a></li>
                 </ul>
             </li>
-            <li role="none"><a href="contact.html" class="active" role="menuitem">Contact Us</a></li>
+            <li role="none"><a href="contact.html" role="menuitem" class="active">Contact Us</a></li>
             <li role="none"><a href="schedule.html" class="btn-schedule" role="menuitem">📅 Schedule</a></li>
         </ul>
     </header>
 
-    <!-- ============================================================
-    MAIN CONTENT
-    ============================================================ -->
     <main id="main-content">
 
-        <!-- ===== HERO ===== -->
+        <!-- ===== CONTACT HERO ===== -->
         <section class="page-hero">
             <div class="container">
-                <h1 class="typewriter-heading">Contact Us</h1>
-                <p class="subtitle">We'd Love to Hear From You</p>
+                <h1>Contact <span class="highlight">Us</span></h1>
+                <p>We're here to help! Reach out to us with any questions or to schedule an appointment.</p>
             </div>
         </section>
 
-        <!-- ===== CONTACT INFO ===== -->
-        <section class="content-section" id="contact-content">
+        <!-- ===== CONTACT GRID ===== -->
+        <section class="section">
             <div class="container">
+                <div class="contact-grid">
 
-                <div class="slide-paragraph slide-right">
-                    <span class="icon">📞</span>
-                    <h3>Call Us</h3>
-                    <p>Our friendly team is ready to answer your questions and help you schedule an appointment.</p>
-                    <p><strong><a href="tel:+256758985317">📱 +256 758 985317</a></strong></p>
-                    <p>We're available during business hours to assist you with any dental concerns or inquiries.</p>
+                    <!-- ===== CONTACT INFO ===== -->
+                    <div class="contact-info">
+                        <h2>Get In <span class="highlight">Touch</span></h2>
+                        <p>We'd love to hear from you! Whether you have questions about our services, want to schedule an appointment, or just need some dental advice, our friendly team is here to help.</p>
+
+                        <div class="detail">
+                            <span class="icon">📞</span>
+                            <div>
+                                <div class="text"><a href="tel:+256758985317">+256 758 985317</a></div>
+                                <div class="sub">Call us anytime</div>
+                            </div>
+                        </div>
+
+                        <div class="detail">
+                            <span class="icon">✉️</span>
+                            <div>
+                                <div class="text"><a href="mailto:info@bantudentalhub.com">info@bantudentalhub.com</a></div>
+                                <div class="sub">Email us</div>
+                            </div>
+                        </div>
+
+                        <div class="detail">
+                            <span class="icon">📍</span>
+                            <div>
+                                <div class="text">Kasenyi, Entebbe, Uganda</div>
+                                <div class="sub">Visit our clinic</div>
+                            </div>
+                        </div>
+
+                        <div class="detail">
+                            <span class="icon">🕒</span>
+                            <div>
+                                <div class="text">Mon - Sat: 8:00am – 6:00pm</div>
+                                <div class="sub">Lunch: 12:00 – 1:00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== CONTACT FORM ===== -->
+                    <div class="contact-form">
+                        <h2>Send Us a <span class="highlight">Message</span></h2>
+                        <p>We'll get back to you within 24 hours.</p>
+
+                        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you for your message! We\'ll get back to you soon.');">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" placeholder="Enter your full name" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="Enter your email address" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="Enter your phone number" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Service Interested In</label>
+                                <select id="service">
+                                    <option value="">Select a service...</option>
+                                    <option value="general">General Dentistry</option>
+                                    <option value="cosmetic">Cosmetic Dentistry</option>
+                                    <option value="restorative">Restorative Dentistry</option>
+                                    <option value="emergency">Emergency Care</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" placeholder="Tell us how we can help you..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">📨 Send Message</button>
+                        </form>
+                    </div>
+
                 </div>
+            </div>
+        </section>
 
-                <div class="slide-paragraph slide-left">
-                    <span class="icon">✉️</span>
-                    <h3>Email Us</h3>
-                    <p>Prefer to send a message? Reach out to us via email and we'll respond within 24 hours.</p>
-                    <p><strong><a href="mailto:info@bantudentalhub.com">📧 info@bantudentalhub.com</a></strong></p>
-                    <p>Whether you have questions about treatments, insurance, or want to schedule a consultation, we're here to help.</p>
+        <!-- ===== MEET OUR TEAM (3 PEOPLE) ===== -->
+        <section class="section" style="background:var(--white);">
+            <div class="container">
+                <h2 class="section-title">Meet Our <span class="highlight">Team</span></h2>
+                <p class="section-subtitle">Dedicated professionals committed to your smile and well-being.</p>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Dr. Sarah Johnson" loading="lazy" />
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p class="role">Lead Dentist &amp; Implant Specialist</p>
+                        <p>Specializes in dental implants and full mouth rehabilitation with over 15 years of experience.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" alt="Dr. Michael Chen" loading="lazy" />
+                        <h3>Dr. Michael Chen</h3>
+                        <p class="role">Cosmetic Dentist &amp; Smile Designer</p>
+                        <p>Passionate about creating beautiful smiles through cosmetic dentistry and Invisalign treatments.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Emily Rodriguez" loading="lazy" />
+                        <h3>Dr. Emily Rodriguez</h3>
+                        <p class="role">Pediatric Dentist</p>
+                        <p>Provides gentle and compassionate care for children, making dental visits fun and stress-free.</p>
+                    </div>
                 </div>
-
-                <div class="slide-paragraph slide-right">
-                    <span class="icon">🕒</span>
-                    <h3>Office Hours</h3>
-                    <p><strong>Monday – Friday:</strong> 8:00am – 6:00pm</p>
-                    <p><strong>Saturday:</strong> 8:00am – 6:00pm</p>
-                    <p><strong>Sunday:</strong> Closed</p>
-                    <p style="margin-top:8px; color:var(--primary); font-weight:500;">🕛 Lunch Break: 12:00pm – 1:00pm</p>
-                </div>
-
-                <div class="slide-paragraph slide-left">
-                    <span class="icon">📍</span>
-                    <h3>Visit Us</h3>
-                    <p>We're conveniently located in Kasenyi, Entebbe, Uganda. Free parking is available for all patients.</p>
-                    <p><strong>Address:</strong> Kasenyi, Entebbe, Uganda</p>
-                    <p>Come see us for exceptional dental care in a warm, welcoming environment.</p>
-                </div>
-
             </div>
         </section>
 
         <!-- ===== MAP SECTION ===== -->
-        <section class="map-section" id="map-section">
+        <section class="section">
             <div class="container">
-                <h3 class="map-title">📍 <span class="highlight">Come to Us</span></h3>
+                <h2 class="section-title">📍 Find <span class="highlight">Us</span></h2>
+                <p class="section-subtitle">We're located in Kasenyi, Entebbe — easy to find with free parking available.</p>
+
                 <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000" 
-                        allowfullscreen="" 
-                        loading="lazy" 
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7789341773827!2d32.468924!3d0.046351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dabb795ea14e5%3A0x9efd9b4028b2b36b!2sKasenyi%2C%20Entebbe%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000"
+                        allowfullscreen=""
+                        loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
                         title="Bantu Dental Hub Location"
                     ></iframe>
@@ -897,7 +1209,6 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
@@ -932,13 +1243,10 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
 
     <script>
-        // ============================================================
-        // SLOGAN TYPING EFFECT
-        // ============================================================
+        // ===== SLOGAN TYPING =====
         (function() {
             const sloganDisplay = document.getElementById('sloganDisplay');
             const sloganText = "it all begins with a smile";
@@ -972,9 +1280,7 @@
             setTimeout(typeSlogan, 500);
         })();
 
-        // ============================================================
-        // PAGE TRANSITIONS
-        // ============================================================
+        // ===== PAGE TRANSITIONS =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
@@ -982,25 +1288,27 @@
                 'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
                 'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
                 'a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], ' +
-                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]'
+                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"], ' +
+                'a[href^="schedule"]'
             );
 
             internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     if (this.getAttribute('href').startsWith('#')) return;
+                    if (this.getAttribute('href').startsWith('http')) return;
+                    if (this.getAttribute('target') === '_blank') return;
+                    
                     e.preventDefault();
                     const href = this.getAttribute('href');
                     document.body.classList.add('page-exit');
                     setTimeout(() => {
                         window.location.href = href;
-                    }, 400);
+                    }, 300);
                 });
             });
         });
 
-        // ============================================================
-        // HAMBURGER
-        // ============================================================
+        // ===== HAMBURGER =====
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
@@ -1010,9 +1318,7 @@
             this.setAttribute('aria-expanded', isOpen);
         });
 
-        // ============================================================
-        // DROPDOWN TOGGLE (mobile)
-        // ============================================================
+        // ===== DROPDOWN TOGGLE =====
         document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
@@ -1036,9 +1342,7 @@
             });
         });
 
-        // ============================================================
-        // CLOSE MENU ON OUTSIDE CLICK
-        // ============================================================
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
@@ -1048,11 +1352,9 @@
             }
         });
 
-        // ============================================================
-        // SCROLL ANIMATIONS - WORKS BOTH WAYS
-        // ============================================================
+        // ===== SCROLL ANIMATIONS =====
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.slide-paragraph');
+            const elements = document.querySelectorAll('.footer');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1076,9 +1378,7 @@
             animateOnScroll();
         }
 
-        // ============================================================
-        // BACK TO TOP
-        // ============================================================
+        // ===== BACK TO TOP =====
         const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', function() {
@@ -1094,7 +1394,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Contact page ready!');
+        console.log('🦷 Bantu Dental hub — Contact page with 3 team members!');
     </script>
 
 </body>
