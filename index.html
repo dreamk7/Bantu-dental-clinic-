@@ -6,6 +6,9 @@
     <title>Bantu Dental Hub | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        /* ===== ALL YOUR EXISTING CSS STAYS THE SAME ===== */
+        /* (I've kept all the CSS from your previous version) */
+        
         * {
             margin: 0;
             padding: 0;
@@ -533,7 +536,7 @@
             font-size: 0.9rem;
         }
 
-        /* ===== TWO-COLUMN SCROLLING IMAGES ===== */
+        /* ===== TWO-COLUMN SCROLLING IMAGES - INCREASED HEIGHT ===== */
         .homepage-images {
             opacity: 0;
             transform: translateY(30px);
@@ -555,7 +558,7 @@
         .scroll-column {
             flex: 1;
             max-width: 320px;
-            height: 650px;
+            height: 900px;
             overflow: hidden;
             border-radius: var(--radius);
             position: relative;
@@ -575,7 +578,7 @@
 
         .scroll-column img {
             width: 100%;
-            height: 240px;
+            height: 340px;
             object-fit: cover;
             border-radius: 12px;
             flex-shrink: 0;
@@ -684,7 +687,7 @@
             display: none;
         }
 
-        /* ===== VIDEO SECTION - WIDTH FIT (OPTION 1) ===== */
+        /* ===== VIDEO SECTION - WIDTH FIT ===== */
         .video-section {
             background: var(--dark);
             padding: 0;
@@ -1566,11 +1569,11 @@
 
             .scroll-column {
                 max-width: 280px;
-                height: 550px;
+                height: 700px;
             }
 
             .scroll-column img {
-                height: 210px;
+                height: 260px;
             }
         }
 
@@ -1686,11 +1689,11 @@
 
             .scroll-column {
                 max-width: 220px;
-                height: 380px;
+                height: 500px;
             }
 
             .scroll-column img {
-                height: 155px;
+                height: 200px;
             }
 
             .scroll-column::before,
@@ -1894,11 +1897,11 @@
 
             .scroll-column {
                 max-width: 170px;
-                height: 300px;
+                height: 400px;
             }
 
             .scroll-column img {
-                height: 120px;
+                height: 160px;
             }
 
             .testimonial-rotator {
@@ -1937,12 +1940,11 @@
 
             .scroll-column {
                 max-width: 140px;
-                height: 240px;
+                height: 320px;
             }
 
             .scroll-column img {
-                height: 95px;
-                border-radius: 8px;
+                height: 130px;
             }
 
             .scroll-column-inner {
@@ -2068,14 +2070,12 @@
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
                 <span class="animated-logo blink-all" id="animatedLogo">
-                    <!-- Bantu - dark letters -->
                     <span class="char char-1 char-dark">B</span>
                     <span class="char char-2 char-dark">a</span>
                     <span class="char char-3 char-dark">n</span>
                     <span class="char char-4 char-dark">t</span>
                     <span class="char char-5 char-dark">u</span>
                     <span class="space"></span>
-                    <!-- Dental - blue letters -->
                     <span class="char char-6 char-blue">D</span>
                     <span class="char char-7 char-blue">e</span>
                     <span class="char char-8 char-blue">n</span>
@@ -2083,7 +2083,6 @@
                     <span class="char char-10 char-blue">a</span>
                     <span class="char char-11 char-blue">l</span>
                     <span class="space"></span>
-                    <!-- Hub - dark letters -->
                     <span class="char char-12 char-dark">H</span>
                     <span class="char char-13 char-dark">u</span>
                     <span class="char char-14 char-dark">b</span>
@@ -2162,7 +2161,6 @@
                     <!-- ===== TWO-COLUMN SCROLLING IMAGES ===== -->
                     <div class="homepage-images">
                         <div class="scroll-container">
-                            <!-- Column 1 - Scrolls UP -->
                             <div class="scroll-column">
                                 <div class="scroll-column-inner">
                                     <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Dental care" loading="lazy" />
@@ -2176,7 +2174,6 @@
                                 </div>
                             </div>
 
-                            <!-- Column 2 - Scrolls DOWN -->
                             <div class="scroll-column">
                                 <div class="scroll-column-inner">
                                     <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=300&fit=crop" alt="Smile" loading="lazy" />
@@ -2203,7 +2200,7 @@
             </div>
         </section>
 
-        <!-- ===== VIDEO SECTION - WIDTH FIT (OPTION 1) ===== -->
+        <!-- ===== VIDEO SECTION ===== -->
         <section class="video-section" id="video-section" aria-label="Dental care video">
             <div class="video-wrapper">
                 <video autoplay muted loop playsinline>
@@ -2451,7 +2448,7 @@
             }, 4500);
         }, 500);
 
-        // ===== PAGE TRANSITIONS =====
+        // ===== PAGE TRANSITIONS - FIXED =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
@@ -2459,18 +2456,23 @@
                 'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
                 'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
                 'a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], ' +
-                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]'
+                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"], ' +
+                'a[href^="schedule"]'
             );
 
             internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
+                    // Don't interfere with hash links or external links
                     if (this.getAttribute('href').startsWith('#')) return;
+                    if (this.getAttribute('href').startsWith('http')) return;
+                    if (this.getAttribute('target') === '_blank') return;
+                    
                     e.preventDefault();
                     const href = this.getAttribute('href');
                     document.body.classList.add('page-exit');
                     setTimeout(() => {
                         window.location.href = href;
-                    }, 400);
+                    }, 300);
                 });
             });
         });
@@ -2659,7 +2661,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Width fit with contain!');
+        console.log('🦷 Bantu Dental hub — Fixed navigation, increased image height!');
     </script>
 
 </body>
