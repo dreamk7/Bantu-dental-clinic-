@@ -68,7 +68,6 @@
             overflow: hidden;
         }
 
-        /* ===== SKIP LINK ===== */
         .skip-link {
             position: absolute;
             top: -100%;
@@ -88,7 +87,6 @@
             top: 0;
         }
 
-        /* ===== HEADER ===== */
         .header {
             position: fixed;
             top: 0;
@@ -337,9 +335,7 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ============================================================
-           HOMEPAGE - SPLIT LAYOUT WITH BACKGROUND IMAGE
-           ============================================================ */
+        /* ===== HOMEPAGE ===== */
         .homepage-section {
             min-height: 100vh;
             padding: 100px 0 60px;
@@ -390,7 +386,6 @@
             z-index: 1;
         }
 
-        /* Left Side - Text */
         .homepage-text {
             opacity: 0;
             transform: translateY(30px);
@@ -446,7 +441,7 @@
             font-size: 0.9rem;
         }
 
-        /* Right Side - Images */
+        /* ===== TWO-COLUMN SCROLLING IMAGES ===== */
         .homepage-images {
             opacity: 0;
             transform: translateY(30px);
@@ -539,7 +534,6 @@
             background: linear-gradient(to top, rgba(10, 30, 47, 0.9), transparent);
         }
 
-        /* Buttons */
         .hero-buttons {
             display: flex;
             align-items: center;
@@ -594,14 +588,11 @@
             font-size: 1.3rem;
         }
 
-        /* Mobile Buttons (hidden on desktop) */
         .mobile-buttons {
             display: none;
         }
 
-        /* ============================================================
-           VIDEO SECTION
-           ============================================================ */
+        /* ===== VIDEO SECTION ===== */
         .video-section {
             background: var(--dark);
             padding: 0;
@@ -625,9 +616,7 @@
             object-fit: cover;
         }
 
-        /* ============================================================
-           WHY CHOOSE
-           ============================================================ */
+        /* ===== WHY CHOOSE ===== */
         .why-choose-section {
             background: var(--light-gray);
             color: var(--dark);
@@ -737,9 +726,7 @@
             margin-top: 8px;
         }
 
-        /* ============================================================
-           SECTION (General)
-           ============================================================ */
+        /* ===== SECTION ===== */
         .section {
             padding: 80px 0 60px;
             width: 100%;
@@ -770,9 +757,7 @@
             margin: 0 auto 40px;
         }
 
-        /* ============================================================
-           TESTIMONIALS
-           ============================================================ */
+        /* ===== TESTIMONIALS ===== */
         .testimonial-rotator {
             background: var(--white);
             padding: 50px 30px;
@@ -912,9 +897,7 @@
             transform: translateY(0);
         }
 
-        /* ============================================================
-           SERVICES
-           ============================================================ */
+        /* ===== SERVICES ===== */
         .services-section {
             padding: 80px 0 60px;
             background: var(--white);
@@ -1036,9 +1019,7 @@
             background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop');
         }
 
-        /* ============================================================
-           DOCTOR SECTION
-           ============================================================ */
+        /* ===== DOCTOR ===== */
         .doctor-section {
             background: var(--light-gray);
             padding: 80px 0 60px;
@@ -1206,9 +1187,7 @@
             transform: translateY(-2px);
         }
 
-        /* ============================================================
-           CONTACT SECTION
-           ============================================================ */
+        /* ===== CONTACT ===== */
         .contact-wrap {
             text-align: center;
             max-width: 850px;
@@ -1363,9 +1342,7 @@
             transform: translateY(-2px);
         }
 
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* ===== FOOTER ===== */
         .footer {
             background: var(--dark);
             color: #c8d4e0;
@@ -1431,7 +1408,6 @@
             grid-column: 1 / -1;
         }
 
-        /* ===== BACK TO TOP ===== */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -1472,9 +1448,7 @@
             outline-offset: 2px;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .service-swipe-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1564,7 +1538,6 @@
                 text-align: center !important;
             }
 
-            /* ===== HOMEPAGE MOBILE ===== */
             .homepage-wrapper {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -1587,7 +1560,6 @@
                 color: #c8d4e0;
             }
 
-            /* Desktop buttons hidden on mobile */
             .homepage-text .hero-buttons {
                 display: none;
             }
@@ -1616,7 +1588,6 @@
                 height: 40px;
             }
 
-            /* Mobile buttons - shown after images */
             .mobile-buttons {
                 display: flex !important;
                 flex-direction: column;
@@ -1648,7 +1619,6 @@
                 border-color: var(--white);
             }
 
-            /* ===== OTHER SECTIONS ===== */
             .why-choose-wrapper {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1910,7 +1880,6 @@
             }
         }
 
-        /* ===== REDUCED MOTION ===== */
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1972,10 +1941,8 @@
 </head>
 <body>
 
-    <!-- ===== SKIP LINK ===== -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- ===== HEADER ===== -->
     <header class="header" role="banner">
         <div class="logo-wrapper">
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
@@ -2028,17 +1995,13 @@
         </ul>
     </header>
 
-    <!-- ============================================================
-    MAIN CONTENT
-    ============================================================ -->
     <main id="main-content">
 
-        <!-- ===== HOMEPAGE - SPLIT LAYOUT WITH BACKGROUND ===== -->
+        <!-- ===== HOMEPAGE ===== -->
         <section class="homepage-section" aria-label="Hero banner">
             <div class="container">
                 <div class="homepage-wrapper">
 
-                    <!-- Left Side - Text -->
                     <div class="homepage-text">
                         <h1>
                             Your <span class="highlight">Optimal</span> Oral <span class="highlight">Health</span> Begins Today!
@@ -2048,7 +2011,6 @@
                             <span>Everett, WA — Personalized Care You Can Trust</span>
                         </p>
 
-                        <!-- Desktop Buttons -->
                         <div class="hero-buttons">
                             <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
                             <a href="#contact-section" class="btn-call">
@@ -2057,7 +2019,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Side - Images -->
+                    <!-- ===== TWO-COLUMN SCROLLING IMAGES ===== -->
                     <div class="homepage-images">
                         <div class="scroll-container">
                             <!-- Column 1 - Scrolls UP -->
@@ -2090,7 +2052,6 @@
                         </div>
                     </div>
 
-                    <!-- Mobile Buttons - AFTER Images -->
                     <div class="mobile-buttons">
                         <a href="schedule.html" class="btn-primary">📅 Schedule Your Visit</a>
                         <a href="#contact-section" class="btn-call">
@@ -2102,11 +2063,11 @@
             </div>
         </section>
 
-        <!-- ===== VIDEO SECTION ===== -->
+        <!-- ===== VIDEO SECTION - Using your mydental.mp4 ===== -->
         <section class="video-section" id="video-section" aria-label="Dental care video">
             <div class="video-wrapper">
                 <video autoplay muted loop playsinline>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                    <source src="mydental.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -2221,7 +2182,7 @@
             </div>
         </section>
 
-        <!-- ===== DOCTOR SECTION ===== -->
+        <!-- ===== DOCTOR ===== -->
         <section class="doctor-section" id="doctor" aria-label="Meet the doctor">
             <div class="container">
                 <div class="doctor-wrap">
@@ -2240,7 +2201,7 @@
             </div>
         </section>
 
-        <!-- ===== CONTACT SECTION ===== -->
+        <!-- ===== CONTACT ===== -->
         <section class="section" id="contact-section" style="background:var(--white);" aria-label="Contact information">
             <div class="container">
                 <div class="contact-wrap">
@@ -2269,7 +2230,6 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
@@ -2304,13 +2264,10 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
 
     <script>
-        // ============================================================
-        // SLOGAN TYPING EFFECT
-        // ============================================================
+        // ===== SLOGAN TYPING =====
         (function() {
             const sloganDisplay = document.getElementById('sloganDisplay');
             const sloganText = "it all begins with a smile";
@@ -2344,11 +2301,8 @@
             setTimeout(typeSlogan, 500);
         })();
 
-        // ============================================================
-        // CONTACT TYPEWRITER EFFECT
-        // ============================================================
+        // ===== CONTACT TYPEWRITER =====
         const contactTypewriter = document.getElementById('contactTypewriter');
-
         setTimeout(function() {
             contactTypewriter.style.animation = 'contactType 3.5s steps(50) 1s forwards, contactBlink 0.8s step-end infinite';
             setTimeout(function() {
@@ -2356,9 +2310,7 @@
             }, 4500);
         }, 500);
 
-        // ============================================================
-        // PAGE TRANSITIONS
-        // ============================================================
+        // ===== PAGE TRANSITIONS =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
@@ -2382,9 +2334,7 @@
             });
         });
 
-        // ============================================================
-        // HAMBURGER
-        // ============================================================
+        // ===== HAMBURGER =====
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
@@ -2394,9 +2344,7 @@
             this.setAttribute('aria-expanded', isOpen);
         });
 
-        // ============================================================
-        // DROPDOWN TOGGLE (mobile)
-        // ============================================================
+        // ===== DROPDOWN TOGGLE (mobile) =====
         document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
@@ -2420,9 +2368,7 @@
             });
         });
 
-        // ============================================================
-        // CLOSE MENU ON OUTSIDE CLICK
-        // ============================================================
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
@@ -2432,9 +2378,7 @@
             }
         });
 
-        // ============================================================
-        // TESTIMONIALS
-        // ============================================================
+        // ===== TESTIMONIALS =====
         let currentTestimonial = 0;
         const slides = document.querySelectorAll('.testimonial-slide');
         const dots = document.querySelectorAll('.testimonial-dots button');
@@ -2502,9 +2446,7 @@
         showTestimonial(0);
         startTestimonialRotation();
 
-        // ============================================================
-        // SCROLL ANIMATIONS - WORKS BOTH WAYS
-        // ============================================================
+        // ===== SCROLL ANIMATIONS =====
         const animateOnScroll = () => {
             const elements = document.querySelectorAll(
                 '.why-text, .why-title, .doctor-image-wrap, .doctor-info-wrap, ' +
@@ -2542,9 +2484,7 @@
             animateOnScroll();
         }
 
-        // ============================================================
-        // KEYBOARD NAVIGATION FOR TESTIMONIALS
-        // ============================================================
+        // ===== KEYBOARD NAVIGATION FOR TESTIMONIALS =====
         document.addEventListener('keydown', function(e) {
             const isFocused = document.activeElement?.closest('.testimonial-wrapper');
             if (!isFocused) return;
@@ -2562,9 +2502,7 @@
             }
         });
 
-        // ============================================================
-        // BACK TO TOP
-        // ============================================================
+        // ===== BACK TO TOP =====
         const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', function() {
@@ -2580,7 +2518,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Split layout with background image!');
+        console.log('🦷 Bantu Dental hub — Two-column scrolling image layout with mydental.mp4!');
     </script>
 
 </body>
