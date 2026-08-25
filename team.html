@@ -68,7 +68,6 @@
             overflow: hidden;
         }
 
-        /* ===== SKIP LINK ===== */
         .skip-link {
             position: absolute;
             top: -100%;
@@ -88,7 +87,6 @@
             top: 0;
         }
 
-        /* ===== HEADER ===== */
         .header {
             position: fixed;
             top: 0;
@@ -128,14 +126,94 @@
             object-fit: contain;
         }
 
-        .header .logo .brand {
-            letter-spacing: 2px;
+        /* ===== ANIMATED LOGO ===== */
+        .animated-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: normal;
         }
-        .header .logo .brand .bantu {
-            margin-right: 6px;
+
+        .animated-logo .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: letterSlide 0.5s ease forwards;
         }
-        .header .logo .brand .dental {
-            color: var(--primary);
+
+        .char-1 { animation-delay: 0.00s; }
+        .char-2 { animation-delay: 0.05s; }
+        .char-3 { animation-delay: 0.10s; }
+        .char-4 { animation-delay: 0.15s; }
+        .char-5 { animation-delay: 0.20s; }
+        .char-6 { animation-delay: 0.25s; }
+        .char-7 { animation-delay: 0.30s; }
+        .char-8 { animation-delay: 0.35s; }
+        .char-9 { animation-delay: 0.40s; }
+        .char-10 { animation-delay: 0.45s; }
+        .char-11 { animation-delay: 0.50s; }
+        .char-12 { animation-delay: 0.55s; }
+        .char-13 { animation-delay: 0.60s; }
+        .char-14 { animation-delay: 0.65s; }
+
+        .char-dark { color: var(--dark); }
+        .char-blue { color: var(--primary); }
+
+        @keyframes letterSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-logo.blink-all .char {
+            animation: letterBlink 1.8s ease-in-out infinite;
+        }
+
+        .animated-logo.blink-all .char-1 { animation-delay: 0.00s; }
+        .animated-logo.blink-all .char-2 { animation-delay: 0.12s; }
+        .animated-logo.blink-all .char-3 { animation-delay: 0.24s; }
+        .animated-logo.blink-all .char-4 { animation-delay: 0.36s; }
+        .animated-logo.blink-all .char-5 { animation-delay: 0.48s; }
+        .animated-logo.blink-all .char-6 { animation-delay: 0.60s; }
+        .animated-logo.blink-all .char-7 { animation-delay: 0.72s; }
+        .animated-logo.blink-all .char-8 { animation-delay: 0.84s; }
+        .animated-logo.blink-all .char-9 { animation-delay: 0.96s; }
+        .animated-logo.blink-all .char-10 { animation-delay: 1.08s; }
+        .animated-logo.blink-all .char-11 { animation-delay: 1.20s; }
+        .animated-logo.blink-all .char-12 { animation-delay: 1.32s; }
+        .animated-logo.blink-all .char-13 { animation-delay: 1.44s; }
+        .animated-logo.blink-all .char-14 { animation-delay: 1.56s; }
+
+        @keyframes letterBlink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 0px rgba(10, 107, 223, 0);
+            }
+            25% {
+                opacity: 0.3;
+                text-shadow: 0 0 5px rgba(10, 107, 223, 0.1);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(10, 107, 223, 0.5), 0 0 60px rgba(10, 107, 223, 0.15);
+                color: var(--primary);
+            }
+            75% {
+                opacity: 0.5;
+                text-shadow: 0 0 10px rgba(10, 107, 223, 0.2);
+            }
+        }
+
+        .animated-logo .space {
+            display: inline-block;
+            width: 5px;
         }
 
         .header .slogan {
@@ -173,6 +251,12 @@
             .header .slogan {
                 margin-left: 44px;
                 font-size: 0.6rem;
+            }
+            .animated-logo {
+                font-size: 1rem;
+            }
+            .animated-logo .space {
+                width: 3px;
             }
         }
 
@@ -337,193 +421,99 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ============================================================
-           PAGE HERO
-           ============================================================ */
-        .page-hero {
-            padding: 120px 0 60px;
-            background: linear-gradient(135deg, rgba(10, 30, 47, 0.85), rgba(10, 107, 223, 0.70)), 
-                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=600&fit=crop');
+        /* ===== TEAM PAGE SPECIFIC ===== */
+        .team-hero {
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, rgba(10, 30, 47, 0.90), rgba(10, 107, 223, 0.70)), 
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&h=400&fit=crop');
             background-size: cover;
             background-position: center;
             text-align: center;
             color: var(--white);
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .page-hero .typewriter-heading {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+        .team-hero h1 {
+            font-size: 3rem;
             font-weight: 800;
-            overflow: hidden;
-            white-space: nowrap;
-            display: inline-block;
-            width: 0;
-            animation: typewriter 3s steps(40) 0.5s forwards;
+            margin-bottom: 16px;
         }
 
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
+        .team-hero h1 .highlight {
+            color: var(--primary);
         }
 
-        .page-hero .subtitle {
+        .team-hero p {
             font-size: 1.2rem;
             color: #c8d4e0;
-            margin-top: 16px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 3.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============================================================
-           TEAM SECTION
-           ============================================================ */
-        .team-section {
-            padding: 60px 0;
-            background: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            padding: 60px 0;
         }
 
-        .team-member {
-            text-align: center;
-            cursor: pointer;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .team-member.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .team-member .image-wrap {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 16px;
-            border-radius: 50%;
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-hover);
-            border: 4px solid var(--primary);
+            box-shadow: var(--shadow);
             transition: var(--transition);
+            text-align: center;
         }
 
-        .team-member .image-wrap img {
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-card img {
             width: 100%;
-            height: 100%;
+            height: 320px;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
-        .team-member:hover .image-wrap img {
-            transform: scale(1.05);
+        .team-card .info {
+            padding: 24px;
         }
 
-        .team-member .name {
-            font-size: 1.1rem;
+        .team-card .info h3 {
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--dark);
         }
 
-        .team-member .title {
-            font-size: 0.9rem;
+        .team-card .info .role {
             color: var(--primary);
             font-weight: 600;
-        }
-
-        .team-member .more-info {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
-            opacity: 0;
-            margin-top: 0;
-        }
-
-        .team-member.active .more-info {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 12px;
-        }
-
-        .team-member .more-info p {
             font-size: 0.95rem;
+            margin: 4px 0 8px;
+        }
+
+        .team-card .info p {
             color: var(--gray);
+            font-size: 0.95rem;
             line-height: 1.6;
-            padding: 0 10px;
         }
 
-        /* ============================================================
-           BACK TO TOP
-           ============================================================ */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            color: var(--white);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
-            text-decoration: none;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            z-index: 999;
-            border: none;
-            cursor: pointer;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .back-to-top:focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* ===== FOOTER ===== */
         .footer {
             background: var(--dark);
             color: #c8d4e0;
             padding: 40px 0 24px;
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             width: 100%;
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .footer .grid {
@@ -575,9 +565,46 @@
             grid-column: 1 / -1;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(10, 107, 223, 0.35);
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         @media (max-width: 900px) {
             .hamburger {
                 display: flex;
@@ -657,14 +684,26 @@
                 gap: 24px;
             }
 
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+            .team-hero h1 {
+                font-size: 2.2rem;
             }
 
-            .team-member .image-wrap {
-                width: 140px;
-                height: 140px;
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-hero {
+                padding: 120px 0 40px;
+            }
+
+            .team-hero h1 {
+                font-size: 1.8rem;
             }
         }
 
@@ -683,26 +722,6 @@
             }
         }
 
-        @media (max-width: 550px) {
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
-
-            .team-member .image-wrap {
-                width: 100px;
-                height: 100px;
-            }
-
-            .team-member .name {
-                font-size: 0.95rem;
-            }
-
-            .team-member .title {
-                font-size: 0.8rem;
-            }
-        }
-
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -714,26 +733,62 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .page-hero .typewriter-heading {
-                white-space: normal;
-                width: 100% !important;
-                animation: none;
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .animated-logo .char {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .animated-logo.blink-all .char {
+                animation: none !important;
+            }
+
+            .footer {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== SKIP LINK ===== -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- ===== HEADER ===== -->
     <header class="header" role="banner">
         <div class="logo-wrapper">
             <a class="logo" href="index.html" aria-label="Bantu Dental Home">
                 <img src="dental/logo.dental.jpg" alt="Bantu Dental Logo" />
-                <span class="brand"><span class="bantu">Bantu</span><span class="dental">Dental hub</span></span>
+                <span class="animated-logo blink-all" id="animatedLogo">
+                    <span class="char char-1 char-dark">B</span>
+                    <span class="char char-2 char-dark">a</span>
+                    <span class="char char-3 char-dark">n</span>
+                    <span class="char char-4 char-dark">t</span>
+                    <span class="char char-5 char-dark">u</span>
+                    <span class="space"></span>
+                    <span class="char char-6 char-blue">D</span>
+                    <span class="char char-7 char-blue">e</span>
+                    <span class="char char-8 char-blue">n</span>
+                    <span class="char char-9 char-blue">t</span>
+                    <span class="char char-10 char-blue">a</span>
+                    <span class="char char-11 char-blue">l</span>
+                    <span class="space"></span>
+                    <span class="char char-12 char-dark">H</span>
+                    <span class="char char-13 char-dark">u</span>
+                    <span class="char char-14 char-dark">b</span>
+                </span>
             </a>
             <span class="slogan" aria-hidden="true" id="sloganText">
                 <span id="sloganDisplay"></span>
@@ -747,17 +802,17 @@
         <ul class="nav" id="navMenu" role="menubar">
             <li role="none"><a href="index.html" role="menuitem">Home</a></li>
             <li role="none">
-                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false" class="active">
+                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
                     About Us <span class="arrow" aria-hidden="true">▾</span>
                 </a>
                 <ul class="dropdown" role="menu">
                     <li role="none"><a href="doctor.html" role="menuitem">Meet the Doctor</a></li>
-                    <li role="none"><a href="team.html" role="menuitem">Meet the Team</a></li>
+                    <li role="none"><a href="team.html" role="menuitem" class="active">Meet the Team</a></li>
                     <li role="none"><a href="reviews.html" role="menuitem">Reviews</a></li>
                 </ul>
             </li>
             <li role="none">
-                <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                <a href="#services" role="menuitem" aria-haspopup="true" aria-expanded="false">
                     Services <span class="arrow" aria-hidden="true">▾</span>
                 </a>
                 <ul class="dropdown" role="menu">
@@ -781,68 +836,53 @@
         </ul>
     </header>
 
-    <!-- ============================================================
-    MAIN CONTENT
-    ============================================================ -->
     <main id="main-content">
 
-        <!-- ===== HERO ===== -->
-        <section class="page-hero">
+        <!-- ===== TEAM HERO ===== -->
+        <section class="team-hero">
             <div class="container">
-                <h1 class="typewriter-heading">Meet Our Team</h1>
-                <p class="subtitle">Dedicated Professionals Committed to Your Smile</p>
+                <h1>Meet Our <span class="highlight">Team</span></h1>
+                <p>Dedicated professionals committed to your smile and well-being.</p>
             </div>
         </section>
 
-        <!-- ===== TEAM ===== -->
-        <section class="team-section" id="team-content">
+        <!-- ===== TEAM GRID ===== -->
+        <section class="section">
             <div class="container">
                 <div class="team-grid">
-                    <!-- Member 1 -->
-                    <div class="team-member" data-member="0">
-                        <div class="image-wrap">
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=400&fit=crop" alt="Dr. Abdul Wahab" loading="lazy" />
-                        </div>
-                        <div class="name">Dr. Abdul Wahab</div>
-                        <div class="title">Lead Dentist</div>
-                        <div class="more-info">
-                            <p>With over 15 years of experience, Dr. Wahab specializes in cosmetic and restorative dentistry. He is passionate about creating beautiful, healthy smiles.</p>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Dr. Sarah Johnson" loading="lazy" />
+                        <div class="info">
+                            <h3>Dr. Sarah Johnson</h3>
+                            <p class="role">Lead Dentist &amp; Implant Specialist</p>
+                            <p>With over 15 years of experience, Dr. Johnson specializes in dental implants and full mouth rehabilitation.</p>
                         </div>
                     </div>
 
-                    <!-- Member 2 -->
-                    <div class="team-member" data-member="1">
-                        <div class="image-wrap">
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=400&fit=crop" alt="Dr. Sarah Johnson" loading="lazy" />
-                        </div>
-                        <div class="name">Dr. Sarah Johnson</div>
-                        <div class="title">Orthodontist</div>
-                        <div class="more-info">
-                            <p>Dr. Johnson is a board-certified orthodontist with a gentle approach. She specializes in Invisalign, braces, and helping patients achieve perfectly aligned smiles.</p>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" alt="Dr. Michael Chen" loading="lazy" />
+                        <div class="info">
+                            <h3>Dr. Michael Chen</h3>
+                            <p class="role">Cosmetic Dentist &amp; Smile Designer</p>
+                            <p>Dr. Chen is passionate about creating beautiful smiles through cosmetic dentistry and Invisalign treatments.</p>
                         </div>
                     </div>
 
-                    <!-- Member 3 -->
-                    <div class="team-member" data-member="2">
-                        <div class="image-wrap">
-                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=400&fit=crop" alt="Dr. Michael Chen" loading="lazy" />
-                        </div>
-                        <div class="name">Dr. Michael Chen</div>
-                        <div class="title">Periodontist</div>
-                        <div class="more-info">
-                            <p>Dr. Chen specializes in gum health, dental implants, and periodontal surgery. He is dedicated to preserving natural teeth and restoring oral health.</p>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Emily Rodriguez" loading="lazy" />
+                        <div class="info">
+                            <h3>Dr. Emily Rodriguez</h3>
+                            <p class="role">Pediatric Dentist</p>
+                            <p>Dr. Rodriguez provides gentle and compassionate care for children, making dental visits fun and stress-free.</p>
                         </div>
                     </div>
 
-                    <!-- Member 4 -->
-                    <div class="team-member" data-member="3">
-                        <div class="image-wrap">
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=400&fit=crop" alt="Dr. Emily Rodriguez" loading="lazy" />
-                        </div>
-                        <div class="name">Dr. Emily Rodriguez</div>
-                        <div class="title">Pediatric Dentist</div>
-                        <div class="more-info">
-                            <p>Dr. Rodriguez loves working with children and creating positive dental experiences. She specializes in pediatric dentistry and preventive care for young smiles.</p>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=400&fit=crop" alt="Dr. James Wilson" loading="lazy" />
+                        <div class="info">
+                            <h3>Dr. James Wilson</h3>
+                            <p class="role">Oral Surgeon</p>
+                            <p>Dr. Wilson specializes in wisdom teeth removal, dental implants, and complex oral surgeries.</p>
                         </div>
                     </div>
                 </div>
@@ -851,7 +891,6 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="container">
             <div class="grid">
@@ -886,13 +925,10 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</a>
 
     <script>
-        // ============================================================
-        // SLOGAN TYPING EFFECT
-        // ============================================================
+        // ===== SLOGAN TYPING =====
         (function() {
             const sloganDisplay = document.getElementById('sloganDisplay');
             const sloganText = "it all begins with a smile";
@@ -926,9 +962,7 @@
             setTimeout(typeSlogan, 500);
         })();
 
-        // ============================================================
-        // PAGE TRANSITIONS
-        // ============================================================
+        // ===== PAGE TRANSITIONS =====
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-enter');
 
@@ -936,25 +970,27 @@
                 'a[href^="index.html"], a[href^="doctor.html"], a[href^="team.html"], ' +
                 'a[href^="reviews.html"], a[href^="general.html"], a[href^="cosmetic.html"], ' +
                 'a[href^="restorative.html"], a[href^="emergency.html"], a[href^="faqs.html"], ' +
-                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"]'
+                'a[href^="financial.html"], a[href^="contact.html"], a[href^="schedule.html"], ' +
+                'a[href^="schedule"]'
             );
 
             internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     if (this.getAttribute('href').startsWith('#')) return;
+                    if (this.getAttribute('href').startsWith('http')) return;
+                    if (this.getAttribute('target') === '_blank') return;
+                    
                     e.preventDefault();
                     const href = this.getAttribute('href');
                     document.body.classList.add('page-exit');
                     setTimeout(() => {
                         window.location.href = href;
-                    }, 400);
+                    }, 300);
                 });
             });
         });
 
-        // ============================================================
-        // HAMBURGER
-        // ============================================================
+        // ===== HAMBURGER =====
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
@@ -964,9 +1000,7 @@
             this.setAttribute('aria-expanded', isOpen);
         });
 
-        // ============================================================
-        // DROPDOWN TOGGLE (mobile)
-        // ============================================================
+        // ===== DROPDOWN TOGGLE =====
         document.querySelectorAll('.nav > li > a[aria-haspopup="true"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nav = document.getElementById('navMenu');
@@ -990,9 +1024,7 @@
             });
         });
 
-        // ============================================================
-        // CLOSE MENU ON OUTSIDE CLICK
-        // ============================================================
+        // ===== CLOSE MENU ON OUTSIDE CLICK =====
         document.addEventListener('click', function(e) {
             const header = document.querySelector('.header');
             if (header && !header.contains(e.target)) {
@@ -1002,33 +1034,9 @@
             }
         });
 
-        // ============================================================
-        // TEAM MEMBER TOGGLE
-        // ============================================================
-        const teamMembers = document.querySelectorAll('.team-member');
-
-        teamMembers.forEach(member => {
-            member.addEventListener('click', function(e) {
-                // Don't toggle if clicking on a link inside
-                if (e.target.closest('a')) return;
-                
-                // Close all other members
-                teamMembers.forEach(m => {
-                    if (m !== this) {
-                        m.classList.remove('active');
-                    }
-                });
-                
-                // Toggle this member
-                this.classList.toggle('active');
-            });
-        });
-
-        // ============================================================
-        // SCROLL ANIMATIONS - WORKS BOTH WAYS
-        // ============================================================
+        // ===== SCROLL ANIMATIONS =====
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.team-member');
+            const elements = document.querySelectorAll('.footer');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1039,7 +1047,7 @@
                     }
                 });
             }, {
-                threshold: 0.2,
+                threshold: 0.15,
                 rootMargin: '0px 0px -40px 0px'
             });
 
@@ -1052,9 +1060,7 @@
             animateOnScroll();
         }
 
-        // ============================================================
-        // BACK TO TOP
-        // ============================================================
+        // ===== BACK TO TOP =====
         const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', function() {
@@ -1070,7 +1076,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🦷 Bantu Dental hub — Team page ready!');
+        console.log('🦷 Bantu Dental hub — Meet the Team page!');
     </script>
 
 </body>
